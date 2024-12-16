@@ -140,7 +140,7 @@ if (isset($_POST['btnUpdate'])) {
                         <input type="password" class="form-control" id="confirmPassword" name="confirm_password" required>
                         <i class="bi bi-eye eye-icon" id="toggleConfirmPassword"></i>
                     </div>
-                    <button type="submit" name="btnUpdate"  style="background-color:#4A148C; color:white;" class="btn">Set</button>
+                    <button type="submit" name="btnUpdate"  style="background-color:rgb(68 235 167); color:white;" class="btn">Set</button>
                 </form>
             </div>
         </div>

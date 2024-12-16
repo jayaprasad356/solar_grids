@@ -70,7 +70,7 @@ if (isset($_POST['btnLogin'])) {
             margin: 0;
         }
         body {
-        font-family: 'Poppins', Arial, sans-serif;
+        font-family:  Poppins, Helvetica, sans-serif;
         background: #efefef;
     }
         .custom-container {
@@ -85,7 +85,7 @@ if (isset($_POST['btnLogin'])) {
             width: 100%;
             margin-top:25px;
             border-radius: 10px;
-            border: 2px solid #4A148C;
+            border: 2px solid rgb(68 235 167);
             
         }
         .btn-customs {
@@ -137,7 +137,7 @@ if (isset($_POST['btnLogin'])) {
                 </div>
                 
                 <div class="form-group">
-                <button type="submit" class="btn btn-custom" name="btnLogin"  style="background-color:#4A148C; color:white; font-weight:bold;">Login</button>
+                <button type="submit" class="btn btn-custom" name="btnLogin"  style="background-color:rgb(68 235 167); color: #03242b; font-weight:bold;">Login</button>
                 </div>
                 <div class="text-center mt-3">
                     <p>Don't have an account? <a href="register.php">Create New Account</a></p>

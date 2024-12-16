@@ -76,7 +76,7 @@ curl_close($curl);
     <style>
         /* Enhanced styles for the dashboard */
         .info-box {
-            background-color: #f8f9fa;
+            background-color: #03242b;
             border-radius: 10px;
             padding: 30px;
             margin-bottom: 20px;
@@ -103,7 +103,7 @@ curl_close($curl);
         .info-box i {
             font-size: 2.5rem;
             margin-bottom: 15px;
-            color: rgba(255, 255, 255, 0.8);
+            color:#03242b;
         }
 
         /* Colors and effects */
@@ -168,6 +168,7 @@ curl_close($curl);
             font-size: 2rem; /* Reduce icon size */
         }
     }
+ 
 
     </style>
 </head>

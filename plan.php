@@ -148,6 +148,7 @@ curl_close($curl);
 
     <style>
         .plan-box {
+           
             background-color: #f8f9fa;
             border-radius: 5px;
             padding: 20px;
@@ -181,19 +182,28 @@ curl_close($curl);
         }
 
         .purchase-btn {
-            background-color: #4A148C;
-            color: white;
+           background-color:#44eba7; 
+            border-color: #44eba7; 
+            color: black; 
+            font-weight: 600;
+            border-radius: 99999px;
+        }
+        .purchase-btn :hover{
+             background-color: #44eba7; 
+            border-color: #44eba7;
         }
         .trail-btn {
-    background-color: white;     /* Background color set to white */
-    color: #4A148C;              /* Text color set to #4A148C */
-    border: 2px solid #4A148C;   /* Border color set to #4A148C */
+     /* background-color:#44eba7;  */
+            border-color: #44eba7; 
+            color: black; 
+            font-weight: 600;
+            border-radius: 99999px; /* Border color set to #4A148C */
 }
         
 
         .product-name-box {
-            background-color: #4A148C;
-            color: white;
+            background-color: rgb(68 235 167);
+            color: black;
             padding: 15px;
             border-radius: 5px;
             margin-bottom: 15px;
@@ -208,7 +218,7 @@ curl_close($curl);
         }
 
         .watch-demo-link {
-            color: white; /* Change color as needed */
+            color: black; /* Change color as needed */
             text-decoration: none; /* Remove underline */
             font-weight: bold; /* Make it bold */
             padding-left: 10px; /* Add padding for a gap */
@@ -221,7 +231,7 @@ curl_close($curl);
 
         .activated-jobs-link {
     margin-bottom: 20px;
-    background-color: #4A148C; /* Background color for the link */
+    background-color: rgb(68 235 167); /* Background color for the link */
     border-radius: 10px;
 }
 
@@ -239,6 +249,7 @@ curl_close($curl);
     .plan-details p {
         margin: 5px 0;
         font-size: 0.8rem;
+         font-family:Verdana, Geneva, Tahoma, sans-serif;
     }
 
     .alert-info {
@@ -264,9 +275,9 @@ curl_close($curl);
             <!-- Activated Jobs Link -->
             <div class="activated-jobs-link">
                 <a href="my_plans.php" class="btn w-100 d-flex justify-content-between align-items-center">
-                    <i style="color: #f8f9fa; font-size: 1.5rem; padding: 10px; font-weight: bold;" class="bi bi-briefcase-fill"></i>  <!-- Left icon (briefcase) -->
-                    <span style="color: #f8f9fa; font-size: 0.90rem; padding: 10px; font-weight: bold;">My Activated Jobs</span> <!-- Button Text -->
-                    <i style="color: #f8f9fa; font-size: 1.5rem; padding: 10px; font-weight: bold;" class="bi bi-arrow-right"></i> <!-- Right icon (arrow) -->
+                    <i style="color: #03242b; font-size: 1.5rem; padding: 10px; font-weight: bold;" class="bi bi-briefcase-fill"></i>  <!-- Left icon (briefcase) -->
+                    <span style="color:rgb(0, 0, 0); font-size: 0.90rem; padding: 10px; font-weight: bold; ">My Activated Jobs</span> <!-- Button Text -->
+                    <i style="color: #03242b; font-size: 1.5rem; padding: 10px; font-weight: bold;" class="bi bi-arrow-right"></i> <!-- Right icon (arrow) -->
                 </a>
             </div>
 

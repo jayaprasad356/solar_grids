@@ -79,8 +79,8 @@ curl_close($curl);
             background-color: #ffffff;
         }
         .profile-header {
-            background-color: #4A148C;
-            color: #fff;
+            background-color: #43e7a4;
+            color: black;
             border-top-left-radius: 10px;
             border-top-right-radius: 10px;
             padding: 20px;

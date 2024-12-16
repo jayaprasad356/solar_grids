@@ -56,7 +56,7 @@ curl_close($curl);
     <style>
         /* Additional styles for the boxes */
         .info-box {
-            background-color: #4A148C;
+            background-color: rgb(68 235 167);
             border-radius: 5px;
             padding: 20px;
             text-align: center;
@@ -103,7 +103,7 @@ curl_close($curl);
         <div class="col py-3">
             <div class="withdrawal-container" id="withdrawals">
                 <h2>Withdrawal List</h2>
-                <a href="withdrawal_request.php"  style="background-color:#4A148C; color:white;" class="btn withdrawal-button">Request Withdrawal</a>
+                <a href="withdrawal_request.php"  style="background-color:rgb(68 235 167); color:white;" class="btn withdrawal-button">Request Withdrawal</a>
                 <table class="table table-bordered">
                     <thead>
                         <tr>

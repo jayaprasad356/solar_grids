@@ -74,8 +74,8 @@ curl_close($curl);
         }
 
         .profile-header {
-            background-color: #4A148C;
-            color: #fff;
+            background-color: rgb(68 235 167);
+            color: black;
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
             padding: 20px;
@@ -90,7 +90,7 @@ curl_close($curl);
             flex: 1; /* Allow equal distribution */
         }
         .wallet-item h5 {
-                color: #FFD700; /* Golden color */
+                color:  #03242b; /* Golden color */
         }
 
 
@@ -103,19 +103,19 @@ curl_close($curl);
             margin-bottom: 10px;
             transition: background-color 0.3s ease;
             text-decoration: none;
-            color: #4A148C;
+            color: rgb(68 235 167);
             font-weight: bold;
         }
 
         .nav-links:hover {
-            background-color: #4A148C;
-            color: white;
+            background-color: rgb(68 235 167);
+            color: black;
         }
 
         .nav-links i {
             font-size: 1.5rem;
             margin-right: 15px;
-            color: #4A148C;
+            color:  #03242b;
         }
 
         .nav-links:hover i {

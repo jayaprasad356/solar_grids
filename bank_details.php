@@ -196,7 +196,7 @@ curl_close($curl);
                         <label for="withdrawalAmount" class="form-label"></label>
                         <input type="text" id="ifsc" name="ifsc" placeholder="ifsc" class="form-control" required value="<?php echo isset($ifsc) ? htmlspecialchars($ifsc) : ''; ?>" />
                     </div>
-                    <button type="submit" name="btnUpdate"   style="background-color:#4A148C; color:white;" class="btn">Update</button>
+                    <button type="submit" name="btnUpdate"   style="background-color:rgb(68 235 167); color:white;" class="btn">Update</button>
                 </form>
             </div>
         </div>

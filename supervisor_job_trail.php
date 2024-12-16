@@ -190,8 +190,8 @@ $display_count = $_SESSION['submission_count_3'][$plan_id];
         }
 
         .product-name-box {
-            background-color: #4A148C;
-            color: white;
+            background-color: #44eba7;
+            color: black;
             padding: 15px; 
             text-align: center;
             font-size: 1.2rem; 
@@ -208,14 +208,16 @@ $display_count = $_SESSION['submission_count_3'][$plan_id];
         }
 
         .custom-btn {
-            background-color: #4A148C; 
-            border-color: #4A148C; 
-            color: white; 
+            background-color:rgb(255, 255, 255); 
+            border-color: #44eba7; 
+            color: black; 
+            font-weight: 600;
+            border-radius: 99999px; 
         }
 
         .custom-btn:hover {
-            background-color: #6A1B9A; 
-            border-color: #6A1B9A; 
+            background-color: #44eba7; 
+            border-color: #44eba7; 
         }
     </style>
 </head>

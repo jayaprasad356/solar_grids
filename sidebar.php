@@ -76,7 +76,7 @@ body {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #4A148C;
+    background-color: #44eba7;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -88,7 +88,7 @@ body {
 /* Navigation links */
 .bottom-nav .nav-link {
     text-align: center;
-    color: white;
+    color:  #03242b;
     font-size: 14px;
     transition: color 0.3s ease, transform 0.3s ease; /* Smooth hover transition */
 }

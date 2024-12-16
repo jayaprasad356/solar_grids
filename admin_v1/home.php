@@ -31,7 +31,7 @@ include "header.php";
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Jiyo- Dashboard</title>
+    <title>Solar_Grids- Dashboard</title>
 </head>
 
 <body>
