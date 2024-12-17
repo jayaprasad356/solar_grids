@@ -141,7 +141,6 @@ curl_close($curl);
             background-color: #f8f9fa;
             border-radius: 5px;
             padding: 20px;
-            text-align: center;
             margin-bottom: 20px;
         }
         .info-box h4 {
@@ -156,24 +155,45 @@ curl_close($curl);
             position: absolute;
             top: 20px;
             right: 20px;
+            
         }
         .form-container {
             max-width: 500px;
+            
+            
         }
         .bankdetails-container {
             position: relative; 
             padding: 20px; 
+            
+        }
+        .btn{
+             background-color:#44eba7; 
+            border-color: #44eba7; 
+            color: black; 
+            font-weight: 600;
+            border-radius: 99999px;
+           
+        }
+        .btn:hover{
+            color:rgb(0, 0, 0);
+            background-color: #44eba7;
+        }
+        .form-control{
+            border: 1px solid #44eba7;
         }
     </style>
 </head>
 <body>
-<div class="container-fluid">
+<div class="container-fluid ">
     <div class="row flex-nowrap">
+        
     <?php include_once('sidebar.php'); ?>
         <div class="col py-3">
         <div id="bankdetails" class="bankdetails-container">
             <h2>Bank Details</h2>
             <!-- Withdrawal Request Form -->
+         <div class="container-fluid ">
             <div class="form-container mt-4">
                 <form action="bank_details.php" method="post">
                     <div class="mb-3">
@@ -196,9 +216,10 @@ curl_close($curl);
                         <label for="withdrawalAmount" class="form-label"></label>
                         <input type="text" id="ifsc" name="ifsc" placeholder="ifsc" class="form-control" required value="<?php echo isset($ifsc) ? htmlspecialchars($ifsc) : ''; ?>" />
                     </div>
-                    <button type="submit" name="btnUpdate"   style="background-color:rgb(68 235 167); color:white;" class="btn">Update</button>
+                    <button type="submit" name="btnUpdate"   class="btn">Update</button>
                 </form>
             </div>
+         </div>
         </div>
     </div>
 </div>

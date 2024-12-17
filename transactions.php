@@ -74,6 +74,18 @@ curl_close($curl);
             position: relative; 
             padding: 20px; 
         }
+        tr{
+            border: 2px solid black ;
+            
+        }
+
+        tr .no{
+          background-color: #44eba7;
+          text-align: center;
+        }
+        .td{
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -82,24 +94,24 @@ curl_close($curl);
     <?php include_once('sidebar.php'); ?>
         <div class="col py-3">
             <div class="transaction-container" id="transactions">
-                <h2>Transactions List</h2>
+                <h2 class="text-center mb-4">Transactions List</h2>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">S.No</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">DateTime</th>
+                            <th class="no" scope="col">S.No</th>
+                            <th class="no" scope="col">Type</th>
+                            <th class="no" scope="col">Amount</th>
+                            <th class="no" scope="col">DateTime</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- Loop through all withdrawals and display each one -->
                         <?php foreach ($userdetails as $index => $transaction): ?>
                             <tr>
-                                <th scope="row"><?php echo $index + 1; ?></th>
-                                <td><?php echo htmlspecialchars($transaction['type']); ?></td>
-                                <td><?php echo htmlspecialchars($transaction['amount']); ?></td>
-                                <td><?php echo htmlspecialchars($transaction['datetime']); ?></td>
+                                <th class="td" scope="row"><?php echo $index + 1; ?></th>
+                                <td class="td"><?php echo htmlspecialchars($transaction['type']); ?></td>
+                                <td class="td"><?php echo htmlspecialchars($transaction['amount']); ?></td>
+                                <td class="td"><?php echo htmlspecialchars($transaction['datetime']); ?></td>
                             </tr>
                         <?php endforeach; ?>
                         <?php if (empty($userdetails)): ?>

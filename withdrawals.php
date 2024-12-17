@@ -88,7 +88,15 @@ curl_close($curl);
             border-radius: 99999px;
             background-color: #44eba7; 
         }
-       
+       tr{
+            border: 2px solid black ;
+            
+        }
+
+        tr .td{
+          background-color: #44eba7;
+          text-align: center;
+        }
         @media (max-width: 576px) {
             .withdrawal-container h2 {
                 font-size: 1.5rem;
@@ -112,10 +120,10 @@ curl_close($curl);
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">S.No</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">DateTime</th>
+                            <th class="td" scope="col">S.No</th>
+                            <th class="td" scope="col">Status</th>
+                            <th class="td" scope="col">Amount</th>
+                            <th class="td" scope="col">DateTime</th>
                         </tr>
                     </thead>
                     <tbody>

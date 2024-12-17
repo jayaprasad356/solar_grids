@@ -62,6 +62,7 @@ curl_close($curl);
             padding: 20px;
             text-align: center;
             margin-bottom: 20px;
+            
         }
         .info-box h4 {
             font-size: 1.5rem;
@@ -74,6 +75,18 @@ curl_close($curl);
         .level1-container {
             position: relative; 
             padding: 20px; 
+        }
+        tr{
+            border: 2px solid black ;
+            
+        }
+
+        tr .no{
+          background-color: #44eba7;
+          text-align: center;
+        }
+        .td{
+            text-align: center;
         }
     </style>
 </head>
@@ -89,12 +102,12 @@ curl_close($curl);
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th scope="col">S.No</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Mobile Number</th>
-                                <th scope="col">Registered Date</th>
-                                <th scope="col">Teams</th>
-                                <th scope="col">Total Purchase</th>
+                                <th class="no" scope="col">S.No</th>
+                                <th class="no" scope="col">Name</th>
+                                <th class="no" scope="col">Mobile Number</th>
+                                <th class="no" scope="col">Registered Date</th>
+                                <th class="no" scope="col">Teams</th>
+                                <th class="no" scope="col">Total Purchase</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -102,12 +115,12 @@ curl_close($curl);
                             <?php if (!empty($userdetails)): ?>
                                 <?php foreach ($userdetails as $index => $transaction): ?>
                                     <tr>
-                                        <th scope="row"><?php echo $index + 1; ?></th>
-                                        <td><?php echo htmlspecialchars($transaction['name']); ?></td>
-                                        <td><?php echo htmlspecialchars($transaction['mobile']); ?></td>
-                                        <td><?php echo htmlspecialchars($transaction['registered_datetime']); ?></td>
-                                        <td><?php echo htmlspecialchars($transaction['team_size']); ?></td>
-                                        <td><?php echo htmlspecialchars($transaction['total_assets']); ?></td>
+                                        <th class="td" scope="row"><?php echo $index + 1; ?></th>
+                                        <td class="td"><?php echo htmlspecialchars($transaction['name']); ?></td>
+                                        <td class="td"><?php echo htmlspecialchars($transaction['mobile']); ?></td>
+                                        <td class="td"><?php echo htmlspecialchars($transaction['registered_datetime']); ?></td>
+                                        <td class="td"><?php echo htmlspecialchars($transaction['team_size']); ?></td>
+                                        <td class="td"><?php echo htmlspecialchars($transaction['total_assets']); ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else: ?>
