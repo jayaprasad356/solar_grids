@@ -83,7 +83,12 @@ curl_close($curl);
             top: 20px;
             right: 20px;
             font-size: 1rem;
+            border-color: #44eba7; 
+            font-weight: 600;
+            border-radius: 99999px;
+            background-color: #44eba7; 
         }
+       
         @media (max-width: 576px) {
             .withdrawal-container h2 {
                 font-size: 1.5rem;
@@ -103,7 +108,7 @@ curl_close($curl);
         <div class="col py-3">
             <div class="withdrawal-container" id="withdrawals">
                 <h2>Withdrawal List</h2>
-                <a href="withdrawal_request.php"  style="background-color:rgb(68 235 167); color:white;" class="btn withdrawal-button">Request Withdrawal</a>
+                <a href="withdrawal_request.php"  style=" color:black;" class="btn withdrawal-button">Request Withdrawal</a>
                 <table class="table table-bordered">
                     <thead>
                         <tr>

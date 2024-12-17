@@ -195,6 +195,8 @@ $_SESSION['bonus_wallet'] = $bonus_wallet;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web</title>
     <link rel="icon" type="image/x-icon" href="admin_v1/dist/img/jiyo">
+
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons CSS -->
@@ -211,25 +213,42 @@ $_SESSION['bonus_wallet'] = $bonus_wallet;
         .info-box h4 {
             font-size: 1.5rem;
             margin-bottom: 10px;
+              font-family: 'Poppins', Helvetica, sans-serif; /* Updated font */
         }
         .info-box p {
             font-size: 1.25rem;
             margin: 0;
+              font-family: 'Poppins', Helvetica, sans-serif; /* Updated font */
         }
         .withdrawal-container {
             position: relative; 
             padding: 20px; 
+              font-family: 'Poppins', Helvetica, sans-serif; /* Updated font */
         }
         .withdrawal-container h2 {
             margin-bottom: 20px;
             font-size: 2rem;
+              font-family: 'Poppins', Helvetica, sans-serif; /* Updated font */
         }
         .withdrawal-button {
             position: absolute;
             top: 20px;
             right: 20px;
             font-size: 1rem;
+            border-color: #44eba7; 
+            font-weight: 600;
+            border-radius: 99999px;
+             background-color: #44eba7; 
+              font-family: 'Poppins', Helvetica, sans-serif; /* Updated font */
         }
+        
+         .btn{
+             background-color: #44eba7; 
+            border-color: #44eba7; 
+            font-weight: 600;
+            border-radius: 99999px;
+         }
+        */
         .form-container {
             max-width: 400px; 
         }
@@ -241,6 +260,7 @@ $_SESSION['bonus_wallet'] = $bonus_wallet;
             margin: 10px 0; /* Space between boxes */
             border: 2px solid #43e7a4; /* Border color */
         }
+
         @media (max-width: 576px) {
             .withdrawal-container h2 {
                 font-size: 0.9rem;
@@ -272,7 +292,7 @@ $_SESSION['bonus_wallet'] = $bonus_wallet;
                             style="width: 120%; padding-left: 30px; text-align: center; font-weight:bold;" 
                             value="<?php echo htmlspecialchars($earning_wallet); ?>" disabled>
                     </div>
-                    <button type="submit" name="btnearningwallet" style="background-color:#43e7a4; color:white;" class="btn">Add to Main Balance</button>
+                    <button type="submit" name="btnearningwallet" style="color:black;" class="btn">Add to Main Balance</button>
                 </div>
              </form>
             </div>
@@ -286,7 +306,7 @@ $_SESSION['bonus_wallet'] = $bonus_wallet;
                             style="width: 120%; padding-left: 30px; text-align: center; font-weight:bold;" 
                             value="<?php echo htmlspecialchars($bonus_wallet); ?>" disabled>
                     </div>
-                    <button type="submit" name="btnbonuswallet" style="background-color:#43e7a4; color:white;" class="btn">Add to Main Balance</button>
+                    <button type="submit" name="btnbonuswallet" style="color:black;" class="btn">Add to Main Balance</button>
                 </div>
                 </form>
             </div>
@@ -294,7 +314,7 @@ $_SESSION['bonus_wallet'] = $bonus_wallet;
 
                 <!-- Existing Withdrawal Request Title and Form -->
                 <h2>Withdrawal Request</h2>
-                <a href="withdrawals.php" style="background-color:#43e7a4; color:white;" class="btn withdrawal-button">Back To Withdrawals</a>
+                <a href="withdrawals.php" style=" color:black;" class="btn withdrawal-button">Back To Withdrawals</a>
                 
                 <!-- Withdrawal Request Form -->
                 <div class="form-container mt-4">
@@ -308,7 +328,7 @@ $_SESSION['bonus_wallet'] = $bonus_wallet;
                             <label for="amount" class="form-label">Enter Amount</label>
                             <input type="number" class="form-control" id="amount" name="amount" required>
                         </div>
-                        <button type="submit" name="btnWithdrawal" style="background-color:#43e7a4; color:white;" class="btn">Submit Request</button>
+                        <button type="submit" name="btnWithdrawal" style=" color:black;" class="btn">Submit Request</button>
                     </form>
                 </div>
             </div>

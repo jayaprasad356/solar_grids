@@ -205,6 +205,8 @@ $display_count = $_SESSION['submission_countss'][$plan_id];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web</title>
     <link rel="icon" type="image/x-icon" href="admin_v1/dist/img/">
+         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
     <style>
@@ -216,6 +218,7 @@ $display_count = $_SESSION['submission_countss'][$plan_id];
             margin: 0 auto 20px auto; 
             width: 80%; 
             max-width: 600px; 
+            font-family: 'Poppins', Helvetica, sans-serif;
         }
 
         .product-name-box {
@@ -227,6 +230,7 @@ $display_count = $_SESSION['submission_countss'][$plan_id];
             font-weight: bold;
             border-radius: 5px;
             margin-bottom: 15px; 
+            font-family: 'Poppins', Helvetica, sans-serif;
         }
 
         .highlighted-value {
@@ -234,13 +238,16 @@ $display_count = $_SESSION['submission_countss'][$plan_id];
             font-weight: bold;
             padding: 2px 5px; 
             border-radius: 5px;
+            font-family: 'Poppins', Helvetica, sans-serif;
         }
 
         .custom-btn {
             background-color: #4A148C; 
             border-color: #4A148C; 
             color: white; 
+            font-family: 'Poppins', Helvetica, sans-serif;
         }
+
 
         .custom-btn:hover {
             background-color: #6A1B9A; 

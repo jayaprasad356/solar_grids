@@ -52,6 +52,8 @@ curl_close($curl);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Bottom Navigation Example</title>
+
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -68,7 +70,7 @@ curl_close($curl);
 /* Body padding to avoid content being hidden under the bottom navigation */
 body {
     padding-bottom: 60px; /* Space for bottom navigation */
-    font-family: Arial, sans-serif;
+     font-family: 'Poppins', Helvetica, sans-serif;
 }
 
 /* Bottom navigation bar styles */
@@ -83,6 +85,8 @@ body {
     padding: 10px 0;
     z-index: 1000;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    font-weight: 900;
+     font-family: 'Poppins', Helvetica, sans-serif;
 }
 
 /* Navigation links */
@@ -91,6 +95,7 @@ body {
     color:  #03242b;
     font-size: 14px;
     transition: color 0.3s ease, transform 0.3s ease; /* Smooth hover transition */
+     font-family: 'Poppins', Helvetica, sans-serif;
 }
 
 /* Icon styles */

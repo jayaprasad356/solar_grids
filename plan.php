@@ -139,6 +139,8 @@ curl_close($curl);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web</title>
     <link rel="icon" type="image/x-icon" href="admin_v1/dist/img/jiyo">
+
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons CSS -->
@@ -147,6 +149,7 @@ curl_close($curl);
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
 
     <style>
+        
         .plan-box {
            
             background-color: #f8f9fa;
@@ -156,6 +159,7 @@ curl_close($curl);
             display: flex;
             align-items: center;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            font-family: 'Poppins', Helvetica, sans-serif;
         }
 
         .plan-box img {
@@ -164,21 +168,25 @@ curl_close($curl);
             object-fit: cover;
             margin-right: 20px;
             border-radius: 5px;
+
         }
 
         .plan-details {
             flex-grow: 1;
+            font-family: 'Poppins', Helvetica, sans-serif;
         }
 
         .plan-details p {
             margin: 5px 0;
             font-size: 1.1rem;
+            font-family: 'Poppins', Helvetica, sans-serif;
         }
 
         .highlight {
             background-color: yellow;
             font-weight: bold;
             padding: 0 5px;
+            font-family: 'Poppins', Helvetica, sans-serif;
         }
 
         .purchase-btn {
@@ -187,17 +195,16 @@ curl_close($curl);
             color: black; 
             font-weight: 600;
             border-radius: 99999px;
+            font-family: 'Poppins', Helvetica, sans-serif;
         }
-        .purchase-btn :hover{
-             background-color: #44eba7; 
-            border-color: #44eba7;
-        }
+        
         .trail-btn {
      /* background-color:#44eba7;  */
             border-color: #44eba7; 
             color: black; 
             font-weight: 600;
             border-radius: 99999px; /* Border color set to #4A148C */
+            font-family: 'Poppins', Helvetica, sans-serif;
 }
         
 
@@ -210,11 +217,13 @@ curl_close($curl);
             display: flex; /* Use flexbox for alignment */
             justify-content: space-between; /* Space out children */
             align-items: center; /* Center items vertically */
+            font-family: 'Poppins', Helvetica, sans-serif;
         }
 
         .product-name {
             font-size: 0.90rem; /* Size for the product name */
             font-weight: bold; /* Bold for product name */
+            font-family: 'Poppins', Helvetica, sans-serif;
         }
 
         .watch-demo-link {
@@ -223,6 +232,7 @@ curl_close($curl);
             font-weight: bold; /* Make it bold */
             padding-left: 10px; /* Add padding for a gap */
             font-size: 0.70rem; /* Size for the product name */
+            font-family: 'Poppins', Helvetica, sans-serif;
         }
 
         .watch-demo-link:hover {
@@ -233,6 +243,7 @@ curl_close($curl);
     margin-bottom: 20px;
     background-color: rgb(68 235 167); /* Background color for the link */
     border-radius: 10px;
+    font-family: 'Poppins', Helvetica, sans-serif;
 }
 
 
@@ -241,9 +252,11 @@ curl_close($curl);
     left: 935px; /* Distance from the right */ 
     width: 100%; /* Full width */
     max-width: 300px; /* Set a max width */
+    font-family: 'Poppins', Helvetica, sans-serif;
 }
 .small-font {
             font-size: 0.8rem; /* Adjust the size as needed */
+            font-family: 'Poppins', Helvetica, sans-serif;
         }
 @media (max-width: 576px) {
     .plan-details p {
