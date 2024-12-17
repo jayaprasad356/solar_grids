@@ -94,6 +94,7 @@ curl_close($curl);
             margin-bottom: 10px;
             font-weight: bold;
              font-family: 'Poppins', Helvetica, sans-serif;
+             
         }
 
         .info-box p {
@@ -101,6 +102,7 @@ curl_close($curl);
             margin: 0;
             font-weight: bold;
              font-family: 'Poppins', Helvetica, sans-serif;
+            
         }
 
         /* Icon styling inside the info boxes */

@@ -114,13 +114,13 @@ body {
 
 /* Hover effect for navigation links */
 .bottom-nav .nav-link:hover {
-    color: #FFD700; /* Change color on hover */
+    color:rgb(4, 4, 4); /* Change color on hover */
     transform: scale(1.1); /* Slight zoom on hover */
 }
 
 /* Hover effect for icons */
 .bottom-nav .nav-link:hover i {
-    color: #FFD700; /* Change icon color on hover */
+    color:rgb(2, 2, 2); /* Change icon color on hover */
     transform: scale(1.2); /* Slight zoom for icon */
 }
 

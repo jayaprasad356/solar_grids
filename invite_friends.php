@@ -132,6 +132,14 @@ curl_close($curl);
         .button{
             padding:10px;
             background-color:#4A148C;
+            
+        }
+        .btn_copy{
+            border-radius: 99999px;
+            padding: 7px;
+            border-color: #44eba7;
+            font-size: 1rem;
+            
         }
         .form-container {
             max-width: 400px; 
@@ -162,7 +170,7 @@ curl_close($curl);
                 <label for="link" class="form-label">Invite Link</label>
                 <input type="text" class="form-control" id="inviteLink" name="link" value="https://solargrids.graymatterworks.com/register.php?refer_code<?php echo $refer_code; ?>" disabled>
             </div>
-            <button type="button" id="copyButton" style="background-color:rgb(68 235 167); color:white;" class="btn">
+            <button type="button" id="copyButton" style="background-color:rgb(68 235 167); color:black;" class="btn_copy">
                 <i class="fs-5 bi-copy"></i> Copy Link
             </button>
             <br><br>
