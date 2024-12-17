@@ -72,6 +72,10 @@ if (isset($_POST['btnLogin'])) {
         body {
         font-family:  Poppins, Helvetica, sans-serif;
         background: #efefef;
+        background: url(./admin_v1/images/bg-green-grid.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
         .custom-container {
             width: 450px; 
@@ -110,7 +114,7 @@ if (isset($_POST['btnLogin'])) {
     </style>
 </head>
 <body>
-<h2 class="text-center mt-5">Login</h2> <!-- Moved Register text outside the container -->
+<h2 class="text-center mt-5" style="color: #efefef;">Login</h2> <!-- Moved Register text outside the container -->
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
         <div class="custom-container">
         
