@@ -289,7 +289,7 @@ curl_close($curl);
             <div class="activated-jobs-link">
                 <a href="my_plans.php" class="btn w-100 d-flex justify-content-between align-items-center">
                     <i style="color: #03242b; font-size: 1.5rem; padding: 10px; font-weight: bold;" class="bi bi-briefcase-fill"></i>  <!-- Left icon (briefcase) -->
-                    <span style="color:rgb(0, 0, 0); font-size: 0.90rem; padding: 10px; font-weight: bold; ">My Activated Jobs</span> <!-- Button Text -->
+                    <span style="color:rgb(0, 0, 0); font-size: 0.90rem; padding: 10px; font-weight: bold; ">My Activated Income</span> <!-- Button Text -->
                     <i style="color: #03242b; font-size: 1.5rem; padding: 10px; font-weight: bold;" class="bi bi-arrow-right"></i> <!-- Right icon (arrow) -->
                 </a>
             </div>
@@ -316,20 +316,21 @@ curl_close($curl);
                                 <?php endif; ?>
 
                                 <div class="plan-details">
-                                    <p>Course Fees: <strong><?php echo '₹' . htmlspecialchars($plan['price']); ?></strong></p>
+                                    <p>Cost: <strong><?php echo '₹' . htmlspecialchars($plan['price']); ?></strong></p>
+                                    <p>Quantity: <strong><?php echo htmlspecialchars($plan['quantity'] ?? '1 Kilo watt'); ?></strong></p>
                                     <p>Daily Earnings: <strong><?php echo '₹' . htmlspecialchars($plan['daily_earnings']); ?></strong></p>
                                     <p>Monthly Earnings: <strong><?php echo '₹' . htmlspecialchars($plan['monthly_earnings']); ?></strong></p>
-                                    <p>Daily Codes: <strong><?php echo '' . htmlspecialchars($plan['daily_codes']); ?></strong></p>
+                                    <!-- <p>Daily Codes: <strong><?php echo '' . htmlspecialchars($plan['daily_codes']); ?></strong></p> -->
                                     <?php if ($plan['id'] != 1): ?>
-                                        <p>Validity: <span class="highlight">Life Time</span></p>
+                                        <!-- <p>Validity: <span class="highlight">Life Time</span></p> -->
                                     <?php else: ?>
-                                        <p>Validity: <span class="highlight">30 Days</span></p>
+                                        <!-- <p>Validity: <span class="highlight">30 Days</span></p> -->
                                     <?php endif; ?>
                                     
                                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" style="margin-top: 10px;">
                                         <input type="hidden" name="plan_id" value="<?php echo htmlspecialchars($plan['id']); ?>">
                                         <button type="submit" name="btnactivate" class="btn purchase-btn">Purchase</button>
-                                        <button type="button" onclick="startWork(<?php echo htmlspecialchars($plan['id']); ?>)" class="btn trail-btn">Take Trial</button>
+                                        <!-- <button type="button" onclick="startWork(<?php echo htmlspecialchars($plan['id']); ?>)" class="btn trail-btn">Take Trial</button> -->
                                     </form>
                                 </div>
                             </div>

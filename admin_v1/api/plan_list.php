@@ -54,6 +54,7 @@ if ($num >= 1) {
         $temp['price'] = $row['price'];
         $temp['type'] = $row['type'];
         $temp['min_refers'] = $row['min_refers'];
+        $temp['quantity'] = $row['quantity'];
         
         $plan_id = $row['id'];
         $sql_check_plan = "SELECT * FROM user_plan WHERE user_id = $user_id AND plan_id = $plan_id";

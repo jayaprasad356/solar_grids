@@ -63,6 +63,8 @@ curl_close($curl);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <link rel="icon" type="image/x-icon" href="admin_v1/dist/img/jiyo">
+
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons CSS -->
@@ -70,7 +72,7 @@ curl_close($curl);
     <style>
         body {
             background-color: #f0f2f5;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', Helvetica, sans-serif; /* Updated font */
         }
         .card {
             border: none;
@@ -85,17 +87,21 @@ curl_close($curl);
             border-top-right-radius: 10px;
             padding: 20px;
             text-align: center;
+            font-family: 'Poppins', Helvetica, sans-serif; /* Updated font */
         }
         .profile-header h2 {
             font-size: 2rem;
             margin: 0;
+            font-family: 'Poppins', Helvetica, sans-serif; /* Updated font */
         }
         .form-label {
             font-weight: bold;
             color: #495057;
+            font-family: 'Poppins', Helvetica, sans-serif; /* Updated font */
         }
         .form-control:read-only {
             background-color: #e9ecef;
+            font-family: 'Poppins', Helvetica, sans-serif; /* Updated font */
         }
     </style>
 </head>
