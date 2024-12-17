@@ -76,6 +76,7 @@ if (isset($_POST['btnLogin'])) {
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
+        
     }
         .custom-container {
             width: 450px; 
