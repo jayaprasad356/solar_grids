@@ -63,7 +63,6 @@ if (empty($plan)) {
 }
 
 $price = $plan[0]['price'];
-$min_refers = $plan[0]['min_refers'];
 $invite_bonus = $plan[0]['invite_bonus'];
 $datetime = date('Y-m-d H:i:s');
 

@@ -27,6 +27,7 @@
                                     <th  data-field="monthly_earnings" data-sortable="true">Monthly Earnings</th>
                                     <th  data-field="invite_bonus" data-sortable="true">Invite Bonus</th>
                                     <th  data-field="price" data-sortable="true">Price</th>
+                                    <th  data-field="quantity" data-sortable="true">Quantity</th>
                                     <th data-field="image">Image</th>
                                     <th  data-field="description" data-sortable="true">Description</th>
                                 </tr>

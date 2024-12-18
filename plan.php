@@ -317,7 +317,7 @@ curl_close($curl);
 
                                 <div class="plan-details">
                                     <p>Cost: <strong><?php echo '₹' . htmlspecialchars($plan['price']); ?></strong></p>
-                                    <p>Quantity: <strong><?php echo htmlspecialchars($plan['quantity'] ?? '1 Kilo watt'); ?></strong></p>
+                                    <p>Quantity: <strong><?php echo  htmlspecialchars($plan['quantity']).  ' Kilo watt'; ?></strong></p>
                                     <p>Daily Earnings: <strong><?php echo '₹' . htmlspecialchars($plan['daily_earnings']); ?></strong></p>
                                     <p>Monthly Earnings: <strong><?php echo '₹' . htmlspecialchars($plan['monthly_earnings']); ?></strong></p>
                                     <!-- <p>Daily Codes: <strong><?php echo '' . htmlspecialchars($plan['daily_codes']); ?></strong></p> -->

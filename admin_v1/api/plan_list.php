@@ -49,7 +49,7 @@ if ($num >= 1) {
         $temp['monthly_earnings'] = $row['monthly_earnings'];
         $temp['invite_bonus'] = $row['invite_bonus'];
         $temp['price'] = $row['price'];
-        
+        $temp['quantity'] = $row['quantity'];
         
         $plan_id = $row['id'];
         $sql_check_plan = "SELECT * FROM user_plan WHERE user_id = $user_id AND plan_id = $plan_id";

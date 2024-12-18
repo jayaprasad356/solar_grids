@@ -13,6 +13,7 @@ if (isset($_POST['btnAdd'])) {
         $price = $db->escapeString(($_POST['price']));
         $invite_bonus = $db->escapeString(($_POST['invite_bonus']));
         $monthly_earnings = $db->escapeString(($_POST['monthly_earnings']));
+        $quantity = $db->escapeString(($_POST['quantity']));
    
         $error = array();
        
@@ -48,10 +49,10 @@ if (isset($_POST['btnAdd'])) {
         }
 
         $upload_image = 'upload/images/' . $filename;
-        $sql = "INSERT INTO plan (name,description,image,price,daily_earnings,invite_bonus,monthly_earnings) VALUES ('$name','$description','$upload_image','$price','$daily_earnings','$invite_bonus','$monthly_earnings')";
+        $sql = "INSERT INTO plan (name,description,image,price,daily_earnings,invite_bonus,monthly_earnings,quantity) VALUES ('$name','$description','$upload_image','$price','$daily_earnings','$invite_bonus','$monthly_earnings','$quantity')";
         $db->sql($sql);
     } else {
-            $sql_query = "INSERT INTO plan (name,description,price,daily_earnings,invite_bonus,monthly_earnings) VALUES ('$name','$description','$price','$daily_earnings','$invite_bonus','$monthly_earnings')";
+            $sql_query = "INSERT INTO plan (name,description,price,daily_earnings,invite_bonus,monthly_earnings,quantity) VALUES ('$name','$description','$price','$daily_earnings','$invite_bonus','$monthly_earnings','$quantity')";
             $db->sql($sql);
         }
             $result = $db->getResult();
@@ -111,6 +112,10 @@ if (isset($_POST['btnAdd'])) {
                                     <label for="exampleInputtitle">Daily Earnings</label> <i class="text-danger asterik">*</i>
                                     <input type="number" class="form-control" name="daily_earnings" required>
                                 </div>
+                                <div class="col-md-3">
+									<label for="exampleInputEmail1">Quantity</label><i class="text-danger asterik">*</i>
+									<input type="number" class="form-control" name="quantity" value="<?php echo $res[0]['quantity']; ?>">
+								</div>
                             </div>
                         </div>
                         <br>

@@ -218,6 +218,7 @@ $db->connect();
                 $tempRow['monthly_earnings'] = $row['monthly_earnings'];
                 $tempRow['price'] = $row['price'];
                 $tempRow['invite_bonus'] = $row['invite_bonus'];
+                $tempRow['quantity'] = $row['quantity'];
                 if(!empty($row['image'])){
                     $tempRow['image'] = "<a data-lightbox='category' href='" . $row['image'] . "' data-caption='" . $row['image'] . "'><img src='" . $row['image'] . "' title='" . $row['image'] . "' height='50' /></a>";
         
@@ -439,7 +440,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'user_plan') {
             $total = $row['total'];
         }
         
-        $sql = "SELECT l.id AS id, l.*, u.name AS user_name, u.mobile AS user_mobile, u.referred_by AS user_referred_by, p.name AS plan_name, p.price AS plan_price,p.daily_earnings AS plan_daily_earnings, p.monthly_earnings AS plan_monthly_earnings  FROM `user_plan` l " . $join . " ORDER BY $sort $order LIMIT $offset, $limit";
+        $sql = "SELECT l.id AS id, l.*, u.name AS user_name, u.mobile AS user_mobile, u.referred_by AS user_referred_by, p.name AS plan_name, p.price AS plan_price,p.daily_earnings AS plan_daily_earnings, p.monthly_earnings AS plan_monthly_earnings, p.quantity AS plan_quantity  FROM `user_plan` l " . $join . " ORDER BY $sort $order LIMIT $offset, $limit";
         $db->sql($sql);
         $res = $db->getResult();
         
@@ -462,6 +463,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'user_plan') {
         $tempRow['plan_price'] = $row['plan_price'];
         $tempRow['plan_daily_earnings'] = $row['plan_daily_earnings'];
         $tempRow['plan_monthly_earnings'] = $row['plan_monthly_earnings'];
+        $tempRow['plan_quantity'] = $row['plan_quantity'];
         $tempRow['income'] = $row['income'];
         $tempRow['joined_date'] = $row['joined_date'];
         $tempRow['operate'] = $operate;

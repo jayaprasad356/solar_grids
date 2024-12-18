@@ -179,8 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plan_id'])) {
                                 <!-- Right side: Details -->
                                 <div class="plan-details">
                                     <p>Cost: <strong><?php echo '₹' . htmlspecialchars($plan['price']); ?></strong></p>
-                                    <p>Quantity: <strong><?php echo htmlspecialchars($plan['quantity'] ?? '1 Kilo watt'); ?></strong></p>
-                                    <p>Daily Earnings: <strong><?php echo '₹' . htmlspecialchars($plan['daily_earnings']); ?></strong></p>
+                                    <p>Quantity: <strong><?php echo  htmlspecialchars($plan['quantity']).  ' Kilo watt'; ?></strong></p>                                    <p>Daily Earnings: <strong><?php echo '₹' . htmlspecialchars($plan['daily_earnings']); ?></strong></p>
                                     <p>Monthly Earnings: <strong><?php echo '₹' . htmlspecialchars($plan['monthly_earnings']); ?></strong></p>
                                     
                                     <button class="btn claim-btn" data-plan-id="<?php echo htmlspecialchars($plan['plan_id']); ?>">Claim</button>
