@@ -20,7 +20,7 @@ if (empty($_POST['user_id'])) {
 }
 
 $user_id = $db->escapeString($_POST['user_id']);
-$type = isset($_POST['type']) ? $db->escapeString($_POST['type']) : 'jobs';
+
 
 $sql = "SELECT * FROM users WHERE id = $user_id";
 $db->sql($sql);
@@ -33,7 +33,7 @@ if (empty($user)) {
     return false;
 }
 
-$sql = "SELECT * FROM plan WHERE type = '$type'";
+$sql = "SELECT * FROM plan";
 $db->sql($sql);
 $res = $db->getResult();
 $num = $db->numRows($res);
@@ -45,16 +45,11 @@ if ($num >= 1) {
         // Remove all HTML tags except for <br>
         $temp['description'] = strip_tags_except($row['description'], array('br'));
         $temp['image'] = DOMAIN_URL . $row['image'];
-        $temp['demo_video'] = $row['demo_video'];
-        $temp['daily_codes'] = $row['daily_codes'];
         $temp['daily_earnings'] = $row['daily_earnings'];
         $temp['monthly_earnings'] = $row['monthly_earnings'];
         $temp['invite_bonus'] = $row['invite_bonus'];
-        $temp['per_code_cost'] = $row['per_code_cost'];
         $temp['price'] = $row['price'];
-        $temp['type'] = $row['type'];
-        $temp['min_refers'] = $row['min_refers'];
-        $temp['quantity'] = $row['quantity'];
+        
         
         $plan_id = $row['id'];
         $sql_check_plan = "SELECT * FROM user_plan WHERE user_id = $user_id AND plan_id = $plan_id";

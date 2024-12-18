@@ -214,14 +214,9 @@ $db->connect();
                 $tempRow['id'] = $row['id'];
                 $tempRow['name'] = $row['name'];
                 $tempRow['description'] = $row['description'];
-                $tempRow['demo_video'] = $row['demo_video'];
-                $tempRow['per_code_cost'] = $row['per_code_cost'];
-                $tempRow['daily_codes'] = $row['daily_codes'];
                 $tempRow['daily_earnings'] = $row['daily_earnings'];
                 $tempRow['monthly_earnings'] = $row['monthly_earnings'];
                 $tempRow['price'] = $row['price'];
-                $tempRow['type'] = $row['type'];
-                $tempRow['min_refers'] = $row['min_refers'];
                 $tempRow['invite_bonus'] = $row['invite_bonus'];
                 if(!empty($row['image'])){
                     $tempRow['image'] = "<a data-lightbox='category' href='" . $row['image'] . "' data-caption='" . $row['image'] . "'><img src='" . $row['image'] . "' title='" . $row['image'] . "' height='50' /></a>";
@@ -444,7 +439,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'user_plan') {
             $total = $row['total'];
         }
         
-        $sql = "SELECT l.id AS id, l.*, u.name AS user_name, u.mobile AS user_mobile, u.referred_by AS user_referred_by, p.name AS plan_name, p.price AS plan_price, p.daily_codes AS plan_daily_codes, p.per_code_cost AS plan_per_code_cost, p.daily_earnings AS plan_daily_earnings, p.monthly_earnings AS plan_monthly_earnings  FROM `user_plan` l " . $join . " ORDER BY $sort $order LIMIT $offset, $limit";
+        $sql = "SELECT l.id AS id, l.*, u.name AS user_name, u.mobile AS user_mobile, u.referred_by AS user_referred_by, p.name AS plan_name, p.price AS plan_price,p.daily_earnings AS plan_daily_earnings, p.monthly_earnings AS plan_monthly_earnings  FROM `user_plan` l " . $join . " ORDER BY $sort $order LIMIT $offset, $limit";
         $db->sql($sql);
         $res = $db->getResult();
         
@@ -465,8 +460,6 @@ if (isset($_GET['table']) && $_GET['table'] == 'user_plan') {
         $tempRow['user_referred_by'] = $row['user_referred_by'];
         $tempRow['plan_name'] = $row['plan_name'];
         $tempRow['plan_price'] = $row['plan_price'];
-        $tempRow['plan_daily_codes'] = $row['plan_daily_codes'];
-        $tempRow['plan_per_code_cost'] = $row['plan_per_code_cost'];
         $tempRow['plan_daily_earnings'] = $row['plan_daily_earnings'];
         $tempRow['plan_monthly_earnings'] = $row['plan_monthly_earnings'];
         $tempRow['income'] = $row['income'];

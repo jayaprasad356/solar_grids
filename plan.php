@@ -15,7 +15,7 @@ $recharge = 0; // Default value in case no recharge is found
 
 $data = array(
     "user_id" => $user_id,
-    "type" => "jobs",
+    
 );
 
 $apiUrl = API_URL . "plan_list.php";
@@ -301,9 +301,9 @@ curl_close($curl);
                         <div class="col-md-6 mb-4">
                             <span class="product-name-box">
                                 <?php echo htmlspecialchars($plan['name']); ?>
-                                <a href="<?php echo htmlspecialchars($plan['demo_video']); ?>" target="_blank" class="watch-demo-link">
+                                <!-- <a href="<?php echo htmlspecialchars($plan['demo_video']); ?>" target="_blank" class="watch-demo-link">
                                     Watch Demo Video
-                                </a>
+                                </a> -->
                             </span>
 
                             <div class="plan-box">

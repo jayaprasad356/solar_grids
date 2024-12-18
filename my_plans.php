@@ -91,6 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plan_id'])) {
         .plan-details p {
             margin: 5px 0;
             font-size: 1.1rem;
+            color: black;
         }
         .highlight {
             background-color: yellow;
@@ -98,13 +99,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plan_id'])) {
             padding: 0 5px;
         }
         .purchase-btn {
-            background-color: #4A148C;
-            color: white;
+             background-color:#44eba7; 
+            border-color: #44eba7; 
+            color: black; 
+            font-weight: 600;
+            border-radius: 99999px;
+            font-family: 'Poppins', Helvetica, sans-serif;
         }
         /* Style for the product name box */
         .product-name-box {
-            background-color: #4A148C;
-            color: white;
+            background-color: #44eba7;
+            color: black;
             padding: 15px;
             text-align: center;
             font-size: 0.90rem;
@@ -112,17 +117,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plan_id'])) {
             border-radius: 5px;
             margin-bottom: 15px;
         }
-        .btn-success {
-            background-color: #4A148C;
-            border-color: #4A148C;
+        .claim-btn {
+            background-color: #44eba7;
+            border-color: #44eba7;
+            color: black; 
+            font-weight: 600;
+            border-radius: 99999px; /* Border color set to #4A148C */
+            font-family: 'Poppins', Helvetica, sans-serif;
         }
-        .btn-success[disabled] {
+        .claim-btn:hover{
+            background-color: #44eba7;
+        }
+        /* .btn-success[disabled] {
             background-color: #ccc;
             border-color: #ccc;
-        }
+        } */
         .activated-jobs-link {
             margin-bottom: 20px;
-            background-color: #4A148C;
+            background-color: #44eba7;
             /* Background color for the link */
             border-radius: 10px;
         }
@@ -141,9 +153,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plan_id'])) {
             <div class="col py-3">
                 <!-- Activated Jobs Link -->
                 <div class="activated-jobs-link">
-                    <a href="plan.php" class="btn w-100 d-flex justify-content-center align-items-center" style="background-color: #4A148C;">
-                        <i style="color: #F8F9FA; font-size: 1.5rem;font-weight: bold;" class="bi bi-arrow-left"></i>
-                        <span style="color: #F8F9FA; font-size: 1.2rem; font-weight: bold; flex-grow: 1; text-align: center;">Jobs</span>
+                    <a href="plan.php" class="btn w-100 d-flex justify-content-center align-items-center" style="background-color: #44eba7;">
+                        <i style="color:rgb(2, 2, 2); font-size: 1.5rem;font-weight: bold;" class="bi bi-arrow-left"></i>
+                        <span style="color:rgb(0, 0, 0); font-size: 1.2rem; font-weight: bold; flex-grow: 1; text-align: center;">Jobs</span>
                     </a>
                 </div>
                 <div id="plansSection" class="plansSection-container">
@@ -166,14 +178,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plan_id'])) {
                                 <?php endif; ?>
                                 <!-- Right side: Details -->
                                 <div class="plan-details">
-                                    <p>Price: <strong><?php echo '₹' . htmlspecialchars($plan['price']); ?></strong></p>
+                                    <p>Cost: <strong><?php echo '₹' . htmlspecialchars($plan['price']); ?></strong></p>
+                                    <p>Quantity: <strong><?php echo htmlspecialchars($plan['quantity'] ?? '1 Kilo watt'); ?></strong></p>
                                     <p>Daily Earnings: <strong><?php echo '₹' . htmlspecialchars($plan['daily_earnings']); ?></strong></p>
                                     <p>Monthly Earnings: <strong><?php echo '₹' . htmlspecialchars($plan['monthly_earnings']); ?></strong></p>
-                                    <p>Daily Codes: <strong><?php echo htmlspecialchars($plan['daily_codes']); ?></strong></p>
-                                    <p>Validity: <span class="highlight">
-                                        <?php echo ($plan['plan_id'] == 1) ? '30 Days' : 'Life Time'; ?>
-                                    </span></p>
-                                    <button class="btn btn-success claim-btn" data-plan-id="<?php echo htmlspecialchars($plan['plan_id']); ?>">Claim</button>
+                                    
+                                    <button class="btn claim-btn" data-plan-id="<?php echo htmlspecialchars($plan['plan_id']); ?>">Claim</button>
                                 </div>
                             </div>
                         </div>
