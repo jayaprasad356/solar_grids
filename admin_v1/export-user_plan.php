@@ -4,7 +4,7 @@ $db = new Database();
 $db->connect();
 
 $currentdate = date('Y-m-d');
-$sql_query = "SELECT up.user_id, u.name AS user_name, u.mobile,u.referred_by, up.plan_id, p.name AS plan_name, p.price, p.daily_codes, p.daily_earnings, p.per_code_cost, up.income, up.joined_date, up.claim
+$sql_query = "SELECT up.user_id, u.name AS user_name, u.mobile,u.referred_by, up.plan_id, p.name AS plan_name, p.price,  p.daily_earnings,  up.income, up.joined_date, up.claim
               FROM `user_plan` up
               JOIN `users` u ON up.user_id = u.id
               JOIN `plan` p ON up.plan_id = p.id
