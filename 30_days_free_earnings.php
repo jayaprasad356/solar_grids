@@ -5,7 +5,7 @@ session_start();
 // Get the user ID from the session, redirect if not set
 $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
 if (!$user_id) {
-    header("Location: index.php");
+    header("Location: login.php");
     exit();
 }
 

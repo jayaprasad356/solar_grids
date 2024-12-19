@@ -78,7 +78,7 @@ body {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #44eba7;
+    background-color:#44eba7;
     display: flex;
     justify-content: space-around;
     align-items: center;

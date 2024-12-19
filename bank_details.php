@@ -3,7 +3,7 @@ include_once('includes/connection.php');
 session_start();
 
 if (!isset($_SESSION['id'])) {
-  header("location:index.php");
+  header("location:login.php");
 }
 
 $user_id = $_SESSION['id']; // Replace with the actual user_id

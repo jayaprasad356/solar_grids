@@ -38,7 +38,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
                 if (isset($responseData["success"]) && $responseData["success"]) {
                     $response['success'] = true;
                     $response['message'] = $responseData["message"];
-                    $response['redirect'] = 'login.php';
+                    $response['redirect'] = 'index.php';
                 } else {
                     $response['message'] = isset($responseData["message"]) ? $responseData["message"] : "Registration failed. Please try again.";
                 }
