@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 if (!isset($_SESSION['id'])) {
-    header("Location: index.php");
+    header("Location: login.php");
     exit();
 }
 
@@ -130,13 +130,13 @@ exit();
 // Initialize user details
 include_once('includes/connection.php');
 if (!isset($_SESSION['id'])) {
-    header("Location: index.php");
+    header("Location: login.php");
     exit();
 }
 $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null; // Ensure user_id is set
 
 if (!$user_id) {
-    header("Location: index.php");
+    header("Location: login.php");
     exit();
 }
 

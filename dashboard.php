@@ -2,13 +2,13 @@
 include_once('includes/connection.php');
 session_start();
 if (!isset($_SESSION['id'])) {
-    header("Location: index.php");
+    header("Location: login.php");
     exit();
 }
 $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null; // Ensure user_id is set
 
 if (!$user_id) {
-    header("Location: index.php");
+    header("Location: login.php");
     exit();
 }
 

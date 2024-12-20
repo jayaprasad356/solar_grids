@@ -8,7 +8,7 @@ $_SESSION['id'] = $logged_in_user_id;
 
 
 if (!$user_id) {
-    header("Location: index.php");
+    header("Location: login.php");
     exit();
 }
 

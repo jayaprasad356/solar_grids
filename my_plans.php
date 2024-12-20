@@ -4,7 +4,7 @@ session_start();
 // Check if the user is logged in
 $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
 if (!$user_id) {
-    header("Location: index.php");
+    header("Location: login.php");
     exit();
 }
 $data = array(

@@ -5,7 +5,7 @@ include_once('includes/connection.php');
 session_start(); // Start session if not already started
 
 if (!isset($_SESSION['id'])) {
-    header("location:index.php");
+    header("location:login.php");
     exit(); // It's a good practice to exit after redirecting
 }
 

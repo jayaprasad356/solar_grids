@@ -6,7 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
 $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
 
 if (!$user_id) {
-    header("Location: index.php");
+    header("Location: login.php");
     exit();
 }
 

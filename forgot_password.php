@@ -87,7 +87,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
             width: 100%;
             margin-top:25px;
             border-radius: 10px;
-            border: 2px solid #4A148C;
+            border: 2px solid  #44eba7;
         }
         .btn-customs {
             width: 100%;
@@ -188,7 +188,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
                 </div>
              
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-custom" name="btnChange" style="background-color:#4A148C; color:white; font-weight:bold;">Change Password</button>
+                    <button type="submit" class="btn btn-primary btn-custom" name="btnChange" style="background-color:  #44eba7; color:black; font-weight:bold;">Change Password</button>
                 </div>
                 <div class="text-center mt-3">
                     <p><a href="index.php">Back to Login</a></p>
