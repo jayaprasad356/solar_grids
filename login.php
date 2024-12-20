@@ -3,7 +3,7 @@ include_once('includes/connection.php');
 session_start();
 ob_start();
 
-$loginapi = API_URL."index.php";
+$loginapi = API_URL."login.php";
 
 
 if (isset($_POST['btnLogin'])) {

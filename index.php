@@ -513,28 +513,17 @@
                     <div class=" mx-4 inline-flex items-center md:ml-0 ">
                         <a class=" inline-flex items-center " href="/">
                             <div class=" relative h-8 w-8 ">
-<<<<<<< HEAD
+
                                 <img src="solar_grids_logo.png"  alt="Your Logo"  class="your"/>
                                 <!-- <img alt="SundayGrids Logo" loading="lazy" decoding="async" data-nimg="fill" class=" inline-block object-cover object-center" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent;background-size:cover;background-position:50% 50%;background-repeat:no-repeat;background-image:url(&quot;data:image/svg+xml;charset=utf-8,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; %3E%3Cfilter id=&#x27;b&#x27; color-interpolation-filters=&#x27;sRGB&#x27;%3E%3CfeGaussianBlur stdDeviation=&#x27;20&#x27;/%3E%3CfeColorMatrix values=&#x27;1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 100 -1&#x27; result=&#x27;s&#x27;/%3E%3CfeFlood x=&#x27;0&#x27; y=&#x27;0&#x27; width=&#x27;100%25&#x27; height=&#x27;100%25&#x27;/%3E%3CfeComposite operator=&#x27;out&#x27; in=&#x27;s&#x27;/%3E%3CfeComposite in2=&#x27;SourceGraphic&#x27;/%3E%3CfeGaussianBlur stdDeviation=&#x27;20&#x27;/%3E%3C/filter%3E%3Cimage width=&#x27;100%25&#x27; height=&#x27;100%25&#x27; x=&#x27;0&#x27; y=&#x27;0&#x27; preserveAspectRatio=&#x27;none&#x27; style=&#x27;filter: url(%23b);&#x27; href=&#x27;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P++HgAFZAJv0HnVWgAAAABJRU5ErkJggg==&#x27;/%3E%3C/svg%3E&quot;)" sizes="80vw" srcSet="image?url=%2Fimages%2Flogo-sg-light.png&amp;w=640&amp;q=100 640w, image?url=%2Fimages%2Flogo-sg-light.png&amp;w=1024&amp;q=100 1024w, image?url=%2Fimages%2Flogo-sg-light.png&amp;w=1280&amp;q=100 1280w,image?url=%2Fimages%2Flogo-sg-light.png&amp;w=1400&amp;q=100 1400w" src="image?url=%2Fimages%2Flogo-sg-light.png&amp;w=1400&amp;q=100"/> -->
-=======
-                                <img alt="SundayGrids Logo" loading="lazy" decoding="async" data-nimg="fill" class=" inline-block object-cover object-center" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent;background-size:cover;background-position:50% 50%;background-repeat:no-repeat;background-image:url(logo-sg-dark.png)" src="logo-sg-dark.png"/>
->>>>>>> 862e0ec0ec26c8f67f8fa2c00ddbf9237be302a2
                             </div>
                         </a>
                                                     <strong class="text-white xs:text-french-blue-700 ml-2 hidden text-lg font-semibold min-[420px]:inline-block md:text-[22px] ">SolarGrids</strong>
 
                     </div>
-                  
-                    <div class="inline-flex items-center gap-x-3 ">
-                        <!-- <a target="_self" class="border-french-blue-700 text-french-blue-700 hover:scale-105 hover:bg-french-blue-700 hover:text-jade-green-200 hover:shadow-md hover:shadow-grass-green-100 hidden h-10 items-center rounded-full border-2 px-6 py-2 font-semibold transition-all duration-300 min-[768px]:inline-flex" aria-label="Login" href="login.php">Login</a> -->
-                        <!-- <button tabindex="0" class="flex aspect-square h-8 w-8 items-end justify-end rounded-full bg-afternoon-blue-500 text-white sm:hidden  cursor-pointer" type="button" aria-label="Connect Support"> -->
-                            <!-- <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="18" width="18" xmlns="http://www.w3.org/2000/svg">
-                                <path fill="none" d="M0 0h24v24H0z"></path>
-                                <path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 0 0-1.02.24l-2.2 2.2a15.074 15.074 0 0 1-6.59-6.58l2.2-2.21c.28-.27.36-.66.25-1.01A11.36 11.36 0 0 1 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"></path>
-                            </svg> -->
-                        </button>
-                        <a target="_self" class="inline-flex h-10 items-center justify-center text-end rounded-full px-3 text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-md sm:px-4 sm:text-base xs:border-french-blue-700 xs:bg-french-blue-700 xs:text-jade-green-200 xs:hover:shadow-grass-green-100 border-jade-green-200 bg-jade-green-200 text-french-blue-700 hover:shadow-french-blue-600 " aria-label="Join Projects" href="login.php">login</a>
-                    </div>
+                <div class="inline-flex items-center gap-x-3 ml-auto">
+                    <a target="_self" class="inline-flex h-10 items-center justify-center text-end rounded-full px-3 text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-md sm:px-4 sm:text-base xs:border-french-blue-700 xs:bg-french-blue-700 xs:text-jade-green-200 xs:hover:shadow-grass-green-100 border-jade-green-200 bg-jade-green-200 text-french-blue-700 hover:shadow-french-blue-600" aria-label="Join Projects" href="login.php">login</a>
+                </div>
                 </div>
             </header>
             <main>
