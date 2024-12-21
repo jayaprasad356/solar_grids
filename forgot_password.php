@@ -9,16 +9,17 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
 
     $mobile = $_POST["mobilenum"];
     $password = $_POST["password"];
-    $confirmPassword = $_POST["confirmPassword"];
+    $confirm_password = $_POST["confirm_password"];
     $otpstatus = $_POST["otpstatus"];
 
-    if ($password !== $confirmPassword) {
+    if ($password !== $confirm_password) {
         $response['message'] = 'Password and Confirm Password do not match';
     } else {
         if ($otpstatus == '1') {
             $data = array(
                 "mobile" => $mobile,
                 "password" => $password,
+                "confirm_password" => $confirm_password,
             );
 
             $apiUrl = API_URL . "forgot_password.php";
@@ -74,6 +75,12 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
         body {
             font-family: 'Poppins', Arial, sans-serif;
             background: #efefef;
+        background: url(./admin_v1/images/bg-green-grid.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        
+
         }
         .custom-container {
             width: 450px; 
@@ -97,6 +104,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
             text-align: center;
             margin-top: 20px;
             margin-bottom: 20px;
+            
         }
         .heading h2, .heading h3 {
             margin:10px;
@@ -108,7 +116,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
         }
         .heading h3 {
             font-size: 2rem;
-            color: #333;
+            color: white;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
         }
         @media (max-width: 576px) {
@@ -127,6 +135,9 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
             .heading h3 {
                 font-size: 1.5rem;
             }
+        }
+        .forgot{
+            color: white;
         }
     </style>
 </head>
@@ -177,12 +188,12 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
                     <span id="passwordError" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label for="confirmPassword" style= "font-weight:bold;">Confirm Password:</label>
+                    <label for="confirm_password" style= "font-weight:bold;">Confirm Password:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" style="border-right: none; background: transparent;"><i class="fas fa-lock"></i></span>
                         </div>
-                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required style="border-left: none;">
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required style="border-left: none;">
                     </div>
                     <span id="confirmPasswordError" class="text-danger"></span>
                 </div>

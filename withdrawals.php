@@ -97,6 +97,20 @@ curl_close($curl);
           background-color: #44eba7;
           text-align: center;
         }
+        
+       
+         .btn{
+             background-color:#44eba7; 
+            border-color: #44eba7; 
+            color: black; 
+            font-weight: 600;
+            border-radius: 99999px;
+           
+        }
+        .btn:hover{
+            color:rgb(0, 0, 0);
+            background-color: #44eba7;
+        }
         @media (max-width: 576px) {
             .withdrawal-container h2 {
                 font-size: 1.5rem;
@@ -115,8 +129,16 @@ curl_close($curl);
     <?php include_once('sidebar.php'); ?>
         <div class="col py-3">
             <div class="withdrawal-container" id="withdrawals">
-                <h2>Withdrawal List</h2>
+                
+                 <div class="d-flex justify-content-between align-items-center mb-3">
+                    
+                    <a href="menu.php" style="color:black;" class="btn"><i style="color:rgb(2, 2, 2); font-size: 1rem;" class="bi bi-arrow-left"></i>Back</a>
+                    
+                    
+                </div>
+                <h2 class="m-1">Withdrawal List</h2>
                 <a href="withdrawal_request.php"  style=" color:black;" class="btn withdrawal-button">Request Withdrawal</a>
+                
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -127,6 +149,7 @@ curl_close($curl);
                         </tr>
                     </thead>
                     <tbody>
+                        
                         <!-- Loop through all withdrawals and display each one -->
                         <?php foreach ($userdetails as $index => $withdrawal): ?>
                             <tr>
@@ -153,9 +176,13 @@ curl_close($curl);
                         <?php endif; ?>
                     </tbody>
                 </table>
+                
             </div>
+            
         </div>
+        
     </div>
+    
 </div>
 
 <!-- Bootstrap JavaScript Bundle with Popper -->

@@ -180,6 +180,6 @@ $db->sql($sql_insert_transaction);
 
 
 $response['success'] = true;
-$response['message'] = "Work Completed Successfully";
+$response['message'] = "Rented Successfully";
 echo json_encode($response);
 ?>

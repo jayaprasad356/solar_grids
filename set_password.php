@@ -117,6 +117,18 @@ if (isset($_POST['btnUpdate'])) {
             position: relative; 
             padding: 20px; 
         }
+          .btn{
+             background-color:#44eba7; 
+            border-color: #44eba7; 
+            color: black; 
+            font-weight: 600;
+            border-radius: 99999px;
+           
+        }
+        .btn:hover{
+            color:rgb(0, 0, 0);
+            background-color: #44eba7;
+        }
     </style>
 </head>
 <body>
@@ -125,6 +137,9 @@ if (isset($_POST['btnUpdate'])) {
     <?php include_once('sidebar.php'); ?>
         <div class="col py-3">
         <div id="setpassword" class="setpassword-container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                    <a href="menu.php" style="color:black;" class="btn"><i class="bi bi-arrow-left"></i>Back</a>  
+                </div>
             <h2>Set Password</h2>
             
             <!-- Withdrawal Request Form -->
@@ -141,6 +156,7 @@ if (isset($_POST['btnUpdate'])) {
                         <i class="bi bi-eye eye-icon" id="toggleConfirmPassword"></i>
                     </div>
                     <button type="submit" name="btnUpdate"  style="background-color:rgb(68 235 167); color:white;" class="btn">Set</button>
+                    
                 </form>
             </div>
         </div>

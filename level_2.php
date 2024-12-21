@@ -75,6 +75,30 @@ curl_close($curl);
             position: relative; 
             padding: 20px; 
         }
+         tr{
+            border: 2px solid black ;
+            
+        }
+
+        tr .no{
+          background-color: #44eba7;
+          text-align: center;
+        }
+        .td{
+            text-align: center;
+        }
+         .btn{
+             background-color:#44eba7; 
+            border-color: #44eba7; 
+            color: black; 
+            font-weight: 600;
+            border-radius: 99999px;
+           
+        }
+        .btn:hover{
+            color:rgb(0, 0, 0);
+            background-color: #44eba7;
+        }
     </style>
 </head>
 <body>
@@ -83,16 +107,17 @@ curl_close($curl);
     <?php include_once('sidebar.php'); ?>
         <div class="col py-3">
             <div class="level1-container" id="level1">
+                <a href="level_1.php" style="color:black;" class="btn"><i style="color:rgb(2, 2, 2); font-size: 1rem;" class="bi bi-arrow-left"></i>Back</a>
                 <h2>Level 2 - 5% Income</h2>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">S.No</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Mobile Number</th>
-                            <th scope="col">Registered Date</th>
-                            <th scope="col">Teams</th>
-                            <th scope="col">Total Purchase</th>
+                            <th class="no" scope="col">S.No</th>
+                            <th class="no" scope="col">Name</th>
+                            <th class="no" scope="col">Mobile Number</th>
+                            <th class="no" scope="col">Registered Date</th>
+                            <th class="no" scope="col">Teams</th>
+                            <th class="no" scope="col">Total Purchase</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -100,12 +125,12 @@ curl_close($curl);
                         <?php if (!empty($userdetails)): ?>
                             <?php foreach ($userdetails as $index => $transaction): ?>
                                 <tr>
-                                    <th scope="row"><?php echo $index + 1; ?></th>
-                                    <td><?php echo htmlspecialchars($transaction['name']); ?></td>
-                                    <td><?php echo htmlspecialchars($transaction['mobile']); ?></td>
-                                    <td><?php echo htmlspecialchars($transaction['registered_datetime']); ?></td>
-                                    <td><?php echo htmlspecialchars($transaction['team_size']); ?></td>
-                                    <td><?php echo htmlspecialchars($transaction['total_assets']); ?></td>
+                                    <th class="td" scope="row"><?php echo $index + 1; ?></th>
+                                    <td class="td"><?php echo htmlspecialchars($transaction['name']); ?></td>
+                                    <td class="td"><?php echo htmlspecialchars($transaction['mobile']); ?></td>
+                                    <td class="td"><?php echo htmlspecialchars($transaction['registered_datetime']); ?></td>
+                                    <td class="td"><?php echo htmlspecialchars($transaction['team_size']); ?></td>
+                                    <td class="td"><?php echo htmlspecialchars($transaction['total_assets']); ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php else: ?>

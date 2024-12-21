@@ -182,6 +182,7 @@ curl_close($curl);
         .form-control{
             border: 1px solid #44eba7;
         }
+         
     </style>
 </head>
 <body>
@@ -191,6 +192,10 @@ curl_close($curl);
     <?php include_once('sidebar.php'); ?>
         <div class="col py-3">
         <div id="bankdetails" class="bankdetails-container">
+            <div class="transaction-container" id="transactions">
+                 <div class="d-flex justify-content-between align-items-center mb-2">
+                    <a href="menu.php" style="color:black;" class="btn"><i class="bi bi-arrow-left"></i>Back</a>  
+                </div>
             <h2>Bank Details</h2>
             <!-- Withdrawal Request Form -->
          <div class="container-fluid ">

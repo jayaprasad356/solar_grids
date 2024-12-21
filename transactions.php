@@ -86,6 +86,32 @@ curl_close($curl);
         .td{
             text-align: center;
         }
+         .btn-back{
+             padding: 15px; 
+             margin-bottom: 15px;
+            font-size:15px;
+            top: 20px;
+            right: 20px;
+            text-decoration: none;
+            border-color: #44eba7; 
+            font-weight: 600;
+            border-radius: 99999px;
+            background-color: #44eba7;
+            margin-left: 20px;
+           
+        }
+         .btn{
+             background-color:#44eba7; 
+            border-color: #44eba7; 
+            color: black; 
+            font-weight: 600;
+            border-radius: 99999px;
+           
+        }
+        .btn:hover{
+            color:rgb(0, 0, 0);
+            background-color: #44eba7;
+        }
     </style>
 </head>
 <body>
@@ -94,6 +120,10 @@ curl_close($curl);
     <?php include_once('sidebar.php'); ?>
         <div class="col py-3">
             <div class="transaction-container" id="transactions">
+                 <div class="d-flex justify-content-between align-items-center mb-2">
+                    <a href="menu.php" style="color:black;" class="btn"><i style="color:rgb(2, 2, 2); font-size: 1rem;" class="bi bi-arrow-left"></i>Back</a>
+                    
+                </div>
                 <h2 class="text-center mb-4">Transactions List</h2>
                 <table class="table table-bordered">
                     <thead>

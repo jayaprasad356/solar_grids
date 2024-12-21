@@ -88,6 +88,22 @@ curl_close($curl);
         .td{
             text-align: center;
         }
+        .btn{
+             background-color:#44eba7; 
+            border-color: #44eba7; 
+            color: black; 
+            font-weight: 600;
+            border-radius: 99999px;
+            
+           
+        }
+        .btn:hover{
+            color:rgb(0, 0, 0);
+            background-color: #44eba7;
+        }
+        .nav-pills{
+            gap: 10px;
+        }
     </style>
 </head>
 <body>
@@ -95,7 +111,23 @@ curl_close($curl);
     <div class="row flex-nowrap">
         <?php include_once('sidebar.php'); ?>
         <div class="col py-3">
+            
             <div class="level1-container" id="level1">
+                
+                <nav class="mb-4">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                    <a href="level_1.php" style="color:black;" class="btn"></i>Level 1</a>  
+                        </li>
+                        <li class="nav-item">
+                    <a href="level_2.php" style="color:black;" class="btn"></i>Level 2</a>  
+                        </li>
+                        <li class="nav-item">
+                    <a href="level_3.php" style="color:black;" class="btn"></i>Level 3</a>  
+                        </li>
+                    </ul>
+                </nav>
+                <h2>Level 1</h2>
               <!--  <h2>Level 1 - 10% Income</h2>-->
                 <!-- Make table responsive on mobile -->
                 <div class="table-responsive">
@@ -130,6 +162,7 @@ curl_close($curl);
                             <?php endif; ?>
                         </tbody>
                     </table>
+                    
                 </div>
             </div>
         </div>

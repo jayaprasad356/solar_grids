@@ -43,7 +43,7 @@ if ($num == 1) {
     if($wallet_type == 'earning_wallet'){ 
         if ($earning_wallet < 10) {
             $response['success'] = false;
-            $response['message'] = "Minimum 10 rs to add";
+            $response['message'] = "Minimum ₹10 to add";
             print_r(json_encode($response));
             return false;
         }
@@ -56,7 +56,7 @@ if ($num == 1) {
     if($wallet_type == 'bonus_wallet'){
         if ($bonus_wallet < 50) {
             $response['success'] = false;
-            $response['message'] = "Minimum 50 rs to add";
+            $response['message'] = "Minimum ₹50  to add";
             print_r(json_encode($response));
             return false;
         }
