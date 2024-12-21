@@ -154,6 +154,18 @@ curl_close($curl);
                 right: 8px;
             }
         }
+        .btn{
+             background-color:#44eba7; 
+            border-color: #44eba7; 
+            color: black; 
+            font-weight: 600;
+            border-radius: 99999px;
+           
+        }
+        .btn:hover{
+            color:rgb(0, 0, 0);
+            background-color: #44eba7;
+        }
     </style>
 </head>
 <body>
@@ -162,14 +174,23 @@ curl_close($curl);
     <?php include_once('sidebar.php'); ?>
         <div class="col py-3">
         <div class="friends-container" id="invitefriends">
+            <div class="d-flex justify-content-between align-items-center mb-5">
+                    <a href="menu.php" style="color:black;" class="btn"><i class="bi bi-arrow-left"></i>Back</a>  
+                </div>
+           
             <h2>Invite Friends</h2>
             <!-- Withdrawal Request Form -->
             <div class="form-container mt-4">
                 <form action="submit_withdrawal_request.php" method="post">
+                <?php
+                // Dynamically get the current page URL and generate the invite link
+                $currentPageUrl = "https://" . $_SERVER['HTTP_HOST'] . "/register.php?refer_code=" . $refer_code;
+                ?>
                 <div class="mb-3">
-                <label for="link" class="form-label">Invite Link</label>
-                <input type="text" class="form-control" id="inviteLink" name="link" value="https://solargrids.graymatterworks.com/register.php?refer_code<?php echo $refer_code; ?>" disabled>
-            </div>
+                    <label for="link" class="form-label">Invite Link</label>
+                    <input type="text" class="form-control" id="inviteLink" name="link" value="<?php echo $currentPageUrl; ?>" disabled>
+                </div>
+
             <button type="button" id="copyButton" style="background-color:rgb(68 235 167); color:black;" class="btn_copy">
                 <i class="fs-5 bi-copy"></i> Copy Link
             </button>
@@ -177,12 +198,17 @@ curl_close($curl);
             <button type="button" id="telegramButton" style="background-color:#3290ec; color:white;" class="btn">
                 <i class="fs-5 bi-telegram"></i> Join Telegram
             </button>
+            
                 </form>
             </div>
+            
         </div>
+        
     </div>
+    
     </div>
 </div>
+  
 
     <!-- Bootstrap JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

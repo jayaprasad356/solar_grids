@@ -103,6 +103,18 @@ curl_close($curl);
             background-color: #e9ecef;
             font-family: 'Poppins', Helvetica, sans-serif; /* Updated font */
         }
+        .btn{
+             background-color:#44eba7; 
+            border-color: #44eba7; 
+            color: black; 
+            font-weight: 600;
+            border-radius: 99999px;
+           
+        }
+        .btn:hover{
+            color:rgb(0, 0, 0);
+            background-color: #44eba7;
+        }
     </style>
 </head>
 <body>
@@ -146,6 +158,9 @@ curl_close($curl);
                             <label for="state" class="form-label"><i class="bi bi-geo-alt-fill"></i>  State</label>
                             <input type="text" id="state" name="state" class="form-control" readonly value="<?php echo htmlspecialchars($state); ?>">
                         </div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                    <a href="menu.php" style="color:black;" class="btn"><i class="bi bi-arrow-left"></i>Back</a>  
+                </div>
                     </form>
                 </div>
             </div>

@@ -155,7 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plan_id'])) {
                 <div class="activated-jobs-link">
                     <a href="plan.php" class="btn w-100 d-flex justify-content-center align-items-center" style="background-color: #44eba7;">
                         <i style="color:rgb(2, 2, 2); font-size: 1.5rem;font-weight: bold;" class="bi bi-arrow-left"></i>
-                        <span style="color:rgb(0, 0, 0); font-size: 1.2rem; font-weight: bold; flex-grow: 1; text-align: center;">Jobs</span>
+                        <span style="color:rgb(0, 0, 0); font-size: 1.2rem; font-weight: bold; flex-grow: 1; text-align: center;">Rented list </span>
                     </a>
                 </div>
                 <div id="plansSection" class="plansSection-container">
