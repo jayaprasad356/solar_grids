@@ -67,12 +67,12 @@ curl_close($curl);
     <title>Web Dashboard</title>
     <link rel="icon" type="image/x-icon" href="admin_v1/dist/img/">
 
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
-    
+
     <!-- Custom CSS -->
     <style>
         /* Enhanced styles for the dashboard */
@@ -86,23 +86,21 @@ curl_close($curl);
             text-align: center;
             position: relative;
             overflow: hidden;
-             font-family: 'Poppins', Helvetica, sans-serif;
+            font-family: 'Poppins', Helvetica, sans-serif;
         }
 
         .info-box h4 {
             font-size: 1.2rem;
             margin-bottom: 10px;
             font-weight: bold;
-             font-family: 'Poppins', Helvetica, sans-serif;
-             
+            font-family: 'Poppins', Helvetica, sans-serif;
         }
 
         .info-box p {
             font-size: 1.5rem;
             margin: 0;
             font-weight: bold;
-             font-family: 'Poppins', Helvetica, sans-serif;
-            
+            font-family: 'Poppins', Helvetica, sans-serif;
         }
 
         /* Icon styling inside the info boxes */
@@ -149,32 +147,62 @@ curl_close($curl);
         }
 
         /* Adjusting column behavior for mobile */
-           /* Adjusting column behavior and height for mobile */
-    @media (max-width: 768px) {
-        .col-sm-6 {
-            max-width: 50%;
+        /* Adjusting column behavior and height for mobile */
+        @media (max-width: 768px) {
+            .col-sm-6 {
+                max-width: 50%;
+            }
+
+            /* Decrease the height and padding of the info boxes on mobile */
+            .info-box {
+                padding: 15px; /* Reduce padding */
+                min-height: 150px; /* You can adjust this height as needed */
+            }
+
+            /* Adjust the font sizes on mobile */
+            .info-box h4 {
+                font-size: 1rem;
+            }
+
+            .info-box p {
+                font-size: 1.2rem;
+            }
+
+            .info-box i {
+                font-size: 2rem; /* Reduce icon size */
+            }
         }
 
-        /* Decrease the height and padding of the info boxes on mobile */
-        .info-box {
-            padding: 15px; /* Reduce padding */
-            min-height: 150px; /* You can adjust this height as needed */
+        /* Video container */
+        .video-container {
+            position: relative;
+            margin-top: 30px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        /* Adjust the font sizes on mobile */
-        .info-box h4 {
-            font-size: 1rem;
+        /* Adding overlay for better aesthetics */
+        .video-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4); /* Dark overlay for better contrast */
+            border-radius: 8px;
+            z-index: 1;
         }
 
-        .info-box p {
-            font-size: 1.2rem;
+        /* Make the video responsive and with a fixed smaller height */
+        .video-container video {
+            width: 100%;
+            height: 500px; /* Set fixed height for video */
+            object-fit: cover; /* Ensures the video maintains its aspect ratio while filling the container */
+            z-index: 0;
         }
 
-        .info-box i {
-            font-size: 2rem; /* Reduce icon size */
-        }
-    }
- 
 
     </style>
 </head>
@@ -185,7 +213,7 @@ curl_close($curl);
 
         <div class="col py-3">
             <div class="row">
-            <div class="col-6 col-md-4 mb-3">
+                <div class="col-6 col-md-4 mb-3">
                     <div class="info-box total-assets">
                         <i class="bi bi-wallet2"></i>
                         <h4>Main Wallet Balance</h4>
@@ -201,6 +229,7 @@ curl_close($curl);
                         <p>₹<?php echo $total_income; ?></p>
                     </div>
                 </div>
+
                 <!-- Total Recharge -->
                 <div class="col-6 col-md-4 mb-3">
                     <div class="info-box total-recharge">
@@ -209,6 +238,7 @@ curl_close($curl);
                         <p>₹<?php echo $total_recharge; ?></p>
                     </div>
                 </div>
+
                 <!-- Total Withdrawals -->
                 <div class="col-6 col-md-4 mb-3">
                     <div class="info-box total-withdrawal">
@@ -217,6 +247,7 @@ curl_close($curl);
                         <p>₹<?php echo $total_withdrawal; ?></p>
                     </div>
                 </div>
+
                 <!-- Today's Income -->
                 <div class="col-6 col-md-4 mb-3">
                     <div class="info-box today-income">
@@ -225,6 +256,7 @@ curl_close($curl);
                         <p>₹<?php echo $today_income; ?></p>
                     </div>
                 </div>
+
                 <!-- Team Income -->
                 <div class="col-6 col-md-4 mb-3">
                     <div class="info-box team-income">
@@ -234,6 +266,15 @@ curl_close($curl);
                     </div>
                 </div>
             </div>
+
+            <!-- Video Section -->
+            <div class="video-container">
+                <h3></h3>
+                <video autoplay loop>
+                    <source src="solar.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
         </div>
     </div>
 </div>
@@ -242,3 +283,4 @@ curl_close($curl);
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
