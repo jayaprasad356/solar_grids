@@ -75,6 +75,42 @@ curl_close($curl);
             position: relative; 
             padding: 20px; 
         }
+         tr{
+            border: 2px solid black ;
+            
+        }
+
+        tr .no{
+          background-color: #44eba7;
+          text-align: center;
+        }
+        .td{
+            text-align: center;
+        }
+         .btn{
+             background-color:#44eba7; 
+            border-color: #44eba7; 
+            color: black; 
+            font-weight: 600;
+            border-radius: 99999px;
+            margin-bottom: 15px;
+           
+        }
+        .btn:hover{
+            color:rgb(0, 0, 0);
+            background-color: #44eba7;
+        }
+
+        .page-link{
+            color:rgb(2, 2, 2);
+            
+        }
+
+        .page-link:hover{
+
+            color:#44eba7;
+        }
+
     </style>
 </head>
 <body>
@@ -83,37 +119,71 @@ curl_close($curl);
     <?php include_once('sidebar.php'); ?>
         <div class="col py-3">
             <div class="level1-container" id="level1">
+                <a href="level_1.php" style="color:black;" class="btn"><i style="color:rgb(2, 2, 2); font-size: 1rem;" class="bi bi-arrow-left"></i>Back</a>
                 <h2>Level 3 - 2% Income</h2>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">S.No</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Mobile Number</th>
-                            <th scope="col">Registered Date</th>
-                            <th scope="col">Teams</th>
-                            <th scope="col">Total Purchase</th>
+                            <th class="no" scope="col">S.No</th>
+                            <th class="no" scope="col">Name</th>
+                            <th class="no" scope="col">Mobile Number</th>
+                            <th class="no" scope="col">Registered Date</th>
+                            <th class="no" scope="col">Teams</th>
+                            <th class="no" scope="col">Total Purchase</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <!-- Loop through all transactions and display each one -->
-                        <?php if (!empty($userdetails)): ?>
-                            <?php foreach ($userdetails as $index => $transaction): ?>
+                     <tbody>
+                            <!-- Loop through all transactions and display each one -->
+                            <?php
+                            $itemsPerPage = 10;
+                            $totalItems = count($userdetails);
+                            $totalPages = ceil($totalItems / $itemsPerPage);
+                            $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                            $startIndex = ($currentPage - 1) * $itemsPerPage;
+                            $endIndex = min($startIndex + $itemsPerPage, $totalItems);
+                            ?>
+                            <?php if (!empty($userdetails)): ?>
+                                <?php for ($i = $startIndex; $i < $endIndex; $i++): ?>
+                                    <tr>
+                                        <th class="td" scope="row"><?php echo $i + 1; ?></th>
+                                        <td class="td"><?php echo htmlspecialchars($userdetails[$i]['name']); ?></td>
+                                        <td class="td"><?php echo htmlspecialchars($userdetails[$i]['mobile']); ?></td>
+                                        <td class="td"><?php echo htmlspecialchars($userdetails[$i]['registered_datetime']); ?></td>
+                                        <td class="td"><?php echo htmlspecialchars($userdetails[$i]['team_size']); ?></td>
+                                        <td class="td"><?php echo htmlspecialchars($userdetails[$i]['total_assets']); ?></td>
+                                    </tr>
+                                <?php endfor; ?>
+                            <?php else: ?>
                                 <tr>
-                                    <th scope="row"><?php echo $index + 1; ?></th>
-                                    <td><?php echo htmlspecialchars($transaction['name']); ?></td>
-                                    <td><?php echo htmlspecialchars($transaction['mobile']); ?></td>
-                                    <td><?php echo htmlspecialchars($transaction['registered_datetime']); ?></td>
-                                    <td><?php echo htmlspecialchars($transaction['team_size']); ?></td>
-                                    <td><?php echo htmlspecialchars($transaction['total_assets']); ?></td>
+                                    <td colspan="6" class="text-center">No data found.</td>
                                 </tr>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <tr>
-                                <td colspan="6" class="text-center">No data found.</td>
-                            </tr>
-                        <?php endif; ?>
-                    </tbody>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                    <!-- Pagination controls -->
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center">
+                            <?php if ($currentPage > 1): ?>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page=<?php echo $currentPage - 1; ?>" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                            <?php for ($page = 1; $page <= $totalPages; $page++): ?>
+                                <li class="page-item <?php echo $page == $currentPage ?  : ''; ?>">
+                                    <a class="page-link" href="?page=<?php echo $page; ?>"><?php echo $page; ?></a>
+                                </li>
+                            <?php endfor; ?>
+                            <?php if ($currentPage < $totalPages): ?>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page=<?php echo $currentPage + 1; ?>" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                        </ul>
+                    </nav>
                 </table>
             </div>
         </div>
