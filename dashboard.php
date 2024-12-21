@@ -173,30 +173,10 @@ curl_close($curl);
             }
         }
 
-        /* Video container */
-        .video-container {
-            position: relative;
-            margin-top: 30px;
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Adding overlay for better aesthetics */
-        .video-container::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.4); /* Dark overlay for better contrast */
-            border-radius: 8px;
-            z-index: 1;
-        }
+      
 
         /* Make the video responsive and with a fixed smaller height */
-        .video-container video {
+        .video-container {
             width: 100%;
             height: 500px; /* Set fixed height for video */
             object-fit: cover; /* Ensures the video maintains its aspect ratio while filling the container */
@@ -268,13 +248,10 @@ curl_close($curl);
             </div>
 
             <!-- Video Section -->
-            <div class="video-container">
-                <h3></h3>
-                <video autoplay loop>
-                    <source src="solar.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+           <div class="video-container">
+                <iframe width="100%" height="500px" src="https://solargrids.graymatterworks.com/solar.mp4?autoplay=1" frameborder="0" allow="autoplay" allowfullscreen></iframe>
             </div>
+
         </div>
     </div>
 </div>
