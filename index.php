@@ -940,52 +940,58 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="mx-auto mt-8 hidden max-w-[1170px] lg:block relative">
-                                <div class="flex justify-between">
-                                    <div class="mt-[76px] xl:mt-20">
-                                        <div class="carousel-item h-[494px] pt-[90px] xl:h-[599px] xl:pt-[120px]">
-                                            <strong class="mb-4 block text-xl font-semibold text-aluminium-grey-200">Step 
-                                            <!-- -->
-                                            1</strong>
-                                            <h3 class="mb-4 text-2xl font-semibold leading-[36px] tracking-[0.01em] text-aluminium-grey-700">Join a solar plan</h3>
-                                            <p class="max-w-[450px] text-xl leading-[30px] tracking-[0.01em] text-aluminium-grey-600 ">Buy a solar plan and earn daily rental income. Secure your future with a sustainable investment today!</p>
-                                            <span class="mt-8 inline-flex max-w-[452px] items-start gap-2 rounded-xl bg-grass-green-50 px-5 py-4 text-sm text-midnight-green-500">
-                                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="min-h-[18px] min-w-[18px] text-midnight-green-500" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill="none" d="M0 0h24v24H0z"></path>
-                                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
-                                                </svg>
-                                                1 credit = ₹1 offset on power bill
-                                            </span>
+                                     <div class="mx-auto mt-8 hidden max-w-[1170px] lg:block relative">
+                                            <div class="grid grid-cols-2 gap-8">
+                                                <!-- Step 1 -->
+                                                <div class="carousel-item flex-1 pt-[90px] xl:pt-[120px]">
+                                                    <strong class="mb-4 block text-xl font-semibold text-aluminium-grey-200">Step 1</strong>
+                                                    <h3 class="mb-4 text-2xl font-semibold leading-[36px] tracking-[0.01em] text-aluminium-grey-700">Join a solar plan</h3>
+                                                    <p class="text-xl leading-[30px] tracking-[0.01em] text-aluminium-grey-600">
+                                                        Buy a solar plan and earn daily rental income. Secure your future with a sustainable investment today!
+                                                    </p>
+                                                    <span class="mt-8 inline-flex items-start gap-2 rounded-xl bg-grass-green-50 px-5 py-4 text-sm text-midnight-green-500">
+                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="min-h-[18px] min-w-[18px] text-midnight-green-500" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill="none" d="M0 0h24v24H0z"></path>
+                                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
+                                                        </svg>
+                                                        More Investment More Income
+                                                    </span>
+                                                </div>
+
+                                                <!-- Step 2 -->
+                                                <div class="carousel-item flex-1 pt-[90px] xl:pt-[120px]">
+                                                    <strong class="mb-4 block text-xl font-semibold text-aluminium-grey-200">Step 2</strong>
+                                                    <h3 class="mb-4 text-2xl font-semibold leading-[36px] tracking-[0.01em] text-aluminium-grey-700">Claim your daily income</h3>
+                                                    <p class="text-xl leading-[30px] tracking-[0.01em] text-aluminium-grey-600">
+                                                        You can visit your activated plan page to claim your daily income. Start earning effortlessly with just a few clicks every day!
+                                                    </p>
+                                                    <span class="mt-8 inline-flex items-start gap-2 rounded-xl bg-grass-green-50 px-5 py-4 text-sm text-midnight-green-500">
+                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="min-h-[18px] min-w-[18px] text-midnight-green-500" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill="none" d="M0 0h24v24H0z"></path>
+                                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
+                                                        </svg>
+                                                        Claim many plan Income at a time
+                                                    </span>
+                                                </div>
+
+                                                <!-- Step 3 -->
+                                                <div class="carousel-item flex-1 pt-[90px] xl:pt-[120px]">
+                                                    <strong class="mb-4 block text-xl font-semibold text-aluminium-grey-200">Step 3</strong>
+                                                    <h3 class="mb-4 text-2xl font-semibold leading-[36px] tracking-[0.01em] text-aluminium-grey-700">Daily Withdraw your income</h3>
+                                                    <p class="text-xl leading-[30px] tracking-[0.01em] text-aluminium-grey-600">
+                                                        Withdraw your daily income easily and hassle-free. Receive the amount directly in your bank account within 24 hours!
+                                                    </p>
+                                                    <span class="mt-8 inline-flex items-start gap-2 rounded-xl bg-grass-green-50 px-5 py-4 text-sm text-midnight-green-500">
+                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="min-h-[18px] min-w-[18px] text-midnight-green-500" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill="none" d="M0 0h24v24H0z"></path>
+                                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
+                                                        </svg>
+                                                        Minimum Withdrawal Required
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="carousel-item h-[494px] pt-[90px] xl:h-[599px] xl:pt-[120px]">
-                                            <strong class="mb-4 block text-xl font-semibold text-aluminium-grey-200">Step 
-                                            <!-- -->
-                                            2</strong>
-                                            <h3 class="mb-4 text-2xl font-semibold leading-[36px] tracking-[0.01em] text-aluminium-grey-700">Claim your daily income</h3>
-                                            <p class="max-w-[450px] text-xl leading-[30px] tracking-[0.01em] text-aluminium-grey-600 ">You can visit your activated plan page to claim your daily income. Start earning effortlessly with just a few clicks every day!</p>
-                                            <span class="mt-8 inline-flex max-w-[452px] items-start gap-2 rounded-xl bg-grass-green-50 px-5 py-4 text-sm text-midnight-green-500">
-                                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="min-h-[18px] min-w-[18px] text-midnight-green-500" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill="none" d="M0 0h24v24H0z"></path>
-                                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
-                                                </svg>
-                                                You can link multiple billers with your digital solar
-                                            </span>
-                                        </div>
-                                        <div class="carousel-item h-[494px] pt-[90px] xl:h-[599px] xl:pt-[120px]">
-                                            <strong class="mb-4 block text-xl font-semibold text-aluminium-grey-200">Step 
-                                            <!-- -->
-                                            3</strong>
-                                            <h3 class="mb-4 text-2xl font-semibold leading-[36px] tracking-[0.01em] text-aluminium-grey-700">Daily Withdrawal your income </h3>
-                                            <p class="max-w-[450px] text-xl leading-[30px] tracking-[0.01em] text-aluminium-grey-600 ">Withdraw your daily income easily and hassle-free. Receive the amount directly in your bank account within 24 hours!</p>
-                                            <span class="mt-8 inline-flex max-w-[452px] items-start gap-2 rounded-xl bg-grass-green-50 px-5 py-4 text-sm text-midnight-green-500">
-                                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="min-h-[18px] min-w-[18px] text-midnight-green-500" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill="none" d="M0 0h24v24H0z"></path>
-                                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
-                                                </svg>
-                                                Minimum Withdrawal Required
-                                            </span>
-                                        </div>
-                                    </div>
+
                                     <!-- <div class="relative">
                                         <div class="sticky top-[calc(64px_+_24px_+_64px)] mt-[76px] xl:mt-20">
                                             <div class="relative h-[494px] w-[470.08px] xl:h-[599px] xl:w-[570px]">
