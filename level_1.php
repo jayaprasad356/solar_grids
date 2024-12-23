@@ -2,23 +2,27 @@
 include_once('includes/connection.php');
 session_start();
 
-$user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null; // Ensure user_id is set
-
-if (!$user_id) {
+// Debugging: Check if session is set
+if (!isset($_SESSION['id'])) {
+    echo "User ID not found in session. Redirecting to login.";
     header("Location: login.php");
     exit();
 }
+
+$user_id = $_SESSION['id']; // Retrieve user ID from session
+
 $data = array(
     "user_id" => $user_id,
-    "level" => 'b',
+    "level" => "b",
 );
 
 $apiUrl = API_URL . "team_list.php";
 
 $curl = curl_init($apiUrl);
 
+$curl = curl_init($apiUrl);
 curl_setopt($curl, CURLOPT_POST, true);
-curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data)); // Properly format data for POST
+curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 
