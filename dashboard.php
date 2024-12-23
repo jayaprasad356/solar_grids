@@ -249,7 +249,7 @@ curl_close($curl);
 
             <!-- Video Section -->
            <div class="video-container">
-                <iframe width="100%" height="500px" src="https://solargrids.graymatterworks.com/solar.mp4?autoplay=1" frameborder="0" allowfullscreen></iframe>
+                <iframe width="100%" height="500px" src="https://solargrids.graymatterworks.com/solar.mp4" frameborder="0" allowfullscreen></iframe>
             </div>
 
         </div>
