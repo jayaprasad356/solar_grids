@@ -208,6 +208,10 @@ curl_close($curl);
                                 <i class="bi bi-person-fill"></i>
                                 <span>Profile</span>
                             </a>
+                            <a href="youtubeincome.php" class="nav-links">
+                                <i class="bi bi-youtube"></i>
+                                <span> Youtube income</span>
+                            </a>
                             <a href="logout.php" class="nav-links">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Sign out</span>

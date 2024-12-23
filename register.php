@@ -95,8 +95,15 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
             margin: 0;
         }
         body {
-            font-family: 'Poppins', Arial, sans-serif;
-            background: #efefef;
+             
+        font-family:  Poppins, Helvetica, sans-serif;
+        background: #efefef;
+        background: url(./admin_v1/images/bg-green-grid.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        
+
         }
         .custom-container {
             width: 450px; 
@@ -110,7 +117,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
             width: 100%;
             margin-top:25px;
             border-radius: 10px;
-            border: 2px solid #4A148C;
+            border: 2px solid #44eba7;
         }
         .btn-customs {
             width: 100%;
@@ -127,11 +134,11 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
         }
         .heading h2 {
             font-size: 1.5rem;
-            color: #4A148C;
+            color:rgb(255, 255, 255);
         }
         .heading h3 {
             font-size: 2rem;
-            color: #333;
+            color: white;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
         }
         @media (max-width: 576px) {
@@ -301,7 +308,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-custom" name="btnSignup" style="background-color:#4A148C; color:white; font-weight:bold;">Register</button>
+                    <button type="submit" class="btn  btn-custom" name="btnSignup" style="background-color:#44eba7; color:black; font-weight:bold;">Register</button>
                 </div>
                 <div class="text-center mt-3">
                     <p><a href="index.php">Back to Login</a></p>
