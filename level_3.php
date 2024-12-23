@@ -2,17 +2,20 @@
 include_once('includes/connection.php');
 session_start();
 
-$user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null; // Ensure user_id is set
-
-if (!$user_id) {
+// Debugging: Check if session is set
+if (!isset($_SESSION['id'])) {
+    echo "User ID not found in session. Redirecting to login.";
     header("Location: login.php");
     exit();
 }
 
+$user_id = $_SESSION['id']; // Retrieve user ID from session
+
 $data = array(
     "user_id" => $user_id,
-    "level" => 'd',
+    "level" => "d",
 );
+
 
 $apiUrl = API_URL . "team_list.php";
 
