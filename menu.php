@@ -105,7 +105,7 @@ curl_close($curl);
             margin-bottom: 10px;
             transition: background-color 0.3s ease;
             text-decoration: none;
-            color: rgb(68 235 167);
+            color: #043833;
             font-weight: bold;
             font-family: 'Poppins', Helvetica, sans-serif;
         }
@@ -118,7 +118,7 @@ curl_close($curl);
         .nav-links i {
             font-size: 2rem;
             margin-right: 15px;
-            color: rgb(68 235 167);
+            color: #043833;
             font-weight:900;
         }
 
