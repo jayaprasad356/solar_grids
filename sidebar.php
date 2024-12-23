@@ -151,7 +151,7 @@ body {
         </a>
         <a href="menu.php" class="nav-link">
            <i class="bi bi-gear-fill"></i>
-            <span>More</span>
+            <span>My Account</span>
         </a>
         
     </div>
