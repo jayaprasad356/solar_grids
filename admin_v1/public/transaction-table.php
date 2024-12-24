@@ -28,6 +28,7 @@
                         <div class="form-group col-md-3"><br>
                             <h4 class="box-title">Filter by Plan </h4>
                             <select id='price' name="price" class='form-control'>
+                            <option value=''>All</option>
                                 <?php
                                 $sql = "SELECT DISTINCT price FROM `plan` ORDER BY price";
                                 $db->sql($sql);
