@@ -24,7 +24,7 @@ if (empty($_POST['user_id'])) {
 }
 if (empty($_POST['link'])) {
     $response['success'] = false;
-    $response['message'] = " link is Empty";
+    $response['message'] = "link is Empty";
     echo json_encode($response);
     return;
 }
@@ -33,9 +33,9 @@ if (empty($_POST['link'])) {
 $user_id = $db->escapeString($_POST['user_id']);
 $link = $db->escapeString($_POST['link']);
 $amount = $db->escapeString($_POST['amount']);
-$status = $db->escapeString($_POST['status']);
 
-$sql = "INSERT INTO youtuber_income (user_id,link, amount, status) VALUES ('$user_id', '$link', '$amount', '$status')";
+
+$sql = "INSERT INTO youtuber_income (user_id, link, amount, status) VALUES ('$user_id', '$link', '$amount', 0)";
 if ($db->sql($sql)) {
     $response['success'] = true;
     $response['message'] = "Data inserted successfully";

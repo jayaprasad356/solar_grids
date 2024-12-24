@@ -36,7 +36,7 @@ $datetime = date('Y-m-d H:i:s');
 <html>
 
 <head>
-    <title>Withdrawals | - Dashboard</title>
+    <title>Youtube Income | - Dashboard</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 

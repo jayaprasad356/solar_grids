@@ -29,7 +29,7 @@
 </body>
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
-        <?php include('public/edit_youtube_income_form.php'); ?>
+        <?php include('public/edit-youtube_income_form.php'); ?>
       </div><!-- /.content-wrapper -->
   </body>
 </html>

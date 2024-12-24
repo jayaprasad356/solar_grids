@@ -2,8 +2,19 @@
 include_once('includes/connection.php');
 session_start();
 
-$user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null; // Ensure user_id is set
+// Redirect to login if session not set
+if (!isset($_SESSION['id'])) {
+    header("Location: login.php");
+    exit();
+}
 
+$user_id = $_SESSION['id']; // Retrieve user ID from session
+
+// Initialize variables
+$youtubeIncomeList = [];
+$message = "";
+
+// Fetch YouTube Income List
 if ($user_id) {
     $apiUrl = API_URL . "youtube_income_list.php";
     $data = array("user_id" => $user_id);
@@ -15,59 +26,52 @@ if ($user_id) {
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 
     $response = curl_exec($curl);
-    if ($response === false) {
-        die("Error: " . curl_error($curl));
-    }
-
-    curl_close($curl);
-
-    // Parse the API response
-    $responseData = json_decode($response, true);
-    $youtubeIncomeList = $responseData['data'] ?? [];
-}
-
-if (!$user_id) {
-    header("Location: login.php");
-    exit();
-}
-
-
-if (isset($_POST['btnlink'])) {
-    $link = $_POST['link'];
-    $data = array(
-        "user_id" => $user_id,
-        "link" => $link,
-    );
-    $apiUrl = API_URL . "youtube_income.php";
-
-    $curl = curl_init($apiUrl);
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-
-    $response = curl_exec($curl);
-
-    if ($response === false) {
-        // Error in cURL request
-        echo "Error: " . curl_error($curl);
-    } else {
-        // Successful API response
+    if ($response !== false) {
         $responseData = json_decode($response, true);
-        if ($responseData !== null && isset($responseData["success"])) {
-            $message = $responseData["message"];
-            if (isset($responseData["link"])) {
-                $_SESSION['link'] = $responseData['link'];
+        $youtubeIncomeList = $responseData['data'] ?? [];
+    }
+    curl_close($curl);
+}
+
+// Handle Form Submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnlink'])) {
+    $link = trim($_POST['link']);
+
+    if (!empty($link)) {
+        $data = array(
+            "user_id" => $user_id,
+            "link" => $link,
+        );
+
+        $apiUrl = API_URL . "youtube_income.php";
+        $curl = curl_init($apiUrl);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+        $response = curl_exec($curl);
+
+        if ($response !== false) {
+            $responseData = json_decode($response, true);
+            if (isset($responseData["success"]) && $responseData["success"] === true) {
+                $message = "Video link successfully submitted!";
+            } else {
+                $message = "Failed to submit video link. Please try again.";
             }
         } else {
-            $message = "Failed to insert data";
+            $message = "Error: " . curl_error($curl);
         }
-    }
         curl_close($curl);
+    } else {
+        $message = "Link cannot be empty.";
+    }
 
-  }
-    ?>
-            
+    // Redirect to the same page to prevent resubmission
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -206,10 +210,10 @@ if (isset($_POST['btnlink'])) {
                 <?php
                 switch ($income['status']) {
                     case 0:
-                        echo '<span class="badge bg-warning">Not Verified</span>';
+                        echo '<span class="badge bg-warning">Not Paid</span>';
                         break;
                     case 1:
-                        echo '<span class="badge bg-success">Verified</span>';
+                        echo '<span class="badge bg-success">Paid</span>';
                         break;
                     case 2:
                         echo '<span class="badge bg-danger">Cancelled</span>';
