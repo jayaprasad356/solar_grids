@@ -305,6 +305,12 @@ if ($_SESSION['role'] == 'admin') {
                         <span>Payments</span>
                     </a>
                 </li>
+                <li class="treeview">
+                    <a href="youtube_income.php">
+                    <i class="fas fa-money"></i>
+                        <span>Youtube income</span>
+                    </a>
+                </li>
                
                 <?php } ?>
             </section>

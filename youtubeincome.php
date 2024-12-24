@@ -2,46 +2,72 @@
 include_once('includes/connection.php');
 session_start();
 
-$youtuber_income_id = isset($_SESSION['id']) ? $_SESSION['id'] : null; // Ensure user_id is set
+$user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null; // Ensure user_id is set
 
-if (!$youtuber_income_id) {
+if ($user_id) {
+    $apiUrl = API_URL . "youtube_income_list.php";
+    $data = array("user_id" => $user_id);
+
+    $curl = curl_init($apiUrl);
+    curl_setopt($curl, CURLOPT_POST, true);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+    $response = curl_exec($curl);
+    if ($response === false) {
+        die("Error: " . curl_error($curl));
+    }
+
+    curl_close($curl);
+
+    // Parse the API response
+    $responseData = json_decode($response, true);
+    $youtubeIncomeList = $responseData['data'] ?? [];
+}
+
+if (!$user_id) {
     header("Location: login.php");
     exit();
 }
 
-$data = array(
-    "youtuber_income_id" => $youtuber_income_id,
-);
 
-$apiUrl = API_URL . "youtube_income_list.php";
+if (isset($_POST['btnlink'])) {
+    $link = $_POST['link'];
+    $data = array(
+        "user_id" => $user_id,
+        "link" => $link,
+    );
+    $apiUrl = API_URL . "youtube_income.php";
 
-$curl = curl_init($apiUrl);
+    $curl = curl_init($apiUrl);
+    curl_setopt($curl, CURLOPT_POST, true);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 
-curl_setopt($curl, CURLOPT_POST, true);
-curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    $response = curl_exec($curl);
 
-$response = curl_exec($curl);
-
-if ($response === false) {
-    // Error in cURL request
-    echo "Error: " . curl_error($curl);
-    $userdetails = [];
-} else {
-    // Successful API response
-    $responseData = json_decode($response, true);
-    if ($responseData !== null && $responseData["success"]) {
-        // Store transaction details
-        $userdetails = $responseData["data"];
+    if ($response === false) {
+        // Error in cURL request
+        echo "Error: " . curl_error($curl);
     } else {
-     
-        $userdetails = [];
+        // Successful API response
+        $responseData = json_decode($response, true);
+        if ($responseData !== null && isset($responseData["success"])) {
+            $message = $responseData["message"];
+            if (isset($responseData["link"])) {
+                $_SESSION['link'] = $responseData['link'];
+            }
+        } else {
+            $message = "Failed to insert data";
+        }
     }
-}
+        curl_close($curl);
 
-curl_close($curl);
-?>
+  }
+    ?>
+            
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -150,15 +176,15 @@ curl_close($curl);
     
     <div class="form-container">
         
-      <form method="POST" action="">
+      <form method="POST" action="youtubeincome.php">
 <div class="transaction-container" id="transactions">
                  <div class="d-flex justify-content-between align-items-center mb-2">
                     <a href="menu.php" style="color:black;" class="btn"><i style="color:rgb(2, 2, 2); font-size: 1rem;" class="bi bi-arrow-left"></i>Back</a>
                     
                 </div>
-        <input type="text" name="videoLink" placeholder="Paste your video link" required />
+        <input type="text" name="link" placeholder="Paste your video link" required />
         
-        <button type="submit" name="btnUpdate"   class="btn">Submit</button>
+        <button type="submit" name="btnlink"   class="btn">Submit</button>
       </form>
       
     </div>
@@ -171,32 +197,36 @@ curl_close($curl);
         </tr>
       </thead>
         <tbody>
-                        
-                        <!-- Loop through all withdrawals and display each one -->
-                        <?php foreach ($userdetails as $index => $youtuber_income): ?>
-                            <tr>
-                                <th scope="row"><?php echo $index + 1; ?></th>
-                                <td><?php echo htmlspecialchars($youtuber_income['video_link']); ?></td>
-                                <td><?php echo htmlspecialchars($youtuber_income['amount']); ?></td>
-                                <td>
-                                    <?php 
-                                    if ($youtuber_income['status'] === '1') {
-                                        echo '<span class="text-success">Paid</span>';
-                                    } elseif ($youtuber_income['status'] === '0') {
-                                        echo '<span class="text-primary">Not Paid</span>';
-                                    } elseif ($youtuber_income['status'] === '2') {
-                                         echo '<span class="text-danger">Cancelled</span>';
-                                    } 
-                                    ?>
-                                </td>
-                                
-                            </tr>
-                        <?php endforeach; ?>
-                        <?php if (empty($userdetails)): ?>
-                            <tr>
-                                <td colspan="4">No link found.</td>
-                            </tr>
-                        <?php endif; ?>
+                     <?php if (!empty($youtubeIncomeList)): ?>
+          <?php foreach ($youtubeIncomeList as $income): ?>
+            <tr>
+              <td><a href="<?= htmlspecialchars($income['link']) ?>" target="_blank"><?= htmlspecialchars($income['link']) ?></a></td>
+              <td><?= htmlspecialchars(number_format($income['amount'], 2)) ?></td>
+              <td>
+                <?php
+                switch ($income['status']) {
+                    case 0:
+                        echo '<span class="badge bg-warning">Not Verified</span>';
+                        break;
+                    case 1:
+                        echo '<span class="badge bg-success">Verified</span>';
+                        break;
+                    case 2:
+                        echo '<span class="badge bg-danger">Cancelled</span>';
+                        break;
+                    default:
+                        echo '<span class="badge bg-secondary">Unknown</span>';
+                        break;
+                }
+                ?>
+              </td>
+            </tr>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <tr>
+            <td colspan="3" class="text-center">No income records found.</td>
+          </tr>
+        <?php endif; ?>
                     </tbody>
     </table>
   </div>

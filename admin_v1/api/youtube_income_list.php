@@ -12,15 +12,15 @@ include_once('../includes/crud.php');
 $db = new Database();
 $db->connect();
 
-if (empty($_POST['youtuber_income_id'])) {
+if (empty($_POST['user_id'])) {
     $response['success'] = false;
-    $response['message'] = "youtuber_income Id is Empty";
+    $response['message'] = "user Id is Empty";
     print_r(json_encode($response));
     return false;
 }
-$youtuber_income_id = $db->escapeString($_POST['youtuber_income_id']);
+$user_id = $db->escapeString($_POST['user_id']);
 
-$sql = "SELECT * FROM youtuber_income WHERE id = $youtuber_income_id ORDER BY id DESC LIMIT 10";
+$sql = "SELECT * FROM youtuber_income WHERE user_id = $user_id ORDER BY id DESC LIMIT 10";
 $db->sql($sql);
 $res= $db->getResult();
 $num = $db->numRows($res);
@@ -28,7 +28,8 @@ $num = $db->numRows($res);
 if ($num >= 1){
     foreach ($res as $row) {
         $temp['id'] = $row['id'];
-        $temp['video_link'] = $row['video_link'];
+        $temp['user_id'] = $row['user_id'];
+        $temp['link'] = $row['link'];
         $temp['amount'] = $row['amount'];
         $temp['status'] = $row['status'];
         $rows[] = $temp;

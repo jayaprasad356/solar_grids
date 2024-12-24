@@ -16,37 +16,26 @@ $db->connect();
 
 $response = array();
 
-if (empty($_POST['youtuber_income_id'])) {
+if (empty($_POST['user_id'])) {
     $response['success'] = false;
-    $response['message'] = "youtuber_income ID is Empty";
+    $response['message'] = "user_id is Empty";
     echo json_encode($response);
     return;
 }
-if (empty($_POST['video_link'])) {
+if (empty($_POST['link'])) {
     $response['success'] = false;
-    $response['message'] = "Video link is Empty";
-    echo json_encode($response);
-    return;
-}
-if (empty($_POST['amount'])) {
-    $response['success'] = false;
-    $response['message'] = "Amount is Empty";
-    echo json_encode($response);
-    return;
-}
-if (empty($_POST['status'])) {
-    $response['success'] = false;
-    $response['message'] = "Status is Empty";
+    $response['message'] = " link is Empty";
     echo json_encode($response);
     return;
 }
 
-$youtuber_income_id = $db->escapeString($_POST['youtuber_income_id']);
-$video_link = $db->escapeString($_POST['video_link']);
+
+$user_id = $db->escapeString($_POST['user_id']);
+$link = $db->escapeString($_POST['link']);
 $amount = $db->escapeString($_POST['amount']);
 $status = $db->escapeString($_POST['status']);
 
-$sql = "INSERT INTO youtuber_income (video_link, amount, status) VALUES ('$video_link', '$amount', '$status')";
+$sql = "INSERT INTO youtuber_income (user_id,link, amount, status) VALUES ('$user_id', '$link', '$amount', '$status')";
 if ($db->sql($sql)) {
     $response['success'] = true;
     $response['message'] = "Data inserted successfully";
