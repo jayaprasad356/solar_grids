@@ -2,7 +2,6 @@
 include_once('includes/connection.php');
 session_start();
 
-// Redirect to login if session not set
 if (!isset($_SESSION['id'])) {
     header("Location: login.php");
     exit();
@@ -35,53 +34,63 @@ if ($user_id) {
 
 // Handle Form Submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnlink'])) {
-    $link = trim($_POST['link']);
+  $link = trim($_POST['link']);
 
-    if (!empty($link)) {
-        $data = array(
-            "user_id" => $user_id,
-            "link" => $link,
-        );
+  if (!empty($link)) {
+      $data = array(
+          "user_id" => $user_id,
+          "link" => $link,
+      );
 
-        $apiUrl = API_URL . "youtube_income.php";
-        $curl = curl_init($apiUrl);
-        curl_setopt($curl, CURLOPT_POST, true);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+      $apiUrl = API_URL . "youtube_income.php";
+      $curl = curl_init($apiUrl);
+      curl_setopt($curl, CURLOPT_POST, true);
+      curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+  
+      $response = curl_exec($curl);
+  
+      if ($response === false) {
+          // Error in cURL request
+          echo "Error: " . curl_error($curl);
+      } else {
+          // Successful API response
+          $responseData = json_decode($response, true);
+          if ($responseData !== null) {
+              if ($responseData["success"]) {
+                  // Success: YouTube Income added successfully
+                  $message = $responseData["message"];
+              } else {
+                  // Failure: Link already exists
+                  $message = $responseData["message"];
+              }
+          }
+      }
+      curl_close($curl);
+  } else {
+      $message = "Please enter a valid video link.";
+  }
 
-        $response = curl_exec($curl);
-
-        if ($response !== false) {
-            $responseData = json_decode($response, true);
-            if (isset($responseData["success"]) && $responseData["success"] === true) {
-                $message = "Video link successfully submitted!";
-            } else {
-                $message = "Failed to submit video link. Please try again.";
-            }
-        } else {
-            $message = "Error: " . curl_error($curl);
-        }
-        curl_close($curl);
-    } else {
-        $message = "Link cannot be empty.";
-    }
-
-    // Redirect to the same page to prevent resubmission
-    header("Location: " . $_SERVER['PHP_SELF']);
-    exit();
+  // Redirect to the same page to prevent resubmission
+  header("Location: " . $_SERVER['PHP_SELF']);
+  exit();
 }
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
-  <title>YouTuber Income</title>
+  <link rel="icon" type="image/x-icon" href="admin_v1/dist/img/jiyo">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap Icons CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">  <title>YouTuber Income</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -237,7 +246,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnlink'])) {
 <body>
     
   <div class="container">
-    
+    <!-- Message Display Section -->
+  <!-- Message Display Section -->
+<?php if ($message): ?>
+    <div class="alert alert-info" role="alert">
+        <?php echo htmlspecialchars($message); ?>
+    </div>
+<?php endif; ?>
+
     
     <div class="header">YouTuber Income</div>
     
@@ -282,7 +298,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnlink'])) {
 </div>
         <input type="text" name="link" placeholder="Paste your video link" required />
         
-        <button type="submit" name="btnlink"   class="btn">Submit</button>
+        <button type="submit" name="btnlink"  class="btn">Submit</button>
         
       </form>
       
@@ -292,6 +308,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnlink'])) {
         <tr>
           <th class="no">Video Link</th>
           <th class="no">Amount</th>
+          <th class="no">DateTime</th>
           <th class="no">Status</th>
         </tr>
       </thead>
@@ -301,6 +318,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnlink'])) {
             <tr>
               <td><a href="<?= htmlspecialchars($income['link']) ?>" target="_blank"><?= htmlspecialchars($income['link']) ?></a></td>
               <td><?= htmlspecialchars(number_format($income['amount'], 2)) ?></td>
+              <td><?= htmlspecialchars($income['datetime']) ?></td>
               <td>
                 <?php
                 switch ($income['status']) {
@@ -331,7 +349,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnlink'])) {
   </div>
   
 
-
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
