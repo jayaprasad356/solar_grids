@@ -27,32 +27,44 @@ if (isset($_POST['btnEdit'])) {
     $amount = $db->escapeString($_POST['amount']);
     $status = $db->escapeString($_POST['status']);
 
-    // Check if amount is valid (greater than 0)
-    if ($amount <= 0) {
-        $error['amount'] = "<section class='content-header'><span class='label label-danger'>Amount must be greater than 0</span></section>";
-    }
-
     // Fetch the existing record again after POST
     $sql_query = "SELECT * FROM youtuber_income WHERE id = $ID";
     $db->sql($sql_query);
     $res = $db->getResult();
     $existing_status = $res[0]['status'];
 
-    // Check if the status is already 'Paid', prevent re-update if no changes
-    if ($existing_status == 1 && $status == 1 && ($amount == $res[0]['amount'] && $link == $res[0]['link'])) {
-        $error['status'] = "<section class='content-header'><span class='label label-danger'>This income is already marked as 'Paid'.</span></section>";
+    // Initialize error variable
+    $error_message = "";
+
+    // Handle status update logic
+    if ($existing_status == 1 && $status != 1) {
+        // If status is already Paid and attempting to change it
+        $error_message = "<section class='content-header'><span class='label label-danger'>This income is already marked as 'Paid'. Status cannot be changed.</span></section>";
+    } elseif ($existing_status == 1 && $status == 1 && $amount == $res[0]['amount'] && $link == $res[0]['link']) {
+        // No change in data; avoid unnecessary updates
+        $error_message = "<section class='content-header'><span class='label label-danger'>This income is already marked as 'Paid'.</span></section>";
+    } elseif ($status == 2 && $existing_status == 1) {
+        // Prevent setting status to 2 if already Paid
+        $error_message = "<section class='content-header'><span class='label label-danger'>This income is already marked as 'Paid'. Cannot change status to 'Rejected'.</span></section>";
+    } elseif ($amount <= 0) {
+        // Check if amount is valid (greater than 0)
+        $error_message = "<section class='content-header'><span class='label label-danger'>Amount must be greater than 0</span></section>";
+    }
+
+    // Display the first encountered error
+    if (!empty($error_message)) {
+        $error['update_jobs'] = $error_message;
     } else {
-        // Update the youtuber_income table
+        // Proceed with the update if no error
         $datetime = date("Y-m-d H:i:s"); // Current datetime
         $sql_query = "UPDATE youtuber_income SET link='$link', amount='$amount', status='$status', datetime='$datetime' WHERE id = $ID";
         $db->sql($sql_query);
         $update_result = $db->getResult();
-
-        if (empty($update_result)) {
-            $update_result = 1;
-        } else {
-            $update_result = 0;
-        }
+        if (!empty($update_result)) {
+			$update_result = 0;
+		} else {
+			$update_result = 1;
+		}
 
         // If the status is 'Paid', update the user's wallet and income
         if ($status == 1) {
@@ -62,15 +74,18 @@ if (isset($_POST['btnEdit'])) {
             $sql = "UPDATE users SET bonus_wallet = bonus_wallet + $amount, today_income = today_income + $amount, total_income = total_income + $amount WHERE id = $user_id";
             $db->sql($sql);
         }
-    }
 
-    // Check update result
-    if ($update_result == 1) {
-        $error['update_jobs'] = "<section class='content-header'><span class='label label-success'>Youtube Income updated Successfully</span></section>";
-    } else {
-        $error['update_jobs'] = "<span class='label label-danger'>Failed to Update</span>";
+        if ($update_result == 1) {
+            $error['update_jobs'] = "<section class='content-header'><span class='label label-success'>Income updated successfully</span></section>";
+            ?>
+            <script>
+                window.location.href = "youtube_income.php";
+            </script>
+            <?php
+        } 
     }
 }
+
 
 $data = array();
 
