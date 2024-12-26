@@ -31,7 +31,7 @@ include "header.php";
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Solar_Grids- Dashboard</title>
+    <title>Solarpe- Dashboard</title>
 </head>
 
 <body>

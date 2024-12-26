@@ -57,7 +57,8 @@ if (isset($_POST['btnLogin'])) {
     <!-- general form elements -->
     <div class='row'>
         <div class="col-md-12 text-center">
-            <h3>Solar Grids-Dashboard</h3>
+        <img src="dist/img/solar.png" height="100">
+            <h3>Solarpe-Dashboard</h3>
         </div>
         <div class="box box-info col-md-12">
             <div class="box-header with-border">

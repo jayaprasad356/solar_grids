@@ -6,35 +6,42 @@ $fn = new custom_functions;
 ?>
 <?php
 if (isset($_POST['btnAdd'])) {
-    $user_id = $db->escapeString(($_POST['user_id']));
-    $link = $db->escapeString(($_POST['link']));
-    $amount = $db->escapeString(($_POST['amount']));
-   
-    //$refer_bonus_sent = $db->escapeString(($_POST['refer_bonus_sent']));
-    //$refer_user_id = $db->escapeString(($_POST['refer_user_id']));
-    $error = array();
+  $user_id = $db->escapeString(($_POST['user_id']));
+  $link = $db->escapeString(($_POST['link']));
+  $amount = $db->escapeString(($_POST['amount']));
+  $datetime = date('Y-m-d H:i:s'); // Get current datetime
 
+  $error = array();
+
+  // Check if link already exists
+  $sql_query = "SELECT * FROM youtuber_income WHERE link = '$link'";
+  $db->sql($sql_query);
+  $existing_link = $db->getResult();
+
+  if (!empty($existing_link)) {
+    $error['add_languages'] = "<section class='content-header'>
+                      <span class='label label-danger'>Link already submitted</span> </section>";
+  } else {
     // Check if user status is 1
-   
-    if ( !empty($user_id) && !empty($link) && !empty($amount)) {
-        $sql_query = "INSERT INTO youtuber_income (user_id,link,amount,status)VALUES('$user_id','$link','$amount',0)";
-        $db->sql($sql_query);
-        $result = $db->getResult();
-        if (!empty($result)) {
-            $result = 0;
-        } else {
-            $result = 1;
-        }
+    if (!empty($user_id) && !empty($link) && !empty($amount)) {
+      $sql_query = "INSERT INTO youtuber_income (user_id, link, amount, status, datetime) VALUES ('$user_id', '$link', '$amount', 0, '$datetime')";
+      $db->sql($sql_query);
+      $result = $db->getResult();
+      if (!empty($result)) {
+        $result = 0;
+      } else {
+        $result = 1;
+      }
 
-        if ($result == 1) {
-            
-            $error['add_languages'] = "<section class='content-header'>
-                                            <span class='label label-success'>User Youtube Income Added Successfully</span> </section>";
-        } else {
-            $error['add_languages'] = " <span class='label label-danger'>Failed</span>";
-        }
-        }
+      if ($result == 1) {
+        $error['add_languages'] = "<section class='content-header'>
+                        <span class='label label-success'>User Youtube Income Added Successfully</span> </section>";
+      } else {
+        $error['add_languages'] = " <span class='label label-danger'>Failed</span>";
+      }
     }
+  }
+}
 ?>
 <section class="content-header">
     <h1>Add New Youtube Income <small><a href='youtube_income.php'> <i class='fa fa-angle-double-left'></i>&nbsp;&nbsp;&nbsp;Back to Youtube Income </a></small></h1>
@@ -62,7 +69,7 @@ if (isset($_POST['btnAdd'])) {
                             <label for="">Users</label>
                             <?php if (!empty($result) && isset($result[0]['id'], $result[0]['name'], $result[0]['email'])) : ?>
                                 <?php $userDetails = $result[0]; ?>
-                                <input type="text" id="details" name="user_id" class="form-control" value="<?php echo $userDetails['id'] . ' | ' . $userDetails['name'] . ' | ' . $userDetails['email']; ?>" disabled>
+                                <input type="text" id="details" name="user_id" class="form-control" value="<?php echo $userDetails['id'] . ' | ' . $userDetails['name'] . ' | ' . $userDetails['mobile']; ?>" disabled>
                             <?php else : ?>
                                 <input type="text" id="details" name="user_id" class="form-control" value="User details not available" disabled>
                             <?php endif; ?>
@@ -120,7 +127,7 @@ if (isset($_POST['btnAdd'])) {
   </section>
   <script>
   $('#users').on('check.bs.table', function(e, row) {
-    $('#details').val(row.id + " | " + row.name + " | " + row.email);
+    $('#details').val(row.id + " | " + row.name + " | " + row.mobile);
     $('#user_id').val(row.id); // Update 'user_id' with the selected user's id
   });
 </script>

@@ -1504,6 +1504,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'youtube_income') {
         $tempRow['user_mobile'] = $row['mobile'];
         $tempRow['link'] = $row['link'];
         $tempRow['amount'] = $row['amount'];
+        $tempRow['datetime'] = $row['datetime'];
         if($row['status']==1)
         $tempRow['status']="<p class='text text-success'>Paid</p>";        
             elseif($row['status']==0)

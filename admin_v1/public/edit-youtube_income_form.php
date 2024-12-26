@@ -40,7 +40,7 @@ if (isset($_POST['btnEdit'])) {
 
     // Check if the status is already 'Paid', prevent re-update if no changes
     if ($existing_status == 1 && $status == 1 && ($amount == $res[0]['amount'] && $link == $res[0]['link'])) {
-        $error['status'] = "<section class='content-header'><span class='label label-danger'>This income is already marked as 'Paid'. No changes needed.</span></section>";
+        $error['status'] = "<section class='content-header'><span class='label label-danger'>This income is already marked as 'Paid'.</span></section>";
     } else {
         // Update the youtuber_income table
         $datetime = date("Y-m-d H:i:s"); // Current datetime
@@ -66,7 +66,7 @@ if (isset($_POST['btnEdit'])) {
 
     // Check update result
     if ($update_result == 1) {
-        $error['update_jobs'] = "<section class='content-header'><span class='label label-success'>Video updated Successfully</span></section>";
+        $error['update_jobs'] = "<section class='content-header'><span class='label label-success'>Youtube Income updated Successfully</span></section>";
     } else {
         $error['update_jobs'] = "<span class='label label-danger'>Failed to Update</span>";
     }
