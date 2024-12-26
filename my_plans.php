@@ -1,16 +1,16 @@
 <?php
 include_once('includes/connection.php');
 session_start();
+
 // Check if the user is logged in
 $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
 if (!$user_id) {
     header("Location: login.php");
     exit();
 }
-$data = array(
-    "user_id" => $user_id,
-);
+
 // Fetch user plans
+$data = array("user_id" => $user_id);
 $apiUrl = API_URL . "user_plan_list.php";
 $curl = curl_init($apiUrl);
 curl_setopt($curl, CURLOPT_POST, true);
@@ -31,12 +31,10 @@ if ($response === false) {
     }
 }
 curl_close($curl);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plan_id'])) {
     $plan_id = $_POST['plan_id'];
-    $claimData = array(
-        "user_id" => $user_id,
-        "plan_id" => $plan_id
-    );
+    $claimData = array("user_id" => $user_id, "plan_id" => $plan_id);
     $apiUrl = API_URL . "claim.php";
     $curl = curl_init($apiUrl);
     curl_setopt($curl, CURLOPT_POST, true);
@@ -45,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plan_id'])) {
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
     $response = curl_exec($curl);
     curl_close($curl);
-     $responseData = json_decode($response, true);
+    $responseData = json_decode($response, true);
     if ($responseData !== null && isset($responseData["success"]) && $responseData["success"]) {
         echo json_encode(["success" => true, "message" => $responseData["message"]]);
     } else {
@@ -54,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plan_id'])) {
     exit();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,7 +67,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plan_id'])) {
     <!-- Lightbox CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
     <style>
-        /* Additional styles for the boxes */
         .plan-box {
             background-color: #F8F9FA;
             border-radius: 5px;
@@ -98,15 +96,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plan_id'])) {
             font-weight: bold;
             padding: 0 5px;
         }
-        .purchase-btn {
-             background-color:#44eba7; 
+        .purchase-btn, .claim-btn{
+            background-color: #44eba7; 
             border-color: #44eba7; 
             color: black; 
             font-weight: 600;
             border-radius: 99999px;
             font-family: 'Poppins', Helvetica, sans-serif;
         }
-        /* Style for the product name box */
+        .purchase-btn:hover, .claim-btn:hover {
+            background-color: #44eba7;
+        }
         .product-name-box {
             background-color: #44eba7;
             color: black;
@@ -117,33 +117,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plan_id'])) {
             border-radius: 5px;
             margin-bottom: 15px;
         }
-        .claim-btn {
-            background-color: #44eba7;
-            border-color: #44eba7;
-            color: black; 
-            font-weight: 600;
-            border-radius: 99999px; /* Border color set to #4A148C */
-            font-family: 'Poppins', Helvetica, sans-serif;
-        }
-        .claim-btn:hover{
-            background-color: #44eba7;
-        }
-        /* .btn-success[disabled] {
-            background-color: #ccc;
-            border-color: #ccc;
-        } */
         .activated-jobs-link {
             margin-bottom: 20px;
             background-color: #44eba7;
-            /* Background color for the link */
             border-radius: 10px;
         }
-        @media (max-width: 576px) {
-            .plan-details p {
-                margin: 5px 0;
-                font-size: 0.8rem;
-            }
-        }
+        .btn.watch-claim-btn {
+        background-color: #007bff;
+        color: white;
+        font-weight: bold;
+        border-radius: 9999px;
+        padding: 10px 20px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    @media (max-width: 768px) {
+   
+
+    .purchase-btn, .claim-btn, .btn.watch-claim-btn {
+        width: 100%; /* Makes buttons full width on small screens */
+        padding: 15px;
+        font-size:0.76rem;
+    }
+    }
+
     </style>
 </head>
 <body>
@@ -151,38 +147,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plan_id'])) {
         <div class="row flex-nowrap">
             <?php include_once('sidebar.php'); ?>
             <div class="col py-3">
-                <!-- Activated Jobs Link -->
                 <div class="activated-jobs-link">
-                    <a href="plan.php" class="btn w-100 d-flex justify-content-center align-items-center" style="background-color: #44eba7;">
-                        <i style="color:rgb(2, 2, 2); font-size: 1.5rem;font-weight: bold;" class="bi bi-arrow-left"></i>
-                        <span style="color:rgb(0, 0, 0); font-size: 1.2rem; font-weight: bold; flex-grow: 1; text-align: center;">Rented list </span>
+                    <a href="plan.php" class="btn w-100 d-flex justify-content-center align-items-center">
+                        <i class="bi bi-arrow-left" style="color: rgb(2, 2, 2); font-size: 1.5rem;font-weight: bold;"></i>
+                        <span style="color: rgb(0, 0, 0); font-size: 1.2rem; font-weight: bold; flex-grow: 1; text-align: center;">Rented list</span>
                     </a>
                 </div>
                 <div id="plansSection" class="plansSection-container">
                     <div class="row">
-                        <!-- Loop through all plans and display each one -->
                         <?php foreach ($plans as $plan): ?>
                         <div class="col-md-6 mb-4">
-                            <!-- Separate Product Name Box -->
                             <div class="product-name-box">
                                 <?php echo htmlspecialchars($plan['name']); ?>
                             </div>
                             <div class="plan-box">
-                                <!-- Left side: Image with Lightbox -->
                                 <?php if (!empty($plan['image'])): ?>
                                 <a data-lightbox="plan" href="<?php echo htmlspecialchars($plan['image']); ?>" data-title="<?php echo htmlspecialchars($plan['name']); ?>">
-                                    <img src="<?php echo htmlspecialchars($plan['image']); ?>" alt="Plan image" title="<?php echo htmlspecialchars($plan['name']); ?>">
+                                    <img src="<?php echo htmlspecialchars($plan['image']); ?>" alt="Plan image">
                                 </a>
                                 <?php else: ?>
                                 <p>No Image Available</p>
                                 <?php endif; ?>
-                                <!-- Right side: Details -->
                                 <div class="plan-details">
                                     <p>Cost: <strong><?php echo '₹' . htmlspecialchars($plan['price']); ?></strong></p>
-                                    <p>Quantity: <strong><?php echo  htmlspecialchars($plan['quantity']).  ' Kilo watt'; ?></strong></p>                                    <p>Daily Earnings: <strong><?php echo '₹' . htmlspecialchars($plan['daily_earnings']); ?></strong></p>
+                                    <p>Quantity: <strong><?php echo htmlspecialchars($plan['quantity']) . ' Kilo watt'; ?></strong></p>
+                                    <p>Daily Earnings: <strong><?php echo '₹' . htmlspecialchars($plan['daily_earnings']); ?></strong></p>
                                     <p>Monthly Earnings: <strong><?php echo '₹' . htmlspecialchars($plan['monthly_earnings']); ?></strong></p>
-                                    
-                                    <button class="btn claim-btn" data-plan-id="<?php echo htmlspecialchars($plan['plan_id']); ?>">Claim</button>
+
+                                    <?php if ($plan['plan_id'] == 1): ?>
+                                        <button class="btn watch-claim-btn" data-plan-id="<?php echo htmlspecialchars($plan['plan_id']); ?>" data-bs-toggle="modal" data-bs-target="#videoModal">
+                                            Watch & Claim
+                                        </button>
+                                        <button class="btn claim-btn" data-plan-id="<?php echo htmlspecialchars($plan['plan_id']); ?>" disabled>Claim</button>
+                                    <?php else: ?>
+                                        <button class="btn claim-btn" data-plan-id="<?php echo htmlspecialchars($plan['plan_id']); ?>">Claim</button>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -192,30 +191,84 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plan_id'])) {
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="videoModalLabel">Watch the Video</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <video id="videoPlayer" width="100%" controls>
+                    <source src="https://solargrids.graymatterworks.com/solar.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const claimButtons = document.querySelectorAll('.claim-btn');
-            claimButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                                    const planId = this.getAttribute('data-plan-id');
-                    fetch('', {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                        body: `plan_id=${planId}`
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        alert(data.message);
-                        if (data.success) {
-                            window.location.reload();
-                        }
-                    })
-                    .catch(error => console.error('Error:', error));
-                });
-            });
+document.addEventListener('DOMContentLoaded', function () {
+    const videoPlayer = document.getElementById('videoPlayer');
+    const videoModal = document.getElementById('videoModal');
+
+    // Pause the video when the modal is closed
+    videoModal.addEventListener('hidden.bs.modal', function () {
+        videoPlayer.pause();
+        videoPlayer.currentTime = 0;
+    });
+
+    // Watch & Claim button logic (only for plan_id == 1)
+    document.querySelectorAll('.watch-claim-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            const planId = this.getAttribute('data-plan-id');
+            const claimButton = document.querySelector(`.claim-btn[data-plan-id="${planId}"]`);
+
+            if (planId === "1") {
+                // Reset video state and disable the claim button
+                videoPlayer.currentTime = 0;
+                videoPlayer.play();
+                claimButton.disabled = true;
+                claimButton.classList.remove('enabled');
+
+                // Enable the claim button only when the video ends
+                videoPlayer.onended = function () {
+                    claimButton.disabled = false;
+                    claimButton.classList.add('enabled');
+                };
+            }
         });
+    });
+
+    // Claim button logic
+    document.querySelectorAll('.claim-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            const planId = this.getAttribute('data-plan-id');
+            fetch('', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `plan_id=${planId}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                if (data.success) {
+                    window.location.reload();
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+});
+
     </script>
 </body>
 </html>
