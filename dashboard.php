@@ -250,11 +250,11 @@ curl_close($curl);
             <!-- Video Section -->
        
 
-            <div class="video-container">
+            <!-- <div class="video-container">
             <video width="100%" height="500px" frameborder="0" allowfullscreen controls>
                 <source src="https://solargrids.graymatterworks.com/solar.mp4" type="video/mp4">
             </video>
-        </div>
+        </div> -->
 
         </div>
     </div>

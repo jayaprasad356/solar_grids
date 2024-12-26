@@ -78,9 +78,9 @@ if (isset($_POST['btnEdit'])) {
         if ($update_result == 1) {
             $error['update_jobs'] = "<section class='content-header'><span class='label label-success'>Income updated successfully</span></section>";
             ?>
-            <script>
+            <!-- <script>
                 window.location.href = "youtube_income.php";
-            </script>
+            </script> -->
             <?php
         } 
     }
