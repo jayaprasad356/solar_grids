@@ -54,18 +54,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnlink'])) {
       if ($response === false) {
           // Error in cURL request
           echo "Error: " . curl_error($curl);
-      } else {
-          // Successful API response
-          $responseData = json_decode($response, true);
-          if ($responseData !== null) {
-              if ($responseData["success"]) {
-                  // Success: YouTube Income added successfully
-                  $message = $responseData["message"];
-              } else {
-                  // Failure: Link already exists
-                  $message = $responseData["message"];
+      }else {
+            // Successful API response
+            $responseData = json_decode($response, true);
+            if ($responseData !== null) {
+                if ($responseData["success"]) {
+                    // Success: YouTube Income added successfully
+                    
+                    $_SESSION['message'] = $responseData["message"];
+                    //  $_SESSION['alert_type'] = "success";
+                } else {
+                    // Failure: Link already exists
+                    $_SESSION['message'] = $responseData["message"];
+                    //  $_SESSION['alert_type'] = "warning";
+                }
               }
-          }
       }
       curl_close($curl);
   } else {
@@ -77,7 +80,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnlink'])) {
   header("Location: " . $_SERVER['PHP_SELF']);
   exit();
 }
- 
+if (isset($_SESSION['message'])) {
+    echo "<script>alert('" . htmlspecialchars($_SESSION['message']) . "');</script>";
+    unset($_SESSION['message']);
+}
+
 
 ?>
 

@@ -44,6 +44,6 @@ $sql = "INSERT INTO youtuber_income (user_id, link, amount, status, datetime) VA
 $db->sql($sql);
 $res = $db->getResult();
 $response['success'] = true;
-$response['message'] = "Youtube Income added Successfully";
+$response['message'] = "Youtube link added Successfully";
 print_r(json_encode($response));
 ?>
