@@ -1507,7 +1507,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'youtube_income') {
         if($row['status']==1)
         $tempRow['status']="<p class='text text-success'>Paid</p>";        
             elseif($row['status']==0)
-                    $tempRow['status']="<p class='text text-primary'>Unpaid</p>"; 
+                    $tempRow['status']="<p class='text text-primary'>Wait for Approvals</p>"; 
             else
                 $tempRow['status']="<p class='text text-danger'>Cancelled</p>";
         $tempRow['operate'] = $operate;
