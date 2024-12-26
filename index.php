@@ -514,11 +514,11 @@
                         <a class=" inline-flex items-center " href="/">
                             <div class=" relative h-8 w-8 ">
 
-                                <img src="solar_grids_logo.png"  alt="Your Logo"  class="your"/>
+                                <img src="solarpe.png"  alt="Your Logo"  class="your"/>
                                 <!-- <img alt="SundayGrids Logo" loading="lazy" decoding="async" data-nimg="fill" class=" inline-block object-cover object-center" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent;background-size:cover;background-position:50% 50%;background-repeat:no-repeat;background-image:url(&quot;data:image/svg+xml;charset=utf-8,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; %3E%3Cfilter id=&#x27;b&#x27; color-interpolation-filters=&#x27;sRGB&#x27;%3E%3CfeGaussianBlur stdDeviation=&#x27;20&#x27;/%3E%3CfeColorMatrix values=&#x27;1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 100 -1&#x27; result=&#x27;s&#x27;/%3E%3CfeFlood x=&#x27;0&#x27; y=&#x27;0&#x27; width=&#x27;100%25&#x27; height=&#x27;100%25&#x27;/%3E%3CfeComposite operator=&#x27;out&#x27; in=&#x27;s&#x27;/%3E%3CfeComposite in2=&#x27;SourceGraphic&#x27;/%3E%3CfeGaussianBlur stdDeviation=&#x27;20&#x27;/%3E%3C/filter%3E%3Cimage width=&#x27;100%25&#x27; height=&#x27;100%25&#x27; x=&#x27;0&#x27; y=&#x27;0&#x27; preserveAspectRatio=&#x27;none&#x27; style=&#x27;filter: url(%23b);&#x27; href=&#x27;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P++HgAFZAJv0HnVWgAAAABJRU5ErkJggg==&#x27;/%3E%3C/svg%3E&quot;)" sizes="80vw" srcSet="image?url=%2Fimages%2Flogo-sg-light.png&amp;w=640&amp;q=100 640w, image?url=%2Fimages%2Flogo-sg-light.png&amp;w=1024&amp;q=100 1024w, image?url=%2Fimages%2Flogo-sg-light.png&amp;w=1280&amp;q=100 1280w,image?url=%2Fimages%2Flogo-sg-light.png&amp;w=1400&amp;q=100 1400w" src="image?url=%2Fimages%2Flogo-sg-light.png&amp;w=1400&amp;q=100"/> -->
                             </div>
                         </a>
-                                                    <strong class="text-white xs:text-french-blue-700 ml-2 hidden text-lg font-semibold min-[420px]:inline-block md:text-[22px] ">SolarGrids</strong>
+                                                    <strong class="text-white xs:text-french-blue-700 ml-2 hidden text-lg font-semibold min-[420px]:inline-block md:text-[22px] ">Solarpe </strong>
 
                     </div>
                 <div class="inline-flex items-center gap-x-3 ml-auto">

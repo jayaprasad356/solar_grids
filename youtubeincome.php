@@ -168,7 +168,70 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnlink'])) {
             color:rgb(0, 0, 0);
             background-color: #44eba7;
         }
-        
+        .btn-details {
+  background-color: #44eba7;
+  border: none;
+  color: black;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 999px;
+}
+
+.btn-details:hover {
+  background-color: #2ed69b;
+  color: white;
+}
+
+.modal-content {
+  background: linear-gradient(135deg,rgb(230, 224, 224),rgb(255, 255, 255));
+  border-radius: 12px;
+  color: #2d3436;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-title {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.pop-list
+ {
+  list-style-type: none;
+  padding-left: 0;
+
+}
+
+.pop-list li,
+.pop-rules li {
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: left;
+  margin-left:10px ;
+}
+
+.pop-rules li::before {
+  /* content: '✔'; */
+  color: #00cec9;
+  font-weight: bold;
+  margin-right: 8px;
+}
+.youtubeli{
+  text-decoration: dotted;
+}
+.btn-close{
+  /* background-color: #2ed69b; */
+  border: none;
+  color: white;
+  font-weight: bold;
+  /* padding: 10px 20px; */
+
+}
+.btn-close:hover{
+  background-color: #44eba7;
+  color: black;
+}
   </style>
 </head>
 <body>
@@ -184,11 +247,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnlink'])) {
 <div class="transaction-container" id="transactions">
                  <div class="d-flex justify-content-between align-items-center mb-2">
                     <a href="menu.php" style="color:black;" class="btn"><i style="color:rgb(2, 2, 2); font-size: 1rem;" class="bi bi-arrow-left"></i>Back</a>
-                    
+                  <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#moreDetailsModal">
+  More Details
+</button>
                 </div>
+                <div class="modal fade" id="moreDetailsModal" tabindex="-1" aria-labelledby="moreDetailsLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="moreDetailsLabel">YouTuber Earnings Plan 📱</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul class="pop-list">
+          <li><strong>1.Earnings per view: ₹1</strong></li>
+          <li><strong>2.Minimum views required: 100 views</strong></li>
+          <li><strong>3.Extra incentive for 5000 views crossed: ₹1000</strong></li>
+          <li><strong>4.Submission Rules:</strong></li>
+
+        </ul>
+        <ul class="pop-rules">
+          <li class="youtubeli">YouTubers can only submit their video for<strong> verification</strong> once they reach the maximum views.</li>
+          <li>After submission,the views will be verified, and the final earnings will be calculated.</li>
+          <li><strong>Resubmission is not allowed</strong> for the same video once it's submitted for verification.</li>
+          <li><strong>The video must be related to promoting  our app</strong>, not any other content.</li>
+          <li><strong>Minimum video duration</strong>The video shorts must be at least <strong>30 seconds</strong>  long </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
         <input type="text" name="link" placeholder="Paste your video link" required />
         
         <button type="submit" name="btnlink"   class="btn">Submit</button>
+        
       </form>
       
     </div>
@@ -234,6 +329,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnlink'])) {
                     </tbody>
     </table>
   </div>
+  
 
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
