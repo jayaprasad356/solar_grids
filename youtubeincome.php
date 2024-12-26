@@ -71,11 +71,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnlink'])) {
   } else {
       $message = "Please enter a valid video link.";
   }
+  
 
   // Redirect to the same page to prevent resubmission
   header("Location: " . $_SERVER['PHP_SELF']);
   exit();
 }
+ 
 
 ?>
 
@@ -178,7 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnlink'])) {
             background-color: #44eba7;
         }
         .btn-details {
-  background-color: #44eba7;
+  background-color:rgb(223, 50, 50);
   border: none;
   color: black;
   font-weight: bold;
@@ -187,7 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnlink'])) {
 }
 
 .btn-details:hover {
-  background-color: #2ed69b;
+  background-color:rgb(233, 48, 45);
   color: white;
 }
 
@@ -263,8 +265,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnlink'])) {
 <div class="transaction-container" id="transactions">
                  <div class="d-flex justify-content-between align-items-center mb-2">
                     <a href="menu.php" style="color:black;" class="btn"><i style="color:rgb(2, 2, 2); font-size: 1rem;" class="bi bi-arrow-left"></i>Back</a>
-                  <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#moreDetailsModal">
-  More Details
+                  <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#moreDetailsModal"> More Details
 </button>
                 </div>
                 <div class="modal fade" id="moreDetailsModal" tabindex="-1" aria-labelledby="moreDetailsLabel" aria-hidden="true">
@@ -323,7 +324,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnlink'])) {
                 <?php
                 switch ($income['status']) {
                     case 0:
-                        echo '<span class="badge bg-warning">Not Paid</span>';
+                        echo '<span class="badge bg-warning">Wait for Apporvals</span>';
                         break;
                     case 1:
                         echo '<span class="badge bg-success">Paid</span>';
@@ -344,6 +345,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnlink'])) {
             <td colspan="3" class="text-center">No income records found.</td>
           </tr>
         <?php endif; ?>
+        
                     </tbody>
     </table>
   </div>
