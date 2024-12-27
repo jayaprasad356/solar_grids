@@ -413,7 +413,7 @@ curl_close($curl);
             </div>
             <div class="modal-body">
                 <center><p>1.Click on the below link & complete the payment.</p></center>
-                <center><a href="https://www.jiyologistics.org/product/31855011/Jiyo-Retail-Career-Building-Course" class="btn" style = "background-color: #44eba7; color:black;" target="_blank">Click here for making payment</a></center>
+                <center><a href="https://www.slveenterprises.org/product/32099322/Solarpe-Green-Energy" class="btn" style = "background-color: #44eba7; color:black;" target="_blank">Click here for making payment</a></center>
                  <center> <a href="<?php echo htmlspecialchars($demo_video); ?>" target="_blank" class="watch-demo-link">How to recharge</a> </center>
                 <!-- <a href="demo_video_url" class="watch-demo-link">Watch Demo Video</a> -->
             </div>
