@@ -166,7 +166,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
     background-color: rgba(255, 255, 255,0.13);
     position: absolute;
     transform: translate(-50%,-50%);
-    top: 90%;
+    top: 110%;
     left: 50%;
     border-radius: 17px;
     backdrop-filter: blur(2px);
