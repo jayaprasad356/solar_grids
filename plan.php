@@ -181,7 +181,8 @@ curl_close($curl);
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
     <!-- Lightbox CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         
         .plan-box {
@@ -265,7 +266,7 @@ curl_close($curl);
             text-decoration: none; /* Remove underline */
             font-weight: bold; /* Make it bold */
             padding-left: 10px; /* Add padding for a gap */
-            font-size: 0.70rem; /* Size for the product name */
+            font-size: 0.80rem; /* Size for the product name */
             font-family: 'Poppins', Helvetica, sans-serif;
         }
 
@@ -413,8 +414,8 @@ curl_close($curl);
             </div>
             <div class="modal-body">
                 <center><p>1.Click on the below link & complete the payment.</p></center>
-                <center><a href="https://www.jiyologistics.org/product/31855011/Jiyo-Retail-Career-Building-Course" class="btn" style = "background-color: #44eba7; color:black;" target="_blank">Click here for making payment</a></center>
-                 <center> <a href="<?php echo htmlspecialchars($demo_video); ?>" target="_blank" class="watch-demo-link">How to recharge</a> </center>
+                <center><a href="https://www.slveenterprises.org/product/32099322/Solarpe-Green-Energy" class="btn" style = "background-color: #44eba7; color:black;" target="_blank">Click here for making payment</a></center>
+                <center> <a href="<?php echo htmlspecialchars($demo_video); ?>" target="_blank" class="watch-demo-link">How to recharge<i style="color: #03242B;  padding: 5px; font-weight: bold;" class="fas fa-arrow-right"></i></a> </center>
                 <!-- <a href="demo_video_url" class="watch-demo-link">Watch Demo Video</a> -->
             </div>
         </div>
