@@ -127,8 +127,42 @@ if ($response === false) {
             echo "<script>alert('".$responseData["message"]."')</script>";
         }
     }
+    curl_close($curl);
 }
 
+$data = array(
+    "user_id" => $user_id,
+);
+$apiUrl = API_URL . "settings.php";
+
+$curl = curl_init($apiUrl);
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+$response = curl_exec($curl);
+
+if ($response === false) {
+    // Error in cURL request
+    echo "Error: " . curl_error($curl);
+} else {
+    // Successful API response
+    $responseData = json_decode($response, true);
+    if ($responseData !== null && $responseData["success"]) {
+        // Display transaction details
+        $settingsdetails = $responseData["data"];
+        if (!empty($settingsdetails)) {
+            $demo_video = $settingsdetails[0]["demo_video"];
+        } else {
+            echo "No demo video found.";
+        }
+    } else {
+        if ($responseData !== null) {
+            echo "<script>alert('".$responseData["message"]."')</script>";
+        }
+    }
+}
 curl_close($curl);
 ?>
 
@@ -380,8 +414,8 @@ curl_close($curl);
             <div class="modal-body">
                 <center><p>1.Click on the below link & complete the payment.</p></center>
                 <center><a href="https://www.jiyologistics.org/product/31855011/Jiyo-Retail-Career-Building-Course" class="btn" style = "background-color: #44eba7; color:black;" target="_blank">Click here for making payment</a></center>
-                 <center><a href="https://youtu.be/1elTq_diwjA?si=KW5etuxCu3ChvV41" target="_blank" class="small-font">Watch demo</a></center>
-                <a href="demo_video_url" class="watch-demo-link">Watch Demo Video</a>
+                 <center> <a href="<?php echo htmlspecialchars($demo_video); ?>" target="_blank" class="watch-demo-link">How to recharge</a> </center>
+                <!-- <a href="demo_video_url" class="watch-demo-link">Watch Demo Video</a> -->
             </div>
         </div>
     </div>

@@ -17,10 +17,11 @@ if (isset($_POST['btnUpdate'])) {
     $income_status = $db->escapeString(($_POST['income_status']));
     $withdrawal_status = $db->escapeString(($_POST['withdrawal_status']));
     $secrete_code = $db->escapeString(($_POST['secrete_code']));
+    $demo_video = $db->escapeString(($_POST['demo_video']));
     
 
             $error = array();
-            $sql_query = "UPDATE settings SET whatsapp_group='$whatsapp_group',telegram_channel='$telegram_channel',min_withdrawal='$min_withdrawal',max_withdrawal='$max_withdrawal',pay_video='$pay_video',pay_gateway='$pay_gateway',scratch_card = '$scratch_card',income_status = '$income_status',withdrawal_status= '$withdrawal_status',secrete_code = '$secrete_code' WHERE id=1";
+            $sql_query = "UPDATE settings SET whatsapp_group='$whatsapp_group',telegram_channel='$telegram_channel',min_withdrawal='$min_withdrawal',max_withdrawal='$max_withdrawal',pay_video='$pay_video',pay_gateway='$pay_gateway',scratch_card = '$scratch_card',income_status = '$income_status',withdrawal_status= '$withdrawal_status',secrete_code = '$secrete_code',demo_video = '$demo_video' WHERE id = 1";
             $db->sql($sql_query);
             $result = $db->getResult();
             if (!empty($result)) {
@@ -138,6 +139,12 @@ $res = $db->getResult();
                                     <input type="text" class="form-control" name="secrete_code" value="<?= $res[0]['secrete_code'] ?>">
                                 </div>
                            </div> 
+                           <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="demo_video">Demo Video</label>
+                                    <input type="text" class="form-control" name="demo_video" value="<?= $res[0]['demo_video'] ?>">
+                                </div>
+                           </div>
                         </div>
                         <br>
                     </div>
