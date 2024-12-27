@@ -1,7 +1,7 @@
 <?php
 
-//define('DOMAIN_URL', 'https://solargrids.graymatterworks.com/admin_v1/');
- define('DOMAIN_URL', 'https://solarpe.org/admin_v1/'); /* chnage to your domain here - don't forget to add forward slash at the end of the URL like this "/" */
+define('DOMAIN_URL', 'https://solargrids.graymatterworks.com/admin_v1/');
+// define('DOMAIN_URL', 'https://solarpe.org/admin_v1/'); /* chnage to your domain here - don't forget to add forward slash at the end of the URL like this "/" */
 define('ALLOW_MODIFICATION', 1);
 define('JWT_SECRET_KEY', '12345678'); /* chnage to your secret key here set it to anything you like*/
 define('MAIN_REFER', 'ATN');
@@ -17,16 +17,16 @@ class Database
      */
    
     //  live server
-      private $db_host = "localhost";
-      private $db_user = "u117947056_solarpe";
-      private $db_pass = "Solarpe@2024"; 
-      private $db_name = "u117947056_solarpe"; 
+    //  private $db_host = "localhost";
+    //  private $db_user = "u117947056_solarpe";
+    //  private $db_pass = "Solarpe@2024"; 
+    //  private $db_name = "u117947056_solarpe"; 
  
     // demo server
-     //private $db_host = "localhost";
-     //private $db_user = "u743445510_solar_grids";
-     //private $db_pass = "Solar@2024";
-    // private $db_name = "u743445510_solar_grids"; 
+     private $db_host = "localhost";
+     private $db_user = "u743445510_solar_grids";
+     private $db_pass = "Solar@2024";
+     private $db_name = "u743445510_solar_grids"; 
 
     private $con = false; // Check to see if the connection is active
     private $myconn = ""; // This will be our mysqli object
