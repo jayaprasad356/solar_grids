@@ -95,27 +95,15 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
             margin: 0;
         }
         body {
-             
-        font-family:  Poppins, Helvetica, sans-serif;
-        background: #efefef;
-        background: url(./admin_v1/images/bg-green-grid.png);
-        background-position: center;
-        /* background-repeat: no-repeat; */
-        background-size: cover;
-        
-
+            font-family: Poppins, Helvetica, sans-serif;
+            background: #efefef;
+            background: url(./admin_v1/images/bg-green-grid.png);
+            background-position: center;
+            background-size: cover;
         }
-        /* .custom-container {
-            width: 450px; 
-            margin: 10px auto; 
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            background: rgb(255, 255, 255);
-        } */
         .btn-custom {
             width: 100%;
-            margin-top:25px;
+            margin-top: 25px;
             border-radius: 10px;
             border: 2px solid #44eba7;
         }
@@ -129,19 +117,19 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
             margin-bottom: 20px;
         }
         .heading h2, .heading h3 {
-            margin:10px;
+            margin: 10px;
             font-weight: 600;
         }
         .heading h2 {
             font-size: 1.5rem;
-            color:rgb(255, 255, 255);
+            color: rgb(255, 255, 255);
         }
         .heading h3 {
-             font-size: 40px;
-             font-weight: 600;
-             line-height: 30px;
-             text-align: center;
-             color:rgb(238, 232, 232);
+            font-size: 40px;
+            font-weight: 600;
+            line-height: 30px;
+            text-align: center;
+            color: rgb(238, 232, 232);
         }
         @media (max-width: 576px) {
             .nowrap-mobile {
@@ -151,7 +139,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
             .btn-customs {
                 width: 100%;
                 border-radius: 15px;
-                margin-top:6px;
+                margin-top: 6px;
             }
             .heading h2 {
                 font-size: 1.2rem;
@@ -161,34 +149,38 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
             }
         }
         form {
-    /* height: 00px; */
-    width:450px;
-    background-color: rgba(255, 255, 255,0.13);
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 110%;
-    left: 50%;
-    border-radius: 17px;
-    backdrop-filter: blur(2px);
-    border: 5px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 20px rgba(129, 236, 174, 0.6);
-    padding: 20px;
-     }
-   form *{
-    font-family: 'Quicksand', sans-serif;
-     /* color:#ffffff; */
-     letter-spacing: 1px;
-     outline: none;
-     border: none;
-    }
-    .label{
-        color: #efefef;
-    }
-    .input-group-text{
-        background-color: rgba(255, 255, 255, 0.1);
-        color: #efefef;
-    }
-    
+            width: 450px;
+            background-color: rgba(255, 255, 255, 0.13);
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 110%;
+            left: 50%;
+            border-radius: 17px;
+            backdrop-filter: blur(2px);
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(129, 236, 174, 0.6);
+            padding: 20px;
+        }
+        form * {
+            font-family: 'Quicksand', sans-serif;
+            letter-spacing: 1px;
+            outline: none;
+            border: none;
+        }
+        .label {
+            color: #efefef;
+        }
+        .input-group-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #efefef;
+        }
+        @media (max-width: 576px) {
+            form {
+                top: 80%;
+                width: 90%;
+                padding: 10px;
+            }
+        }
     </style>
 </head>
 <body>
