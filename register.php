@@ -100,19 +100,19 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
         background: #efefef;
         background: url(./admin_v1/images/bg-green-grid.png);
         background-position: center;
-        background-repeat: no-repeat;
+        /* background-repeat: no-repeat; */
         background-size: cover;
         
 
         }
-        .custom-container {
+        /* .custom-container {
             width: 450px; 
-            margin: 10px auto; /* Adjusted margin */
+            margin: 10px auto; 
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             background: rgb(255, 255, 255);
-        }
+        } */
         .btn-custom {
             width: 100%;
             margin-top:25px;
@@ -137,9 +137,11 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
             color:rgb(255, 255, 255);
         }
         .heading h3 {
-            font-size: 2rem;
-            color: white;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+             font-size: 40px;
+             font-weight: 600;
+             line-height: 30px;
+             text-align: center;
+             color:rgb(238, 232, 232);
         }
         @media (max-width: 576px) {
             .nowrap-mobile {
@@ -158,12 +160,41 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
                 font-size: 1.5rem;
             }
         }
+        form {
+    /* height: 00px; */
+    width:450px;
+    background-color: rgba(255, 255, 255,0.13);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 90%;
+    left: 50%;
+    border-radius: 17px;
+    backdrop-filter: blur(2px);
+    border: 5px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(129, 236, 174, 0.6);
+    padding: 20px;
+     }
+   form *{
+    font-family: 'Quicksand', sans-serif;
+     /* color:#ffffff; */
+     letter-spacing: 1px;
+     outline: none;
+     border: none;
+    }
+    .label{
+        color: #efefef;
+    }
+    .input-group-text{
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #efefef;
+    }
+    
     </style>
 </head>
 <body>
 <div class="heading">
 <h3>Welcome to Solar Grids</h3>
-        <h2>Most Trusted App in India</h2>
+        <!-- <h2>Most Trusted App in India</h2> -->
     </div>
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
         <div class="custom-container">
@@ -172,7 +203,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
             <input type="hidden" class="form-control" id="mobilenum" name="mobilenum" value="">
                         
                 <div class="form-group">
-                    <label for="mobile" style="font-weight:bold;">Mobile Number:</label>
+                    <label class="label" for="mobile" style="font-weight:bold;">Mobile Number:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" style="border-right: none; background: transparent;"><i class="fas fa-mobile-alt"></i></span>
@@ -184,7 +215,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="otp" style="font-weight:bold;">OTP:</label>
+                    <label class="label" for="otp" style="font-weight:bold;">OTP:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" style="border-right: none; background: transparent;"><i class="fas fa-message"></i></span>
@@ -197,7 +228,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="name" style= "font-weight:bold;">Full Name:</label>
+                    <label class="label" for="name" style= "font-weight:bold;">Full Name:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" style="border-right: none; background: transparent;"><i class="fas fa-user"></i></span>
@@ -206,7 +237,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="password" style= "font-weight:bold;">Password:</label>
+                    <label class="label" for="password" style= "font-weight:bold;">Password:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" style="border-right: none; background: transparent;"><i class="fas fa-lock"></i></span>
@@ -216,7 +247,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
                     <span id="passwordError" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label for="confirmPassword" style= "font-weight:bold;">Confirm Password:</label>
+                    <label class="label" for="confirmPassword" style= "font-weight:bold;">Confirm Password:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" style="border-right: none; background: transparent;"><i class="fas fa-lock"></i></span>
@@ -226,7 +257,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
                     <span id="confirmPasswordError" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label for="email" style= "font-weight:bold;">Email:</label>
+                    <label class="label" for="email" style= "font-weight:bold;">Email:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" style="border-right: none; background: transparent;"><i class="fas fa-envelope"></i></span>
@@ -235,7 +266,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="age" style= "font-weight:bold;">Age:</label>
+                    <label class="label" for="age" style= "font-weight:bold;">Age:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" style="border-right: none; background: transparent;"><i class="fas fa-calendar-alt"></i></span>
@@ -244,7 +275,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="city" style= "font-weight:bold;">City:</label>
+                    <label class="label" for="city" style= "font-weight:bold;">City:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" style="border-right: none; background: transparent;"><i class="fas fa-map-marker-alt"></i></span>
@@ -253,7 +284,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="state" style="font-weight:bold;">State:</label>
+                    <label class="label" for="state" style="font-weight:bold;">State:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" style="border-right: none; background: transparent;"><i class="fas fa-map-marker-alt"></i></span>
@@ -299,7 +330,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="referred_by" style= "font-weight:bold;">Referral code:</label>
+                    <label class="label" for="referred_by"  style= "font-weight:bold;">Referral code:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" style="border-right: none; background: transparent;"><i class="fas fa-book"></i></span>
@@ -311,7 +342,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
                     <button type="submit" class="btn  btn-custom" name="btnSignup" style="background-color:#44eba7; color:black; font-weight:bold;">Register</button>
                 </div>
                 <div class="text-center mt-3">
-                    <p><a href="index.php">Back to Login</a></p>
+                    <p><a href="index.php" class="text-white">Back to Login</a></p>
                 </div>
             </form>
         </div>
