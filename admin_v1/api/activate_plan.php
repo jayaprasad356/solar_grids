@@ -114,7 +114,7 @@ $datetime = date('Y-m-d H:i:s');
     $res_user = $db->getResult();
 
     $response['success'] = true;
-    $response['message'] = "Plan started successfully";
+    $response['message'] = "Plan started successfully . You can claim income after 24 hrs";
     $response['data'] = $res_user;
     }
     else {
