@@ -82,14 +82,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
         
 
         }
-        .custom-container {
-            width: 450px; 
-            margin: 10px auto; /* Adjusted margin */
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            background: rgb(255, 255, 255);
-        }
+        
         .btn-custom {
             width: 100%;
             margin-top:25px;
@@ -119,6 +112,25 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
             color: white;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
         }
+        form {
+            width: 450px;
+            background-color: rgba(255, 255, 255, 0.13);
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 60%;
+            left: 50%;
+            border-radius: 17px;
+            backdrop-filter: blur(2px);
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(129, 236, 174, 0.6);
+            padding: 20px;
+        }
+        form * {
+            font-family: 'Quicksand', sans-serif;
+            letter-spacing: 1px;
+            outline: none;
+            border: none;
+        }
         @media (max-width: 576px) {
             .nowrap-mobile {
                 white-space: nowrap;
@@ -134,6 +146,11 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
             }
             .heading h3 {
                 font-size: 1.5rem;
+            }
+            form {
+                top: 50%;
+                width: 90%;
+                padding: 10px;
             }
         }
         .forgot{
@@ -152,10 +169,10 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
             <input type="hidden" class="form-control" id="mobilenum" name="mobilenum" value="">
                         
                 <div class="form-group">
-                    <label for="mobile" style="font-weight:bold;">Mobile Number:</label>
+                    <label for="mobile" style="font-weight:bold;color:white;">Mobile Number:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" style="border-right: none; background: transparent;"><i class="fas fa-mobile-alt"></i></span>
+                            <span class="input-group-text" style="border-right: none;color:white; background: transparent;"><i class="fas fa-mobile-alt"></i></span>
                         </div>
                         <input type="number" class="form-control" id="mobile" name="mobile" placeholder="Mobile" style="border-left: none" required>
                         <div class="input-group-append">
@@ -164,10 +181,10 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="otp" style="font-weight:bold;">OTP:</label>
+                    <label for="otp" style="font-weight:bold;color:white;">OTP:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" style="border-right: none; background: transparent;"><i class="fas fa-message"></i></span>
+                            <span class="input-group-text" style="border-right: none;color:white; background: transparent;"><i class="fas fa-message"></i></span>
                         </div>
                         <input type="number" class="form-control" id="otp" name="otp" placeholder="OTP" style="border-left: none">
                         <div class="input-group-append">
@@ -178,20 +195,20 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
                 </div>
             
                 <div class="form-group">
-                    <label for="password" style= "font-weight:bold;">New Password:</label>
+                    <label for="password" style= "font-weight:bold;color:white;">New Password:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" style="border-right: none; background: transparent;"><i class="fas fa-lock"></i></span>
+                            <span class="input-group-text" style="border-right: none;color:white; background: transparent;"><i class="fas fa-lock"></i></span>
                         </div>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Password" required style="border-left: none;">
                     </div>
                     <span id="passwordError" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label for="confirm_password" style= "font-weight:bold;">Confirm Password:</label>
+                    <label for="confirm_password" style= "font-weight:bold;color:white;">Confirm Password:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" style="border-right: none; background: transparent;"><i class="fas fa-lock"></i></span>
+                            <span class="input-group-text" style="border-right: none;color:white; background: transparent;"><i class="fas fa-lock"></i></span>
                         </div>
                         <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required style="border-left: none;">
                     </div>
@@ -202,7 +219,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
                     <button type="submit" class="btn btn-primary btn-custom" name="btnChange" style="background-color:  #44eba7; color:black; font-weight:bold;">Change Password</button>
                 </div>
                 <div class="text-center mt-3">
-                    <p><a href="index.php">Back to Login</a></p>
+                    <p><a href="login.php">Back to Login</a></p>
                 </div>
             </form>
         </div>

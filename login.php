@@ -78,14 +78,7 @@ if (isset($_POST['btnLogin'])) {
         background-size: cover;
         
     }
-        .custom-container {
-            width: 450px; 
-            margin: 10px auto; /* Adjusted margin */
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            background: rgb(255, 255, 255);
-        }
+     
         .btn-custom {
             width: 100%;
             margin-top:25px;
@@ -98,6 +91,28 @@ if (isset($_POST['btnLogin'])) {
             border-radius: 15px;
            
         }
+        form {
+            width: 450px;
+            background-color: rgba(255, 255, 255, 0.13);
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 60%;
+            left: 50%;
+            border-radius: 17px;
+            backdrop-filter: blur(2px);
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(129, 236, 174, 0.6);
+            padding: 20px;
+        }
+        form * {
+            font-family: 'Quicksand', sans-serif;
+            letter-spacing: 1px;
+            outline: none;
+            border: none;
+        }
+        #zsiqscript {
+        color: red;
+    }
         @media (max-width: 576px) {
             .nowrap-mobile {
                 white-space: nowrap;
@@ -109,6 +124,11 @@ if (isset($_POST['btnLogin'])) {
             margin-top:6px;
            
         }
+        form {
+                top: 50%;
+                width: 90%;
+                padding: 10px;
+            }
      
         }
 
@@ -122,19 +142,19 @@ if (isset($_POST['btnLogin'])) {
             
         <form method="post" enctype="multipart/form-data">
             <div class="form-group">
-                    <label for="number" style= "font-weight:bold;">Mobile Number:</label>
+                    <label for="number" style= "font-weight:bold; color:white;">Mobile Number:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" style="border-right: none; background: transparent;"><i class="fas fa-mobile-alt"></i></span>
+                            <span class="input-group-text" style="border-right: none; background: transparent; color:white;"><i class="fas fa-mobile-alt"></i></span>
                         </div>
                         <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile" required style="border-left: none; ">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="password" style= "font-weight:bold;">Password:</label>
+                    <label for="password" style= "font-weight:bold; color:white;">Password:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" style="border-right: none; background: transparent;"><i class="fas fa-lock"></i></span>
+                            <span class="input-group-text" style="border-right: none; background: transparent; color:white;"><i class="fas fa-lock"></i></span>
                         </div>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Password" required style="border-left: none;">
                     </div>
@@ -145,7 +165,7 @@ if (isset($_POST['btnLogin'])) {
                 <button type="submit" class="btn btn-custom" name="btnLogin"  style="background-color:rgb(68 235 167); color: #03242b; font-weight:bold;">Login</button>
                 </div>
                 <div class="text-center mt-3">
-                    <p>Don't have an account? <a href="register.php">Create New Account</a></p>
+                    <p style="color:white;">Don't have an account? <a href="register.php" style="color:blue;">Create New Account</a></p>
                     <p><a href="forgot_password.php" style="color: red;"><i class="fas fa-lock"></i> Forgot Password</a></p>
                 </div>
             </form>
@@ -159,6 +179,7 @@ if (isset($_POST['btnLogin'])) {
     checkbox.checked = true;
   });
 </script>
-<script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script><script id="zsiqscript" src="https://salesiq.zohopublic.in/widget?wc=siq7f332814434ba123f5efbf2d82a7e47947952e33ecc6bf4b78f9f89edf3ad350" defer></script>
 </body>
 </html>
+<script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script><script id="zsiqscript" src="https://salesiq.zohopublic.in/widget?wc=siq87a570fbeb4e14e3c75ab1b9eafa11a392e79b6e22284150e58f19f7739f80ca" defer></script>
+

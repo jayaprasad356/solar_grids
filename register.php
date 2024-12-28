@@ -334,7 +334,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
                     <button type="submit" class="btn  btn-custom" name="btnSignup" style="background-color:#44eba7; color:black; font-weight:bold;">Register</button>
                 </div>
                 <div class="text-center mt-3">
-                    <p><a href="index.php" class="text-white">Back to Login</a></p>
+                    <p><a href="login.php" class="text-white">Back to Login</a></p>
                 </div>
             </form>
         </div>
