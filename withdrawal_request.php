@@ -272,6 +272,9 @@ $_SESSION['bonus_wallet'] = $bonus_wallet;
             }
 
         }
+        .enter{
+            width: 300px;
+        }
     </style>
 </head>
 <body>
@@ -312,6 +315,8 @@ $_SESSION['bonus_wallet'] = $bonus_wallet;
             </div>
         </div>
 
+                <h6>Withdrawal Request Timing Between 4pm to 6pm </h6>
+                <br>
                 <!-- Existing Withdrawal Request Title and Form -->
                 <h2>Withdrawal Request</h2>
                 <a href="withdrawals.php" style=" color:black;" class="btn withdrawal-button">Back To Withdrawals</a>
@@ -322,11 +327,11 @@ $_SESSION['bonus_wallet'] = $bonus_wallet;
                         <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user_id); ?>">
                         <div class="mb-3">
                             <label for="balance" class="form-label">Remaining Balance</label>
-                            <input type="number" class="form-control" id="balance" name="balance" value="<?php echo htmlspecialchars($balance); ?>" disabled>
+                            <input type="number" class="form-control enter" id="balance" name="balance" value="<?php echo htmlspecialchars($balance); ?>" disabled>
                         </div>
                         <div class="mb-3">
                             <label for="amount" class="form-label">Enter Amount</label>
-                            <input type="number" class="form-control" id="amount" name="amount" required>
+                            <input type="number" class="form-control enter" placeholder="Minimum Withdrawal ₹50" id="amount" name="amount" required>
                         </div>
                         <button type="submit" name="btnWithdrawal" style=" color:black;" class="btn">Submit Request</button>
                     </form>

@@ -496,6 +496,10 @@
                 .h-8 {
                     height: 4rem;
                 }
+                .works{
+                    border: 1px solid black;
+                    border-radius: 6px;
+                }
         </style>
     </head>
     <body class="bg-utility-white-50">
@@ -546,7 +550,7 @@
                     </div>
                 </div>
                 <div>
-                    <section class="max-xs:bg-[#03242B] ">
+                    <section class="max-xs:bg-[white] ">
                         <div class=" grid py-4 max-lg:gap-3 max-md:px-6 max-sm:px-4 sm:py-6 min-[748px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-[auto_412px_auto] lg:gap-x-3">
                             <div class="py-1 pl-2 pr-4 max-[350px]:py-2 sm:px-6 sm:py-3 flex items-center gap-1 justify-center md:first:justify-end md:first:pl-0 md:last:justify-normal md:last:pr-0 lg:justify-normal lg:pl-8 lg:pr-16 lg:first:pr-16 rounded-xl border-2 border-solid border-aluminium-grey-100 min-[748px]:max-md:first:col-span-2 md:last:rounded-r-none md:last:border-r-0 md:first:rounded-l-none md:first:border-l-0 ">
                                 <div class="text-french-blue-700 ">
@@ -808,24 +812,24 @@
                                         </div>
                                     </li>
                                 </ul>
-                                <ul class="min-w-[180px] border-solid border-aluminium-grey-200 bg-white text-aluminium-grey-600 max-xs:flex-1 max-xs:rounded-none xs:border-[1.5px] min-[768px]:w-[350px] md:translate-x-[84px] lg:translate-x-[78px] xl:w-[370px] list-none appearance-none rounded-2xl">
-                                    <li class="p-4 sm:p-6 ">
+                                <ul class=" border-2px border-aluminium-grey-300 bg-white text-aluminium-grey-600 max-xs:flex-1 max-xs:rounded-none xs:border-[1.5px] min-[768px]:w-[350px] md:translate-x-[84px] lg:translate-x-[78px] xl:w-[370px] list-none appearance-none rounded-2xl">
+                                    <li class="p-4 sm:p-6 works ">
                                         <strong class="text-base xs:text-base sm:text-xl font-semibold inline-block sm:mb-3 mb-1 ">Rooftop Solar</strong>
                                         <p class="text-sm xs:text-sm max-[376px]:w-[12ch] max-[706px]:w-[27ch] max-w-full  ">Works mostly for standalone houses</p>
                                     </li>
-                                    <li class="bg-powder-blue-50 p-4 sm:p-6 md:relative md:before:absolute md:before:inset-y-0 md:before:left-[-29.5px] md:before:w-7 md:before:bg-powder-blue-50 md:before:content-[&quot;&quot;] md:after:absolute md:after:inset-y-0 md:after:right-[-41.5px] md:after:w-10 md:after:rounded-r-[26px] md:after:bg-powder-blue-50 md:after:content-[&quot;&quot;] lg:after:right-[-49.5px] lg:after:w-12 ">
+                                    <li class="works bg-powder-blue-50 p-4 sm:p-6 md:relative md:before:absolute md:before:inset-y-0 md:before:left-[-29.5px] md:before:w-7 md:before:bg-powder-blue-50 md:before:content-[&quot;&quot;] md:after:absolute md:after:inset-y-0 md:after:right-[-41.5px] md:after:w-10 md:after:rounded-r-[26px] md:after:bg-powder-blue-50 md:after:content-[&quot;&quot;] lg:after:right-[-49.5px] lg:after:w-12 ">
                                         <strong class="text-sm xs:text-base sm:text-lg font-semibold sm:leading-[26px] inline-block mb-1 ">Fixed to Rooftop</strong>
                                         <p class="text-xs xs:text-sm max-[674px]:w-[23ch] max-w-full  ">Local utility approval required</p>
                                     </li>
-                                    <li class="p-4 sm:p-6 ">
+                                    <li class="p-4 sm:p-6 works ">
                                         <strong class="text-sm xs:text-base sm:text-lg font-semibold sm:leading-[26px] inline-block mb-1 ">Yield risk on you</strong>
                                         <p class="text-xs xs:text-sm  ">Intermittency due to weather and shade </p>
                                     </li>
-                                    <li class="bg-powder-blue-50 p-4 sm:p-6 md:relative md:before:absolute md:before:inset-y-0 md:before:left-[-29.5px] md:before:w-7 md:before:bg-powder-blue-50 md:before:content-[&quot;&quot;] md:after:absolute md:after:inset-y-0 md:after:right-[-41.5px] md:after:w-10 md:after:rounded-r-[26px] md:after:bg-powder-blue-50 md:after:content-[&quot;&quot;] lg:after:right-[-49.5px] lg:after:w-12 ">
+                                    <li class="works bg-powder-blue-50 p-4 sm:p-6 md:relative md:before:absolute md:before:inset-y-0 md:before:left-[-29.5px] md:before:w-7 md:before:bg-powder-blue-50 md:before:content-[&quot;&quot;] md:after:absolute md:after:inset-y-0 md:after:right-[-41.5px] md:after:w-10 md:after:rounded-r-[26px] md:after:bg-powder-blue-50 md:after:content-[&quot;&quot;] lg:after:right-[-49.5px] lg:after:w-12 ">
                                         <strong class="text-sm xs:text-base sm:text-lg font-semibold sm:leading-[26px] inline-block mb-1 ">Reduce in Units</strong>
                                         <p class="text-xs xs:text-sm max-[400px]:w-[148px]  ">Lowers only usage charges</p>
                                     </li>
-                                    <li class="flex flex-col gap-y-2 xs:gap-y-4 p-4 sm:p-6 ">
+                                    <li class="works flex flex-col gap-y-2 xs:gap-y-4 p-4 sm:p-6 ">
                                         <div class="flex items-center ">
                                             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="h-3 w-3 shrink-0 xs:h-5 xs:w-5 md:h-6 md:w-6" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill="none" d="M0 0h24v24H0V0z"></path>
@@ -908,13 +912,13 @@
                         <div class="px-4 sm:max-lg:py-6">
                             <div class="flex flex-col pt-16 lg:hidden group mx-auto flex w-full max-w-[480px] flex-col space-y-6 sm:max-w-5xl sm:flex-row sm:justify-around sm:space-x-4 sm:space-y-0">
                                 <div>
-                                    <div class="relative mx-auto aspect-[328/343] max-w-[327.4px] sm:min-w-[327.4px]">
-                                        <!-- <img alt="pay bills" loading="lazy" decoding="async" data-nimg="fill" class="visible object-cover object-center" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;" sizes="80vw" srcset="/_next/image?url=%2Fimages%2Fgh-pay-bill.png&amp;w=640&amp;q=100 640w, /_next/image?url=%2Fimages%2Fgh-pay-bill.png&amp;w=1024&amp;q=100 1024w, /_next/image?url=%2Fimages%2Fgh-pay-bill.png&amp;w=1280&amp;q=100 1280w, /_next/image?url=%2Fimages%2Fgh-pay-bill.png&amp;w=1400&amp;q=100 1400w" src="/_next/image?url=%2Fimages%2Fgh-pay-bill.png&amp;w=1400&amp;q=100"> -->
+                                    <!-- <div class="relative mx-auto aspect-[328/343] max-w-[327.4px] sm:min-w-[327.4px]">
+                                        <img alt="pay bills" loading="lazy" decoding="async" data-nimg="fill" class="visible object-cover object-center" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;" sizes="80vw" srcset="/_next/image?url=%2Fimages%2Fgh-pay-bill.png&amp;w=640&amp;q=100 640w, /_next/image?url=%2Fimages%2Fgh-pay-bill.png&amp;w=1024&amp;q=100 1024w, /_next/image?url=%2Fimages%2Fgh-pay-bill.png&amp;w=1280&amp;q=100 1280w, /_next/image?url=%2Fimages%2Fgh-pay-bill.png&amp;w=1400&amp;q=100 1400w" src="/_next/image?url=%2Fimages%2Fgh-pay-bill.png&amp;w=1400&amp;q=100">
                         
                                         <img alt="Hey Cortana" loading="lazy" decoding="async" data-nimg="fill" class=" object-cover object-center" />
                                         <img alt="reserve solar" loading="lazy" decoding="async" data-nimg="fill" class=" object-cover object-center" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent;background-size:cover;background-position:50% 50%;background-repeat:no-repeat;" src="image?url=%2Fimages%2Flogo-sg-dark.png&amp;w=1400&amp;q=100" />
                                         
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="relative sm:w-full sm:max-w-[360px] md:max-w-[480px]">
                                     <div class="mb-5 flex w-full items-center justify-between space-x-2 inline-flex justify-between bg-transparent">
@@ -936,7 +940,7 @@
                                             <path fill="none" d="M0 0h24v24H0z"></path>
                                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
                                         </svg>
-                                        1 credit = ₹1 offset on power bill
+                                        1 credit = ₹1 
                                     </span>
                                 </div>
                             </div>

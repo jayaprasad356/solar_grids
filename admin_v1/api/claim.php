@@ -82,7 +82,7 @@ $claim = $user_plan[0]['claim'];
 $user_plan_id = $user_plan[0]['id'];
 if ($claim == 0) {
     $response['success'] = false;
-    $response['message'] = "You already claimed this plan";
+    $response['message'] = "You already claimed earnings for the day. Please claim agin tomorrow.";
     print_r(json_encode($response));
     return false;
 }

@@ -200,7 +200,7 @@ if (isset($_SESSION['message'])) {
   color: white;
 }
 
-.modal-content {
+/* .modal-content {
   background: linear-gradient(135deg,rgb(230, 224, 224),rgb(255, 255, 255));
   border-radius: 12px;
   color: #2d3436;
@@ -218,38 +218,51 @@ if (isset($_SESSION['message'])) {
   list-style-type: none;
   padding-left: 0;
 
-}
+} */
+ .card {
+            border: none;
+            border-radius: 10px;
+        }
+        .card-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #343a40;
+        }
+        .list-group-item {
+            font-size: 1rem;
+            color: #495057;
+        }
+        h4 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #495057;
+        }
+        ul {
+            padding-left: 1.5rem;
+        }
+        li {
+            line-height: 1.8;
+        }
+        .text-left {
+            text-align: left;
+        }
 
-.pop-list li,
-.pop-rules li {
-  margin-bottom: 8px;
-  font-size: 16px;
-  line-height: 1.5;
-  text-align: left;
-  margin-left:10px ;
-}
+        .mt-3{
+          margin-left: 50px;
+        }
 
-.pop-rules li::before {
-  /* content: '✔'; */
-  color: #00cec9;
-  font-weight: bold;
-  margin-right: 8px;
-}
-.youtubeli{
-  text-decoration: dotted;
-}
-.btn-close{
-  /* background-color: #2ed69b; */
-  border: none;
-  color: white;
-  font-weight: bold;
-  /* padding: 10px 20px; */
-
-}
-.btn-close:hover{
-  background-color: #44eba7;
-  color: black;
-}
+         @media (max-width: 768px) {
+      .header {
+        font-size: 1.5rem;
+      }
+      .form-container input, .form-container button {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      .btn {
+        padding: 8px 16px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -263,6 +276,7 @@ if (isset($_SESSION['message'])) {
     </div>
 <?php endif; ?>
 
+
     
     <div class="header">YouTuber Income</div>
     
@@ -272,38 +286,9 @@ if (isset($_SESSION['message'])) {
 <div class="transaction-container" id="transactions">
                  <div class="d-flex justify-content-between align-items-center mb-2">
                     <a href="menu.php" style="color:black;" class="btn"><i style="color:rgb(2, 2, 2); font-size: 1rem;" class="bi bi-arrow-left"></i>Back</a>
-                  <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#moreDetailsModal"> More Details
-</button>
+                  <!-- <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#moreDetailsModal"> More Details</button> -->
                 </div>
-                <div class="modal fade" id="moreDetailsModal" tabindex="-1" aria-labelledby="moreDetailsLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="moreDetailsLabel">YouTuber Earnings Plan 📱</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <ul class="pop-list">
-          <li><strong>1.Earnings per view: ₹1</strong></li>
-          <li><strong>2.Minimum views required: 100 views</strong></li>
-          <li><strong>3.Extra incentive for 5000 views crossed: ₹1000</strong></li>
-          <li><strong>4.Submission Rules:</strong></li>
-
-        </ul>
-        <ul class="pop-rules">
-          <li class="youtubeli">YouTubers can only submit their video for<strong> verification</strong> once they reach the maximum views.</li>
-          <li>After submission,the views will be verified, and the final earnings will be calculated.</li>
-          <li><strong>Resubmission is not allowed</strong> for the same video once it's submitted for verification.</li>
-          <li><strong>The video must be related to promoting  our app</strong>, not any other content.</li>
-          <li><strong>Minimum video duration</strong>The video shorts must be at least <strong>30 seconds</strong>  long </li>
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+             
         <input type="text" name="link" placeholder="Paste your video link" required />
         
         <button type="submit" name="btnlink"  class="btn">Submit</button>
@@ -311,51 +296,75 @@ if (isset($_SESSION['message'])) {
       </form>
       
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th class="no">Video Link</th>
-          <th class="no">Amount</th>
-          <th class="no">DateTime</th>
-          <th class="no">Status</th>
-        </tr>
-      </thead>
-        <tbody>
-                     <?php if (!empty($youtubeIncomeList)): ?>
-          <?php foreach ($youtubeIncomeList as $income): ?>
+   <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead>
             <tr>
-              <td><a href="<?= htmlspecialchars($income['link']) ?>" target="_blank"><?= htmlspecialchars($income['link']) ?></a></td>
-              <td><?= htmlspecialchars(number_format($income['amount'], 2)) ?></td>
-              <td><?= htmlspecialchars($income['datetime']) ?></td>
-              <td>
-                <?php
-                switch ($income['status']) {
-                    case 0:
-                        echo '<span class="badge bg-warning">Wait for Apporvals</span>';
-                        break;
-                    case 1:
-                        echo '<span class="badge bg-success">Paid</span>';
-                        break;
-                    case 2:
-                        echo '<span class="badge bg-danger">Cancelled</span>';
-                        break;
-                    default:
-                        echo '<span class="badge bg-secondary">Unknown</span>';
-                        break;
-                }
-                ?>
-              </td>
+                <th class="no">Video Link</th>
+                <th class="no">Amount</th>
+                <th class="no">DateTime</th>
+                <th class="no">Status</th>
             </tr>
-          <?php endforeach; ?>
-        <?php else: ?>
-          <tr>
-            <td colspan="3" class="text-center">No income records found.</td>
-          </tr>
-        <?php endif; ?>
-        
-                    </tbody>
+        </thead>
+        <tbody>
+            <?php if (!empty($youtubeIncomeList)): ?>
+                <?php foreach ($youtubeIncomeList as $income): ?>
+                    <tr>
+                        <td><a href="<?= htmlspecialchars($income['link']) ?>" target="_blank"><?= htmlspecialchars($income['link']) ?></a></td>
+                        <td><?= htmlspecialchars(number_format($income['amount'], 2)) ?></td>
+                        <td><?= htmlspecialchars($income['datetime']) ?></td>
+                        <td>
+                            <?php
+                            switch ($income['status']) {
+                                case 0:
+                                    echo '<span class="badge bg-warning">Wait for Approvals</span>';
+                                    break;
+                                case 1:
+                                    echo '<span class="badge bg-success">Paid</span>';
+                                    break;
+                                case 2:
+                                    echo '<span class="badge bg-danger">Cancelled</span>';
+                                    break;
+                                default:
+                                    echo '<span class="badge bg-secondary">Unknown</span>';
+                                    break;
+                            }
+                            ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="4" class="text-center">No income records found.</td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
     </table>
-  </div>
+</div>
+
+   <div class="container mt-5">
+        <div class="card shadow">
+            <div class="card-body text-left">
+                <h1 class="card-title mb-4">YouTuber Earnings Plan <span role="img" aria-label="mobile">📱</span></h1>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>1.Earnings per view: ₹1</strong></li>
+                    <li class="list-group-item"><strong>2.Minimum views required: 100 views</strong></li>
+                    <li class="list-group-item"><strong>3.Extra incentive for 5000 views crossed: ₹1000</strong></li>
+                    <li class="list-group-item"><strong>4.Submission Rule:</strong> 
+                </ul>
+                <div class="mt-3">
+                    
+                    <ul>
+                        <li>YouTubers can only submit their video for <strong>verification</strong> once they reach the maximum views.</li>
+                        <li>After submission, the views will be verified, and the final earnings will be calculated.</li>
+                        <li><strong>Resubmission is not allowed</strong> for the same video once it's submitted for verification.</li>
+                        <li><strong>The video must be related to promoting our app,</strong> not any other content.</li>
+                        <li><strong>Minimum video duration:</strong> The video or shorts must be at least<strong> 30 seconds</strong> long.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
   
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
