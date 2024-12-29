@@ -165,7 +165,7 @@ if (isset($_POST['btnLogin'])) {
                 <button type="submit" class="btn btn-custom" name="btnLogin"  style="background-color:rgb(68 235 167); color: #03242b; font-weight:bold;">Login</button>
                 </div>
                 <div class="text-center mt-3">
-                    <p style="color:white;">Don't have an account? <a href="register.php" style="color:white;">Create New Account</a></p>
+                    <p style="color:white;">Don't have an account? <a href="register.php" style="color:white; text-decoration: underline;">Create New Account</a></p>
                     <p><a href="forgot_password.php" style="color: red;"><i class="fas fa-lock"></i> Forgot Password</a></p>
                 </div>
             </form>
