@@ -428,7 +428,7 @@ curl_close($curl);
             <div class="modal-body">
                 <center><p>1.Click on the below link & complete the payment.</p></center>
                 <center><a href="https://www.slveenterprises.org/product/32099322/Solarpe-Green-Energy" class="btn" style = "background-color: #44eba7; color:black;" target="_blank">Click here for making payment</a></center>
-                <center> <a href="https://solarpe.org/recharge_video.mp4" target="_blank" class="watch-demo-link">How to recharge<i style="color: #03242B;  padding: 5px; font-weight: bold;" class="fas fa-arrow-right"></i></a> </center>
+                <center> <a href="https://solarpe.org/solarpe.mp4" target="_blank" class="watch-demo-link">How to recharge<i style="color: #03242B;  padding: 5px; font-weight: bold;" class="fas fa-arrow-right"></i></a> </center>
                 <!-- <a href="demo_video_url" class="watch-demo-link">Watch Demo Video</a> -->
             </div>
         </div>
