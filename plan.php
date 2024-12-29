@@ -284,10 +284,11 @@ curl_close($curl);
 
 .alert-info{
     top: 0px; /* Distance from the top */
-    left: 935px; /* Distance from the right */ 
+    left: 680px; /* Distance from the right */ 
     width: 100%; /* Full width */
     max-width: 300px; /* Set a max width */
     font-family: 'Poppins', Helvetica, sans-serif;
+    font-weight: bold;
 }
 .small-font {
             font-size: 0.8rem; /* Adjust the size as needed */
@@ -303,8 +304,14 @@ curl_close($curl);
     .alert-info {
         width: 60%; /* Adjust width for smaller screens */
         font-size: 0.7rem; /* Slightly smaller font size for better fit */
-        top: 0px; /* Distance from the top */
-        left: 130px; /* Distance from the right */
+        top: 3px; /* Distance from the top */
+        left: 0px; /* Distance from the right */
+    }
+    .btn-info{
+        font-size: 0.7rem; /* Slightly smaller font size for better fit */  
+        top: 10px; /* Distance from the top */
+        right: 20px; /* Distance from the right */
+        width: 40%; /* Adjust width for smaller screens */
     }
 }
 
@@ -315,10 +322,16 @@ curl_close($curl);
     <div class="row flex-nowrap">
         <?php include_once('sidebar.php'); ?>
         <div class="col py-3">
-            <!-- Recharge Alert positioned above the Activated Jobs Link -->
-            <div class="alert alert-info" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#rechargeGuideModal">
-                Recharge Value: <strong>₹<?php echo htmlspecialchars($recharge); ?></strong>
-            </div>
+        <div class="d-flex align-items-center justify-content-start ms-3">
+        <!-- Button -->
+        <a href="#" class="btn btn-info me-3" style="background-color:#44eba7" data-bs-toggle="modal" data-bs-target="#rechargeGuideModal">
+            Click Here to Recharge <i class="bi bi-arrow-right"></i>
+        </a>
+        <!-- Alert -->
+        <div class="alert alert-info mb-2" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#rechargeGuideModal">
+            Recharge Value: <strong>₹<?php echo isset($recharge) ? htmlspecialchars($recharge) : '0'; ?></strong>
+        </div>
+    </div>
 
             <!-- Activated Jobs Link -->
             <div class="activated-jobs-link">

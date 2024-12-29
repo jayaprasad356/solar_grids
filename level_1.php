@@ -103,6 +103,9 @@ $userdetails_level3 = fetchUserDetails("d", $user_id);
                 <button class="btn level-btn" data-level="2">Level 2</button>
                 <button class="btn level-btn" data-level="3">Level 3</button>
             </div>
+            <div class="mt-4">
+                <button class="btn invite-btn-global" onclick="window.location.href='invite_friends.php'">Invite My Friends</button>
+            </div>
 
             <!-- Level Containers -->
             <?php
@@ -120,6 +123,7 @@ $userdetails_level3 = fetchUserDetails("d", $user_id);
                 $percentage = $percentages[$level]; // Get the percentage for the current level
             ?>
                 <div class="level-container" id="level<?= $level ?>-container">
+                    
                     <h2>Level <?= $level ?> - <?= $percentage ?>%</h2>
                     <div class="table-responsive">
                         <table class="table table-bordered">
@@ -129,26 +133,31 @@ $userdetails_level3 = fetchUserDetails("d", $user_id);
                                     <th>Name</th>
                                     <th>Mobile Number</th>
                                     <th>Registered Date</th>
-                                    <th>Teams</th>
-                                    <th>Total Purchase</th>
+                                    <th>Total Income</th>
+                                    <th>My Level Income</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php if (!empty($userdetails)): ?>
                                     <?php foreach ($userdetails as $index => $item): ?>
+                                        <?php 
+                                            // Calculate level income based on percentage
+                                            $level_income = ($item['total_income'] * $percentage) / 100;
+                                        ?>
                                         <tr>
                                             <td><?= $index + 1 ?></td>
                                             <td><?= htmlspecialchars($item['name']) ?></td>
                                             <td><?= htmlspecialchars($item['mobile']) ?></td>
                                             <td><?= htmlspecialchars($item['registered_datetime']) ?></td>
-                                            <td><?= htmlspecialchars($item['team_size']) ?></td>
-                                            <td><?= htmlspecialchars($item['total_assets']) ?></td>
+                                            <td><?= htmlspecialchars($item['total_income']) ?></td>
+                                            <td><?= number_format($level_income, 2) ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 <?php else: ?>
                                     <tr><td colspan="6" class="text-center">No data found.</td></tr>
                                 <?php endif; ?>
                             </tbody>
+
                         </table>
                     </div>
                 </div>
