@@ -201,7 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plan_id'])) {
             </div>
             <div class="modal-body">
                 <video id="videoPlayer" width="100%" height="450px" controls>
-                    <source src="https://solargrids.graymatterworks.com/solar.mp4" type="video/mp4">
+                    <source src="https://solargrids.graymatterworks.com/solarpe.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
