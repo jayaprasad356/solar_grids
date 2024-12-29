@@ -145,6 +145,21 @@ curl_close($curl);
             background: linear-gradient(45deg, #d4e157, #afb42b);
             color: white;
         }
+        .btn-gradient {
+                    background: linear-gradient(45deg, #ff7043, #d84315);
+                    color: white;
+                    border: none;
+                    padding: 20px 30px;
+                    font-size: 1.2rem;
+                    font-family: 'Poppins', Helvetica, sans-serif;
+                    transition: background 0.3s ease, transform 0.3s ease;
+                    margin-bottom: 30px;
+                }
+
+                .btn-gradient:hover {
+                    background: linear-gradient(45deg, #d84315, #ff7043);
+                    transform: translateY(-5px);
+                }
 
         /* Adjusting column behavior for mobile */
         /* Adjusting column behavior and height for mobile */
@@ -243,6 +258,31 @@ curl_close($curl);
                         <i class="bi bi-people-fill"></i>
                         <h4>Team Income</h4>
                         <p>₹<?php echo $team_income; ?></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-4">
+                <div class="col-auto">
+                    <button class="btn btn-lg btn-gradient" data-bs-toggle="modal" data-bs-target="#videoModal">
+                        <i class="bi bi-play-circle"></i> Watch Video To Know How Solarpe Works
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="videoModalLabel">Watch the Video</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <video id="videoPlayer" width="100%" height="450px" controls>
+                                <source src="https://solargrids.graymatterworks.com/solar.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
                     </div>
                 </div>
             </div>
