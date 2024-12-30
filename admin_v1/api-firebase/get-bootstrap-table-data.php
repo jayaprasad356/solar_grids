@@ -345,11 +345,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'transactions') {
         $where .= " AND DATE(l.datetime) = '$formatted_date'";
     }
 
-    if (isset($_GET['price']) && $_GET['price'] != '') {
-        $price = $db->escapeString($fn->xss_clean($_GET['price']));
-        $where .= " AND p.price = '$price'";
-    }
-    
+   
     if (isset($_GET['offset']))
         $offset = $db->escapeString($fn->xss_clean($_GET['offset']));
     if (isset($_GET['limit']))
@@ -366,8 +362,6 @@ if (isset($_GET['table']) && $_GET['table'] == 'transactions') {
     }
    
     $join = "LEFT JOIN `users` u ON l.user_id = u.id 
-             LEFT JOIN `user_plan` up ON u.id = up.user_id 
-             LEFT JOIN `plan` p ON up.plan_id = p.id 
              WHERE l.id IS NOT NULL " . $where;
 
     $sql = "SELECT COUNT(l.id) AS total FROM `transactions` l " . $join;
@@ -376,7 +370,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'transactions') {
     foreach ($res as $row)
         $total = $row['total'];
    
-    $sql = "SELECT DISTINCT l.id AS id, l.*, u.name, u.mobile, p.price  FROM `transactions` l " . $join . " ORDER BY $sort $order LIMIT $offset, $limit";
+    $sql = "SELECT DISTINCT l.id AS id, l.*, u.name, u.mobile  FROM `transactions` l " . $join . " ORDER BY $sort $order LIMIT $offset, $limit";
     $db->sql($sql);
     $res = $db->getResult();
 
@@ -391,7 +385,6 @@ if (isset($_GET['table']) && $_GET['table'] == 'transactions') {
         $tempRow['type'] = $row['type'];
         $tempRow['amount'] = $row['amount'];
         $tempRow['datetime'] = $row['datetime'];
-        $tempRow['price'] = $row['price'];
         
         $rows[] = $tempRow;
     }
