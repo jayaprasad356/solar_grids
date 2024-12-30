@@ -73,7 +73,7 @@ $datetime = date('Y-m-d H:i:s');
 
     if (!empty($res_check_user)) {
         $response['success'] = false;
-        $response['message'] = "You have already started this plan";
+        $response['message'] = "You have already started this plan. Go to my activated plans and claim your earnings daily.";
         print_r(json_encode($response));
         return false;
     }
