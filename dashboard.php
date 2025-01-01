@@ -202,6 +202,7 @@ curl_close($curl);
     </style>
 </head>
 <body>
+    
 <div class="container-fluid">
     <div class="row flex-nowrap">
         <?php include_once('sidebar.php'); ?>
@@ -287,6 +288,7 @@ curl_close($curl);
                 </div>
             </div>
 
+            
             <!-- Video Section -->
        
 
@@ -299,7 +301,32 @@ curl_close($curl);
         </div>
     </div>
 </div>
+ 
+ <div class="modal fade" id="offerModal" tabindex="-1" aria-labelledby="offerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="offerModalLabel">Special New Year Offer!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="offer.jpg" alt="New Year Offer" class="img-fluid" style="width: 100%; max-width: 800px; height: 600px;">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+
+     <script>
+        // Automatically show the modal on page load
+        window.onload = function() {
+            var offerModal = new bootstrap.Modal(document.getElementById('offerModal'), {});
+            offerModal.show();
+        };
+    </script>
 <!-- Bootstrap JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
