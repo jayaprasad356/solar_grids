@@ -140,6 +140,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plan_id'])) {
     }
     }
 
+    .days{
+    background-color: gold;
+}
+.life{
+    color: red;
+}
     </style>
 </head>
 <body>
@@ -172,8 +178,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plan_id'])) {
                                     <p>Cost: <strong><?php echo '₹' . htmlspecialchars($plan['price']); ?></strong></p>
                                     <p>Invite Bonus: <strong><?php echo '₹' .htmlspecialchars($plan['invite_bonus']) ; ?></strong></p>
                                     <p>Daily Earnings: <strong><?php echo '₹' . htmlspecialchars($plan['daily_earnings']); ?></strong></p>
-                                    <p>Monthly Earnings: <strong><?php echo '₹' . htmlspecialchars($plan['monthly_earnings']); ?></strong></p>
-
+                                    <p><strong class="life"> LifeTime Earnings:</strong> <strong class="days">Unlimited Days</strong></p>
                                     <?php if ($plan['plan_id'] == 1): ?>
                                         <button class="btn watch-claim-btn" data-plan-id="<?php echo htmlspecialchars($plan['plan_id']); ?>" data-bs-toggle="modal" data-bs-target="#videoModal">
                                             Watch & Claim

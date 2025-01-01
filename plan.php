@@ -314,7 +314,12 @@ curl_close($curl);
         width: 40%; /* Adjust width for smaller screens */
     }
 }
-
+.days{
+    background-color: gold;
+}
+.life{
+    color: red;
+}
     </style>
 </head>
 <body>
@@ -367,7 +372,7 @@ curl_close($curl);
                                     <p>Cost: <strong><?php echo '₹' . htmlspecialchars($plan['price']); ?></strong></p>
                                     <p>Invite Bonus: <strong><?php echo '₹' . htmlspecialchars($plan['invite_bonus']); ?></strong></p>
                                     <p>Daily Earnings: <strong><?php echo '₹' . htmlspecialchars($plan['daily_earnings']); ?></strong></p>
-                                    <p><strong> LifeTime Earnings:</strong> <strong><?php echo '' . htmlspecialchars($plan['monthly_earnings']); ?></strong></p>
+                                    <p><strong class="life"> LifeTime Earnings:</strong> <strong class="days">Unlimited Days</strong></p>
                                     <!-- <p>Daily Codes: <strong><?php echo '' . htmlspecialchars($plan['daily_codes']); ?></strong></p> -->
                                     <?php if ($plan['id'] != 1): ?>
                                         <!-- <p>Validity: <span class="highlight">Life Time</span></p> -->
