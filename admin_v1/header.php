@@ -311,6 +311,12 @@ if ($_SESSION['role'] == 'admin') {
                         <span>Youtube income</span>
                     </a>
                 </li>
+                <li class="treeview">
+                    <a href="transfer_wallet.php">
+                        <i class="fa fa-credit-card"></i>
+                        <span>Transfer Wallet</span>
+                    </a>
+                </li>
                
                 <?php } ?>
             </section>
