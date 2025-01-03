@@ -310,7 +310,7 @@ curl_close($curl);
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-center">
-                    <img src="offer.jpg" alt="New Year Offer" class="img-fluid" style="width: 100%; max-width: 800px; height: 600px;">
+                    <img src="offers.png" alt="New Year Offer" class="img-fluid" style="width: 100%; max-width: 800px; height: 600px;">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
