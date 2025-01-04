@@ -40,7 +40,7 @@ if (isset($_POST['btnCancel'])) { ?>
 <?php } ?>
 <section class="content-header">
 	<h1>
-		Edit Coupon Code<small><a href='copon_code.php'><i class='fa fa-angle-double-left'></i>&nbsp;&nbsp;&nbsp;Back to Coupon Code</a></small>
+		Edit Coupon Code<small><a href='coupon_code.php'><i class='fa fa-angle-double-left'></i>&nbsp;&nbsp;&nbsp;Back to Coupon Code</a></small>
 	</h1>
 	<small><?php echo isset($error['update_languages']) ? $error['update_languages'] : ''; ?></small>
 	<ol class="breadcrumb">
