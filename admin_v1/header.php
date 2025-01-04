@@ -318,9 +318,9 @@ if ($_SESSION['role'] == 'admin') {
                     </a>
                 </li>
                  <li class="treeview">
-                    <a href="copon_code.php">
+                    <a href="coupon_code.php">
                         <i class="fa fa-bullseye"></i>
-                        <span>Copon Code</span>
+                        <span>Coupon Code</span>
                     </a>
                 </li>
                

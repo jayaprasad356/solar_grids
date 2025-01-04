@@ -32,14 +32,14 @@ $_SESSION['timeout'] = $currentTime + $expired;
 <html>
 
 <head>
-    <title>Copon Code | - Dashboard</title>
+    <title>Coupon Code | - Dashboard</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 
 <body>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <?php include('public/copon_code-table.php'); ?>
+        <?php include('public/coupon_code-table.php'); ?>
     </div><!-- /.content-wrapper -->
 </body>
 
