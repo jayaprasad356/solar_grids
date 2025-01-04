@@ -57,7 +57,7 @@ if (isset($_POST['btnAdd'])) {
 ?>
 
 <section class="content-header">
-    <h1>Add New Coupon Code <small><a href='copon_code.php'> <i class='fa fa-angle-double-left'></i>&nbsp;&nbsp;&nbsp;Back to Coupon Code</a></small></h1>
+    <h1>Add New Coupon Code <small><a href='coupon_code.php'> <i class='fa fa-angle-double-left'></i>&nbsp;&nbsp;&nbsp;Back to Coupon Code</a></small></h1>
 
     <?php echo isset($error['add_languages']) ? $error['add_languages'] : ''; ?>
     <ol class="breadcrumb">

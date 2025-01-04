@@ -35,7 +35,7 @@ $res = $db->getResult();
 
 if (isset($_POST['btnCancel'])) { ?>
 	<script>
-		window.location.href = "copon_code.php";
+		window.location.href = "coupon_code.php";
 	</script>
 <?php } ?>
 <section class="content-header">
