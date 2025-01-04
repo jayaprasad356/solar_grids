@@ -313,6 +313,12 @@ curl_close($curl);
         right: 20px; /* Distance from the right */
         width: 40%; /* Adjust width for smaller screens */
     }
+    .days{
+    background-color: gold;
+}
+.life{
+    color: red;
+}
 }
 
     </style>
