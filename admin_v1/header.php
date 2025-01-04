@@ -317,6 +317,12 @@ if ($_SESSION['role'] == 'admin') {
                         <span>Transfer Wallet</span>
                     </a>
                 </li>
+                 <li class="treeview">
+                    <a href="copon_code.php">
+                        <i class="fa fa-bullseye"></i>
+                        <span>Copon Code</span>
+                    </a>
+                </li>
                
                 <?php } ?>
             </section>
