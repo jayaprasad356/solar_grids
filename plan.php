@@ -83,7 +83,7 @@ if (isset($_POST['check_coupon'])) {
                 $final_price = $responseData['data']['final_price'] ?? null; // Assuming API includes final_price
                 echo json_encode([
                     'success' => true,
-                    'message' => 'Coupon is valid',
+                    'message' => 'Coupon Applied Successfully',
                     'data' => [
                         'plan_id' => $responseData['data']['plan_id'],
                         'original_price' => $responseData['data']['original_price'],
@@ -500,25 +500,30 @@ curl_close($curl);
             </div>
             <center><small id="couponMessage" style="display: none;"></small></center>
             <div class="modal-body">
-                <form id="couponForm">
-                    <div class="mb-3">
-                        <label for="couponCode" class="form-label">Enter Coupon Code</label>
+                <form id="couponForm" class="row g-2 align-items-center">
+                    <div class="col">
                         <input type="text" class="form-control" id="couponCode" placeholder="Enter code">
                     </div>
-                    <button type="button" class="btn btn-primary mb-3" id="applyCoupon">Apply</button>
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-primary" id="applyCoupon">Apply</button>
+                    </div>
                 </form>
-
-                <p>Plan Price: <strong><span id="planPrice">0</span></strong></p>
+                <p class="mt-4">
+                        Plan Price: <strong><span id="planPrice">0</span></strong>
+                        <span class="text-success ms-3" id="discountedPrice" style="font-size: 0.9rem; display: none;">(Discounted:-₹0)</span>
+                    </p>
                 <button type="button" class="btn btn-success" id="btnactivate">Purchase Plan</button>
             </div>
         </div>
     </div>
 </div>
 
+
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const purchaseModal = document.getElementById('purchaseModal');
     const planPriceElem = document.getElementById('planPrice');
+    const discountedPriceElem = document.getElementById('discountedPrice'); // Discounted price element
     const confirmPurchaseBtn = document.getElementById('btnactivate');
     const applyCouponBtn = document.getElementById('applyCoupon');
     const couponMessageElem = document.getElementById('couponMessage');
@@ -532,7 +537,8 @@ document.addEventListener('DOMContentLoaded', function () {
         selectedPlanId = button.getAttribute('data-plan-id');
         originalPrice = parseInt(button.getAttribute('data-plan-price'), 10);
         final_price = originalPrice;  // Initialize the final price as the original price
-        planPriceElem.textContent = originalPrice;
+        planPriceElem.textContent = `₹${originalPrice}`;
+        discountedPriceElem.style.display = 'none'; // Hide discounted price by default
     });
 
     // Handle "Apply Coupon" button click
@@ -548,25 +554,28 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())  // Expecting a JSON response from API
         .then(data => {
             if (data.success) {
-                // Display success message with green background
+                // Display success message
                 couponMessageElem.textContent = data.message;
                 couponMessageElem.style.backgroundColor = 'green';
                 couponMessageElem.style.color = 'white';
-                couponMessageElem.style.display = 'block'; // Show the message
+                couponMessageElem.style.display = 'block';
 
-                // Check if data.data exists and has final_price
+                // Update the final price and show the discount amount
                 if (data.data && data.data.final_price !== undefined) {
                     final_price = parseInt(data.data.final_price, 10);
-                    planPriceElem.textContent = `₹${final_price}`;  // Display the final price
+                    const discountAmount = originalPrice - final_price; // Calculate discount amount
+                    planPriceElem.textContent = `₹${final_price}`;
+                    discountedPriceElem.textContent = `(You Saved: ₹${discountAmount})`; // Show discount amount
+                    discountedPriceElem.style.display = 'inline';
                 } else {
                     console.error('Error: final_price is not defined in the response.');
                 }
             } else {
-                // Display error message with red background
+                // Display error message
                 couponMessageElem.textContent = data.message;
                 couponMessageElem.style.backgroundColor = 'red';
                 couponMessageElem.style.color = 'white';
-                couponMessageElem.style.display = 'block'; // Show the message
+                couponMessageElem.style.display = 'block';
             }
 
             // Hide the coupon message after 3 seconds
