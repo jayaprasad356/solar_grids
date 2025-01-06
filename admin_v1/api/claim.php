@@ -98,7 +98,7 @@ $res= $db->getResult();
 $num = $db->numRows($res);
 if ($num == 1){
     $refer_id = $res[0]['id'];
-    $level_income = $daily_income * 0.5;
+    $level_income = $daily_income * 0.05;
     $sql = "UPDATE users SET bonus_wallet = bonus_wallet + $level_income, today_income = today_income + $level_income, total_income = total_income + $level_income,`team_income` = `team_income` + $level_income WHERE id  = $refer_id";
     $db->sql($sql);
     $sql_insert_transaction = "INSERT INTO transactions (`user_id`, `amount`, `datetime`, `type`) VALUES ('$refer_id', '$level_income', '$datetime', 'level_income')";
