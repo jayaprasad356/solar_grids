@@ -1492,6 +1492,8 @@ if (isset($_GET['table']) && $_GET['table'] == 'youtube_income') {
         
         $operate = ' <a href="edit-youtube_income.php?id=' . $row['id'] . '"><i class="fa fa-edit"></i>Edit</a>';
         $operate .= ' <a class="text text-danger" href="delete-youtube_income.php?id=' . $row['id'] . '"><i class="fa fa-trash"></i>Delete</a>';
+        $checkbox = '<input type="checkbox" name="chk[]" value="' . $row['id'] . '">';
+        $tempRow['column'] = $checkbox;
         $tempRow['id'] = $row['id'];
         $tempRow['user_name'] = $row['name'];
         $tempRow['user_mobile'] = $row['mobile'];
