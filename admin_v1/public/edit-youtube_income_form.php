@@ -10,6 +10,14 @@ if (isset($_GET['id'])) {
     return false;
     exit(0);
 }
+$sql_query = "SHOW COLUMNS FROM `youtuber_income` LIKE 'reason'";
+$db->sql($sql_query);
+$column_exists = $db->getResult();
+if (empty($column_exists)) {
+    // Add the `reason` column if it does not exist
+    $sql_query = "ALTER TABLE `youtuber_income` ADD `reason` TEXT DEFAULT NULL AFTER `status`";
+    $db->sql($sql_query);
+}
 
 // Fetch the existing record from the database
 $sql_query = "SELECT * FROM youtuber_income WHERE id = $ID";
@@ -26,6 +34,7 @@ if (isset($_POST['btnEdit'])) {
     $link = $db->escapeString($_POST['link']);
     $amount = $db->escapeString($_POST['amount']);
     $status = $db->escapeString($_POST['status']);
+    $reason = isset($_POST['reason']) ? $db->escapeString($_POST['reason']) : null;
 
     // Fetch the existing record again after POST
     $sql_query = "SELECT * FROM youtuber_income WHERE id = $ID";
@@ -49,6 +58,8 @@ if (isset($_POST['btnEdit'])) {
     } elseif ($amount <= 0) {
         // Check if amount is valid (greater than 0)
         $error_message = "<section class='content-header'><span class='label label-danger'>Amount must be greater than 0</span></section>";
+    }elseif ($status == 2 && empty($reason)) {
+        $error_message = "<section class='content-header'><span class='label label-danger'>Please provide a reason for rejection.</span></section>";
     }
 
     // Display the first encountered error
@@ -57,7 +68,7 @@ if (isset($_POST['btnEdit'])) {
     } else {
         // Proceed with the update if no error
         $datetime = date("Y-m-d H:i:s"); // Current datetime
-        $sql_query = "UPDATE youtuber_income SET link='$link', amount='$amount', status='$status', datetime='$datetime' WHERE id = $ID";
+        $sql_query = "UPDATE youtuber_income SET link='$link', amount='$amount', status='$status', reason='$reason', datetime='$datetime' WHERE id = $ID";
         $db->sql($sql_query);
         $update_result = $db->getResult();
         if (!empty($update_result)) {
@@ -74,7 +85,6 @@ if (isset($_POST['btnEdit'])) {
             $sql = "UPDATE users SET bonus_wallet = bonus_wallet + $amount, today_income = today_income + $amount, total_income = total_income + $amount WHERE id = $user_id";
             $db->sql($sql);
         }
-
         if ($update_result == 1) {
             $error['update_jobs'] = "<section class='content-header'><span class='label label-success'>Income updated successfully</span></section>";
             ?>
@@ -170,6 +180,10 @@ if (isset($_POST['btnCancel'])) { ?>
                                 </label>
                             </div>
                         </div>
+                         <div class="form-group" id="reason-group" style="display: <?= ($res[0]['status'] == 2) ? 'block' : 'none'; ?>;">
+                            <label for="reason">Rejection Reason</label><i class="text-danger asterik">*</i>
+                            <textarea class="form-control" name="reason" id="reason"><?php echo isset($res[0]['reason']) ? $res[0]['reason'] : ''; ?></textarea>
+                        </div>
                     </div><!-- /.box-body -->
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary" name="btnEdit">Update</button>
@@ -179,6 +193,23 @@ if (isset($_POST['btnCancel'])) { ?>
         </div>
     </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const statusRadios = document.querySelectorAll('input[name="status"]');
+        const reasonGroup = document.getElementById('reason-group');
+
+        statusRadios.forEach(radio => {
+            radio.addEventListener('change', function () {
+                if (this.value == 2) {
+                    reasonGroup.style.display = 'block';
+                } else {
+                    reasonGroup.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
 
 <div class="separator"></div>
 <?php $db->disconnect(); ?>

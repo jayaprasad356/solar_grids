@@ -28,6 +28,7 @@
                                     <th  data-field="amount" data-sortable="true">Amount</th>
                                     <th  data-field="datetime" data-sortable="true">Datetime</th>
                                     <th  data-field="status" data-sortable="true">Status</th>
+                                    <th  data-field="reason" data-sortable="true">Reason</th>
 
                                     
                                 </tr>

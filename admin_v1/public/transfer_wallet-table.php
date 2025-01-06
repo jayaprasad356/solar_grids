@@ -7,6 +7,16 @@
     margin-top: 25px;
     margin-left: 10px;
 }
+.btn-primary {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    margin-top: 13px;
+}
+.box-footer{
+    margin-top: -14px;
+}
+
     </style>
 
 <section class="content-header">
@@ -25,7 +35,14 @@
                                 <div class='col-md-3'>
                                 <label for="mobile">From Mobile Number:</label>
                                 <input type="text" id="mobile" name="mobile" class="form-control" maxlength="10" placeholder="Enter 10-digit mobile number" required>
+                                
                                 </div>
+                                
+                            </div>
+                            <div class="form-group">
+                                 <div class="box-footer col-mb-5">
+                          <button type="button" id="checkMobile" class="btn btn-primary">Submit</button>
+                    </div>
                             </div>
                             <div class="form-group">
                                 <div class='col-md-3'>
@@ -46,9 +63,7 @@
                             </div>
                             <br>
 
-                             <div class="box-footer col-mb-5">
-                          <button type="button" id="checkMobile" class="btn btn-primary">Submit</button>
-                    </div>
+                           
                             
                          
                         </form>
