@@ -59,6 +59,40 @@ if ($response === false) {
 
 curl_close($curl);
 ?>
+<?php
+$apiUrl = API_URL . "settings.php";
+
+$curl = curl_init($apiUrl);
+
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+$response = curl_exec($curl);
+
+if ($response === false) {
+    // Error in cURL request
+    echo "Error: " . curl_error($curl);
+    $settingsdetails = [];
+} else {
+    // Successful API response
+    $responseData = json_decode($response, true);
+    if ($responseData !== null && $responseData["success"]) {
+        // Store transaction details
+        $settingsdetails = $responseData["data"];
+        if (!empty($settingsdetails) && isset($settingsdetails[0]["offer_image"])) {
+            // Assign offer image if it exists
+            $offer_image = $settingsdetails[0]["offer_image"];
+        } else {
+            // Fallback to default image if no offer image is available
+            $offer_image = 'path/to/default-image.jpg';
+        }
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -310,14 +344,14 @@ curl_close($curl);
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-center">
-                    <img src="discount.png" alt="New Year Offer" class="img-fluid" style="width:300px; max-width: 900px; height: 350px;">
+                <img src="<?php echo htmlspecialchars($offer_image); ?>" alt="New Year Offer" class="img-fluid" style="width:300px; max-width: 900px; height: 350px;">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>  -->
 
 
      <script>
