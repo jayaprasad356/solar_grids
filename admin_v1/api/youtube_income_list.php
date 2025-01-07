@@ -33,6 +33,7 @@ if ($num >= 1){
         $temp['amount'] = $row['amount'];
         $temp['status'] = $row['status'];
         $temp['datetime'] = $row['datetime'];
+        $temp['reason'] = $row['reason'];
         $rows[] = $temp;
     }
     $response['success'] = true;

@@ -304,6 +304,7 @@ if (isset($_SESSION['message'])) {
                 <th class="no">Amount</th>
                 <th class="no">DateTime</th>
                 <th class="no">Status</th>
+                <th class="no">Reason</th>
             </tr>
         </thead>
         <tbody>
@@ -331,6 +332,7 @@ if (isset($_SESSION['message'])) {
                             }
                             ?>
                         </td>
+                        <td><?= htmlspecialchars($income['reason']) ?></td>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>

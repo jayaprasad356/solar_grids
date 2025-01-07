@@ -1455,7 +1455,10 @@ if (isset($_GET['table']) && $_GET['table'] == 'youtube_income') {
     $where = '';
     $sort = 'id';
     $order = 'DESC';
-    
+     if ((isset($_GET['status'])  && $_GET['status'] != '')) {
+        $status = $db->escapeString($fn->xss_clean($_GET['status']));
+        $where .= "AND y.status=$status ";
+    }
     if (isset($_GET['offset']))
         $offset = $db->escapeString($_GET['offset']);
     if (isset($_GET['limit']))
@@ -1467,7 +1470,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'youtube_income') {
 
         if (isset($_GET['search']) && !empty($_GET['search'])) {
             $search = $db->escapeString($fn->xss_clean($_GET['search']));
-            $where .= " AND (u.mobile LIKE '%" . $search . "%' OR u.name LIKE '%" . $search . "%' OR refer_code LIKE '%" . $search . "%')";
+            $where = " AND (u.mobile LIKE '%" . $search . "%' OR u.name LIKE '%" . $search . "%' OR refer_code LIKE '%" . $search . "%')";
         }
         
         $join = "LEFT JOIN `users` u ON y.user_id = u.id WHERE y.id IS NOT NULL " . $where;
@@ -1479,7 +1482,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'youtube_income') {
             $total = $row['total'];
         }
     
-        $sql = "SELECT y.id AS id, y.*, u.name,u.mobile FROM `youtuber_income` y " . $join . " ORDER BY $sort $order LIMIT $offset, $limit";
+        $sql = "SELECT y.id AS id, y.*, u.name,u.mobile, y.status FROM `youtuber_income` y " . $join . " ORDER BY $sort $order LIMIT $offset, $limit";
         $db->sql($sql);
         $res = $db->getResult();
         

@@ -42,7 +42,134 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnUpdate']) && !empt
     exit; // Ensure that script execution stops after echoing JavaScript
 }
 ?>
+<style>
+    /* Align elements horizontally in Select All and Cancel row */
+/* General Flexbox */
+.d-flex {
+    display: flex;
+    flex-wrap: wrap; /* Ensure wrapping for small screens */
+}
 
+/* Center and limit Reason form width */
+#reason-form {
+    display: flex;
+    /* Stack elements vertically */
+    margin-right: 0;
+    margin-top: -20px;
+    text-align: left; /* Align text to the left for better readability */
+    width: 100%; /* Full width for smaller screens */
+}
+
+/* Label Styling */
+label {
+    display: inline-block; /* Display labels in a row */
+    margin-left: 10px; /* Add left margin for better spacing */
+    margin-right: 10px; /* Add right margin for better spacing */
+    margin-bottom: 5px;
+    font-weight: 700;
+       margin-top: 15px;
+    text-align: left; /* Align text to the left for readability */
+}
+
+/* Buttons */
+.btn-success {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    margin-top: 10px; /* Add spacing on top for mobile */
+    width: 15%; /* Full width for smaller devices */
+        margin-left: 10px;
+    
+}
+
+/* Select All and Cancel Buttons */
+input[type="checkbox"], 
+.btn-danger {
+    margin: 5px 0; /* Add margin for better spacing */
+}
+
+ .form-control-reason{
+        width: 300px;
+            display: block;
+    
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 9px;
+    }
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
+    /* Stack elements vertically for mobile */
+    .d-flex {
+        flex-direction: column;
+        align-items: flex-start; /* Align elements to the start */
+    }
+
+    /* Adjust Reason form for smaller screens */
+    #reason-form {
+        margin-top: 15px;
+        width: 100%;
+        margin-left: 20px;
+    }
+
+    /* Adjust buttons */
+    .btn-success{
+        margin-left: -370px;
+        margin-top: 80px;
+    }
+    .btn-danger {
+        width: 100%; /* Full width for smaller devices */
+        text-align: center; /* Center-align text on buttons */
+    }
+
+    /* Label adjustments for small screens */
+    label {
+        margin-left: 0; /* Reset left margin */
+        text-align: left; /* Align text for better readability */
+    }
+}
+
+/* Extra Small Devices (e.g., smartphones) */
+@media (max-width: 576px) {
+    #reason-form {
+        font-size: 14px; /* Reduce font size for better spacing */
+    }
+
+    .btn-success,
+    .btn-danger {
+        font-size: 14px; /* Adjust button text size */
+        width: 80px;
+    }
+    .form-control-reason{
+        width: 300px;
+            display: block;
+    
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    }
+}
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    margin-top: 25px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+   </style>
 <section class="content-header">
     <h1>Youtube Income /<small><a href="home.php"><i class="fa fa-home"></i> Home</a></small></h1>
     <ol class="breadcrumb">
@@ -76,11 +203,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnUpdate']) && !empt
                     <?php if (isset($_SESSION['updateIds'])): ?>
                         <div id="reason-form" class="form-group" style="width: 50%;">
                             <label for="reason">Reason</label>
-                            <input type="text" name="reason" id="reason" class="form-control" required>
+                            <input type="text" name="reason" id="reason" class="form-control-reason" required>
                             <button type="submit" class="btn btn-success" name="btnUpdate">Update</button>
                         </div>
                     <?php endif; ?>
                     </div>
+                     <div class="form-group col-md-3">
+                                                <h4 class="box-title">Filter by Status </h4>
+                                                <select id='status' name="status" class='form-control'>
+                                                <option value="0">Wait For Approval</option>
+                                                        <option value="1">Paid</option>
+                                                        <option value="2">Cancelled</option>
+                                                </select>
+                                        </div>
 
                         <table id='users_table' class="table table-hover" data-toggle="table" data-url="api-firebase/get-bootstrap-table-data.php?table=youtube_income" data-page-list="[5, 10, 20, 50, 100, 200]" data-show-refresh="true" data-show-columns="true" data-side-pagination="server" data-pagination="true" data-search="true" data-trim-on-search="false" data-filter-control="true" data-query-params="queryParams" data-sort-name="id" data-sort-order="desc" data-show-export="true" data-export-types='["txt","csv"]' data-export-options='{
                             "fileName": "users-list-<?= date('d-m-Y') ?>",
@@ -164,6 +299,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnUpdate']) && !empt
     $('#plan').on('change', function() {
         $('#users_table').bootstrapTable('refresh');
     });
+    $('#status').on('change', function() {
+        $('#users_table').bootstrapTable('refresh');
+    });
 
     function queryParams(p) {
         return {
@@ -174,6 +312,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnUpdate']) && !empt
             "trail_completed": $('#trail_completed').val(),
             "referred_by": $('#referred_by').val(),
             "plan": $('#plan').val(),
+            "status": $('#status').val(),
             limit: p.limit,
             sort: p.sort,
             order: p.order,
