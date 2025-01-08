@@ -27,9 +27,9 @@ if (empty($_POST['amount'])) {
     return false;
 }
 $date = date('Y-m-d');
-function isBetween4PMand6PM() {
+function isBetween10AMand6PM() {
     $currentHour = date('H');
-    $startTimestamp = strtotime('16:00:00');
+    $startTimestamp = strtotime('10:00:00');
     $endTimestamp = strtotime('18:00:00');
     return ($currentHour >= date('H', $startTimestamp)) && ($currentHour < date('H', $endTimestamp));
 }
@@ -82,9 +82,9 @@ if (!empty($pendingWithdrawals)) {
     return false;
 }
 
-if (!isBetween4PMand6PM()) {
+if (!isBetween10AMand6PM()) {
     $response['success'] = false;
-    $response['message'] = "Withdrawal time evening 4PM to 6PM";
+    $response['message'] = "Withdrawal time morning 10:00AM to 6PM";
     print_r(json_encode($response));
     return false;
 }
