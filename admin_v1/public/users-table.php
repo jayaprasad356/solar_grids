@@ -72,7 +72,9 @@
                                     <th  data-field="total_withdrawal" data-sortable="true">Total Withdrawals</th>
                                     <th  data-field="team_income" data-sortable="true">Team Income</th>
                                     <th data-field="registered_datetime" data-sortable="true">Registered Datetime</th>
+                                     <th data-field="team_size" data-sortable="true">Team Size</th>
                                     <th data-field="profile">Profile</th>
+                                   
                                 </tr>
                             </thead>
                         </table>

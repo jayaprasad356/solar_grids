@@ -2,8 +2,9 @@
 $datetime = date('Y-m-d H:i:s');
 
 // Process the cancel action
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnCancel']) && !empty($_POST['chk'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnCancel']) && !empty($_POST['chk']) && !empty($_POST['reason'])) {
     $selectedIds = $_POST['chk']; // Retrieve selected IDs
+    $reason = $_POST['reason']; // Retrieve the reason for cancellation
 
     foreach ($selectedIds as $id) {
         $id = intval($id); // Ensure the ID is an integer to prevent SQL injection
@@ -13,163 +14,129 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnCancel']) && !empt
 
         if (!empty($result) && $result[0]['status'] == 1) {
             // Set session variable to show error message
-            $_SESSION['error'] = "Income with ID $id is already marked as 'Paid'. Cannot change status to 'Rejected'.";
+            // $_SESSION['error'] = "Income with ID $id is already marked as 'Paid'. Cannot change status to 'Rejected'.";
+            echo '<script>alert("Income with ID ' . $id . ' is already marked as \'Paid\'. Cannot change status to \'Rejected\'.");</script>';
         } elseif (!empty($result) && $result[0]['status'] != 1) {
-            // Set session variable to display reason form
-            $_SESSION['updateIds'] = $selectedIds;
+            // Update status to 2 (Rejected) and set the reason
+            $updateQuery = "UPDATE youtuber_income SET status = 2, reason = '$reason' WHERE id = $id";
+            $db->sql($updateQuery);
         }
     }
+
     echo '<script>window.location.href = "youtube_income.php";</script>';
-    exit; // Ensure that script execution stops after echoing JavaScript
-}
-
-// Process the update action (reason and status change)
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnUpdate']) && !empty($_POST['reason']) && !empty($_SESSION['updateIds'])) {
-    $reason = $_POST['reason'];
-    $updateIds = $_SESSION['updateIds'];
-
-    foreach ($updateIds as $id) {
-        $id = intval($id); // Ensure the ID is an integer to prevent SQL injection
-
-        // Update status to 2 (Rejected) and set the reason
-        $updateQuery = "UPDATE youtuber_income SET status = 2, reason = '$reason' WHERE id = $id";
-        $db->sql($updateQuery);
-    }
-
-    // Clear session variable after update
-    unset($_SESSION['updateIds']);
-    echo '<script>window.location.href = "youtube_income.php";</script>';
-    exit; // Ensure that script execution stops after echoing JavaScript
+    exit; // Ensure that script execution stops after redirecting
 }
 ?>
+
 <style>
-    /* Align elements horizontally in Select All and Cancel row */
-/* General Flexbox */
-.d-flex {
-    display: flex;
-    flex-wrap: wrap; /* Ensure wrapping for small screens */
-}
-
-/* Center and limit Reason form width */
-#reason-form {
-    display: flex;
-    /* Stack elements vertically */
-    margin-right: 0;
-    margin-top: -20px;
-    text-align: left; /* Align text to the left for better readability */
-    width: 100%; /* Full width for smaller screens */
-}
-
-/* Label Styling */
-label {
-    display: inline-block; /* Display labels in a row */
-    margin-left: 10px; /* Add left margin for better spacing */
-    margin-right: 10px; /* Add right margin for better spacing */
-    margin-bottom: 5px;
-    font-weight: 700;
-       margin-top: 15px;
-    text-align: left; /* Align text to the left for readability */
-}
-
-/* Buttons */
-.btn-success {
-    color: #fff;
-    background-color: #5cb85c;
-    border-color: #4cae4c;
-    margin-top: 10px; /* Add spacing on top for mobile */
-    width: 15%; /* Full width for smaller devices */
-        margin-left: 10px;
-    
-}
-
-/* Select All and Cancel Buttons */
-input[type="checkbox"], 
-.btn-danger {
-    margin: 5px 0; /* Add margin for better spacing */
-}
-
- .form-control-reason{
-        width: 300px;
-            display: block;
-    
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-top: 9px;
+    .form-group {
+        display: flex;
+        /* direction: row; */
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        
     }
-/* Responsive Design Adjustments */
+
+    .form-control-reason {
+        
+        width: 300px;
+        padding: 5px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        /* flex-direction: column; */
+        
+    }
+
+    .btn-danger {
+       padding: 6px 15px;
+    font: size 10px;
+    margin-top: 24px;
+    margin-left: 94px;
+}
+    
+
+    .table-responsive {
+        margin-top: 20px;   
+    }
+
+    .table th, .table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    #error-message {
+        margin-top: 10px;
+        padding: 10px;
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+        border-radius: 4px;
+    }
+    .fixed-table-pagination .pagination-info {
+    line-height: 8px;
+    margin-right: 7px;
+    margin-left: 20px;
+}
+.form-control{
+    width: 300px;
+    margin-left: 20px;
+    }
+.box-title{
+    margin-left: 20px;
+}/* Mobile responsiveness */
 @media (max-width: 768px) {
-    /* Stack elements vertically for mobile */
-    .d-flex {
-        flex-direction: column;
-        align-items: flex-start; /* Align elements to the start */
+    .form-group {
+        flex-direction: column; /* Stack form elements vertically */
+        align-items: flex-start; /* Align items to the left */
+        gap: 15px;
     }
 
-    /* Adjust Reason form for smaller screens */
-    #reason-form {
-        margin-top: 15px;
-        width: 100%;
-        margin-left: 20px;
+    .form-control-reason {
+        width: 100%; /* Full width on smaller screens */
     }
 
-    /* Adjust buttons */
-    .btn-success{
-        margin-left: -370px;
-        margin-top: 80px;
-    }
     .btn-danger {
-        width: 100%; /* Full width for smaller devices */
-        text-align: center; /* Center-align text on buttons */
+        margin-left: 0; /* Align button with other elements */
+        margin-top: 10px; /* Add spacing on top */
+        width: 100%; /* Full width for better touch accessibility */
     }
 
-    /* Label adjustments for small screens */
-    label {
-        margin-left: 0; /* Reset left margin */
-        text-align: left; /* Align text for better readability */
+    .form-control {
+        width: 100%; /* Full width for inputs */
+        margin-left: 0; /* Remove extra margin on smaller screens */
+    }
+
+    .box-title {
+        margin-left: 14px; /* Align title to the left */
+    }
+
+    .table-responsive {
+        overflow-x: auto; /* Ensure horizontal scrolling */
+    }
+
+    .fixed-table-pagination .pagination-info {
+        margin-left: 0;
+        margin-right: 0;
+        text-align: center; /* Center pagination info on small screens */
     }
 }
 
-/* Extra Small Devices (e.g., smartphones) */
-@media (max-width: 576px) {
-    #reason-form {
-        font-size: 14px; /* Reduce font size for better spacing */
+@media (max-width: 480px) {
+    .form-group {
+        gap: 10px; /* Reduce gap for smaller screens */
     }
 
-    .btn-success,
     .btn-danger {
-        font-size: 14px; /* Adjust button text size */
-        width: 80px;
+        font-size: 12px; /* Slightly larger font size for readability */
     }
-    .form-control-reason{
-        width: 300px;
-            display: block;
-    
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    }
-}
-.alert {
-    padding: 15px;
-    margin-bottom: 20px;
-    margin-top: 25px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-}
 
-   </style>
+    .table th, .table td {
+        font-size: 12px; /* Adjust table font size for smaller screens */
+    }
+}
+</style>
+
 <section class="content-header">
     <h1>Youtube Income /<small><a href="home.php"><i class="fa fa-home"></i> Home</a></small></h1>
     <ol class="breadcrumb">
@@ -184,31 +151,19 @@ input[type="checkbox"],
                 <form method="POST" action="">
                 <div  class="box-body table-responsive">
                    <div class="row">
-                        <div class="form-group">
-                            <div class="col-md-2">
-                                <input type="checkbox" onchange="checkAll(this)" name="selectAll"> Select All
+                         <div class="form-group">
+                                <div class="col-md-2">
+                                    <input type="checkbox" onchange="checkAll(this)" name="selectAll"> Select All
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="reason">Reason</label>
+                                    <input type="text" name="reason" id="reason" class="form-control-reason" placeholder="Enter reason" required>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-danger" name="btnCancel">Cancel</button>
+                                </div>
                             </div>
-                            <div class="col-md-2">
-                                <button type="submit" class="btn btn-danger" name="btnCancel" onclick="showReasonForm()">Cancel</button>
-                            </div>
-                        </div>
-                    <?php if (isset($_SESSION['error'])): ?>
-                        <div id="error-message" class="alert alert-danger">
-                            <?= $_SESSION['error'] ?>
-                        </div>
-                        <?php unset($_SESSION['error']); ?>
-                    <?php endif; ?>
-
-                    <!-- Reason input and update button, initially hidden -->
-                    <?php if (isset($_SESSION['updateIds'])): ?>
-                        <div id="reason-form" class="form-group" style="width: 50%;">
-                            <label for="reason">Reason</label>
-                            <input type="text" name="reason" id="reason" class="form-control-reason" required>
-                            <button type="submit" class="btn btn-success" name="btnUpdate">Update</button>
-                        </div>
-                    <?php endif; ?>
-                    </div>
-                     <div class="form-group col-md-3">
+                     <div>
                                                 <h4 class="box-title">Filter by Status </h4>
                                                 <select id='status' name="status" class='form-control'>
                                                 <option value="0">Wait For Approval</option>

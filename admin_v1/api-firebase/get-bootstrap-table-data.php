@@ -150,6 +150,7 @@ $db->connect();
                 $tempRow['longitude'] = $row['longitude'];
                 $tempRow['earning_wallet'] = $row['earning_wallet'];
                 $tempRow['bonus_wallet'] = $row['bonus_wallet'];
+                $tempRow['team_size'] = $row['team_size'];
                
                 if (!empty($row['profile'])) {
                     $tempRow['profile'] = "<a data-lightbox='category' href='" . $row['profile'] . "' data-caption='" . $row['profile'] . "'><img src='" . $row['profile'] . "' title='" . $row['profile'] . "' height='50' /></a>";
