@@ -336,7 +336,7 @@ if ($response === false) {
     </div>
 </div>
  
- <!-- <div class="modal fade" id="offerModal" tabindex="-1" aria-labelledby="offerModalLabel" aria-hidden="true">
+ <div class="modal fade" id="offerModal" tabindex="-1" aria-labelledby="offerModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -351,7 +351,7 @@ if ($response === false) {
                 </div>
             </div>
         </div>
-    </div>  -->
+    </div> 
 
 
      <script>
