@@ -314,11 +314,28 @@ curl_close($curl);
         width: 40%; /* Adjust width for smaller screens */
     }
 }
-.days{
+/* .days{
     background-color: gold;
 }
 .life{
     color: red;
+} */
+ .small-font{
+    font-size: 0.9rem;
+    color: red;
+    font-weight: 700;
+ }
+ .discount-container{
+    background-color: gold;
+    width: 40%;
+    text-align: center;
+    border-radius: 5px;
+}
+
+@media (max-width: 576px) {
+    .discount-container {
+        width: 100%; /* Adjust width for smaller screens */
+    }
 }
     </style>
 </head>
@@ -372,7 +389,7 @@ curl_close($curl);
                                     <p>Cost: <strong><?php echo '₹' . htmlspecialchars($plan['price']); ?></strong></p>
                                     <p>Invite Bonus: <strong><?php echo '₹' . htmlspecialchars($plan['invite_bonus']); ?></strong></p>
                                     <p>Daily Earnings: <strong><?php echo '₹' . htmlspecialchars($plan['daily_earnings']); ?></strong></p>
-                                    <p><strong class="life"> LifeTime Earnings:</strong> <strong class="days">Unlimited Days</strong></p>
+                                    <p> LifeTime Earnings: <strong class="days">Unlimited Days</strong></p>
                                     <!-- <p>Daily Codes: <strong><?php echo '' . htmlspecialchars($plan['daily_codes']); ?></strong></p> -->
                                     <?php if ($plan['id'] != 1): ?>
                                         <!-- <p>Validity: <span class="highlight">Life Time</span></p> -->
@@ -385,6 +402,10 @@ curl_close($curl);
                                         <button type="submit" name="btnactivate" class="btn purchase-btn">Purchase</button>
                                         <!-- <button type="button" onclick="startWork(<?php echo htmlspecialchars($plan['id']); ?>)" class="btn trail-btn">Take Trial</button> -->
                                     </form>
+                                       <div class="discount-container" style="margin-top: 10px;">
+                                            <span class="small-font">Discount ends in:</span>
+                                            <span class="discount-timer small-font" style="color: red; font-weight: bold;">02:00:00</span>
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -420,8 +441,39 @@ curl_close($curl);
     }
     window.location.href = redirectUrl;
 }
+function startCountdown(duration, display) {
+      let timer = duration, hours, minutes, seconds;
+
+      const interval = setInterval(function () {
+          hours = parseInt(timer / 3600, 10);
+          minutes = parseInt((timer % 3600) / 60, 10);
+          seconds = parseInt(timer % 60, 10);
+
+          hours = hours < 10 ? "0" + hours : hours;
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+
+          display.textContent = `${hours}:${minutes}:${seconds}`;
+
+          if (--timer < 0) {
+              clearInterval(interval);
+              display.textContent = "Discount expired!";
+          }
+      }, 1000);
+  }
+
+  // Initialize the timer
+  document.addEventListener("DOMContentLoaded", function () {
+      const countdownElements = document.querySelectorAll(".discount-timer");
+
+      countdownElements.forEach((element) => {
+          const duration = 2 * 60 * 60; // 2 hours in seconds
+          startCountdown(duration, element);
+      });
+  });
 
     </script>
+    
 <!-- Recharge Guide Modal -->
 <div class="modal fade" id="rechargeGuideModal" tabindex="-1" aria-labelledby="rechargeGuideModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
