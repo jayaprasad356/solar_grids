@@ -7,6 +7,7 @@ header("Cache-Control: no-store, no-cache, must-revalidate");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 
+
 date_default_timezone_set('Asia/Kolkata');
 
 // Input validation and checks
@@ -42,26 +43,28 @@ $mobile = $_POST['mobile'];
 $country_code = $_POST['country_code'];
 $otp = $_POST['otp'];
 
-// Define the API URL and parameters for OTP sending
-$apiUrl = 'https://api.authkey.io/request'; 
-$authKey = '673e807e1f672335'; // Your authkey here
-$sid = '14324'; // SID, if applicable
 
-// Make the HTTP request to the OTP API
+$apiUrl = 'https://api.authkey.io/request';
+$authKey = '673e807e1f672335';
+$sid = '14324';
+
+// Build the URL with query parameters
+$requestUrl = $apiUrl . "?authkey=" . urlencode($authKey) . 
+              "&sid=" . urlencode($sid) . 
+              "&mobile=" . urlencode($mobile) . 
+              "&otp=" . urlencode($otp) . 
+              "&country_code=" . urlencode($country_code);
+
+// Initialize cURL
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $apiUrl);
+curl_setopt($ch, CURLOPT_URL, $requestUrl);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, [
-    'authkey' => $authKey,
-    'mobile' => $mobile,
-    'country_code' => $country_code,
-    'sid' => $sid,
-    'otp' => $otp,
-]);
+
+// Execute the cURL request
+$responseData = curl_exec($ch);
 
 // Execute the request
-$responseData = curl_exec($ch);
+//$responseData = curl_exec($ch);
 
 // Check if the request was successful
 if ($responseData === false) {
