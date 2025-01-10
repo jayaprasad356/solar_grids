@@ -109,12 +109,10 @@ if (isset($_SESSION['message'])) {
       background-color: #f9f9f9;
     }
     .container {
-      /* border: 2px solid black; */
-      /* width: 100%; */
-      /* margin: 50px auto; */
+      
       padding: 20px;
       background-color: white;
-      /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+      
     }
     .header {
       font-size: 24px;
@@ -153,14 +151,7 @@ if (isset($_SESSION['message'])) {
       padding: 10px;
       text-align: left;
     }
-    /* .amount {
-      color: green;
-      font-weight: bold;
-    }
-    .status {
-      color: green;
-      font-weight: bold;
-    } */
+    
      tr{
             border: 2px solid black ;
             
@@ -200,25 +191,7 @@ if (isset($_SESSION['message'])) {
   color: white;
 }
 
-/* .modal-content {
-  background: linear-gradient(135deg,rgb(230, 224, 224),rgb(255, 255, 255));
-  border-radius: 12px;
-  color: #2d3436;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
 
-.modal-title {
-  font-size: 22px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.pop-list
- {
-  list-style-type: none;
-  padding-left: 0;
-
-} */
  .card {
             border: none;
             border-radius: 10px;
@@ -265,11 +238,10 @@ if (isset($_SESSION['message'])) {
     }
   </style>
 </head>
-<body>
+<!-- <body>
     
   <div class="container">
-    <!-- Message Display Section -->
-  <!-- Message Display Section -->
+  
 <?php if ($message): ?>
     <div class="alert alert-info" role="alert">
         <?php echo htmlspecialchars($message); ?>
@@ -286,7 +258,7 @@ if (isset($_SESSION['message'])) {
 <div class="transaction-container" id="transactions">
                  <div class="d-flex justify-content-between align-items-center mb-2">
                     <a href="menu.php" style="color:black;" class="btn"><i style="color:rgb(2, 2, 2); font-size: 1rem;" class="bi bi-arrow-left"></i>Back</a>
-                  <!-- <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#moreDetailsModal"> More Details</button> -->
+                  <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#moreDetailsModal"> More Details</button>
                 </div>
              
         <input type="text" name="link" placeholder="Paste your video link" required />
@@ -373,4 +345,4 @@ if (isset($_SESSION['message'])) {
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
-</html>
+</html> -->

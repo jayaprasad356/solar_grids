@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 $datetime = date('Y-m-d H:i:s');
 
 // Process the cancel action
@@ -26,9 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnCancel']) && !empt
     echo '<script>window.location.href = "youtube_income.php";</script>';
     exit; // Ensure that script execution stops after redirecting
 }
-?>
+?> -->
 
-<style>
+<!-- <style>
     .form-group {
         display: flex;
         /* direction: row; */
@@ -135,16 +135,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnCancel']) && !empt
         font-size: 12px; /* Adjust table font size for smaller screens */
     }
 }
-</style>
+</style> -->
 
-<section class="content-header">
+<!-- <section class="content-header">
     <h1>Youtube Income /<small><a href="home.php"><i class="fa fa-home"></i> Home</a></small></h1>
     <ol class="breadcrumb">
         <a class="btn btn-block btn-default" href="add_youtube_income.php"><i class="fa fa-plus-square"></i> Add New Youtube Income</a>
     </ol>
-</section>
+</section> -->
 
-<section class="content">
+<!-- <section class="content">
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
@@ -197,9 +197,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnCancel']) && !empt
             <div class="separator"></div>
         </div>
     </div>
-</section>
+</section> -->
 
-<script>
+<!-- <script>
     // Toggle the visibility of the reason form
     function showReasonForm() {
         document.getElementById('reason-form').style.display = 'block';
@@ -275,4 +275,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnCancel']) && !empt
             search: p.search
         };
     }
-</script>
+</script> -->

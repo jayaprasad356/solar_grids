@@ -1449,74 +1449,74 @@ if (isset($_GET['table']) && $_GET['table'] == 'payments') {
     print_r(json_encode($bulkData));
 }
 
-if (isset($_GET['table']) && $_GET['table'] == 'youtube_income') {
+// if (isset($_GET['table']) && $_GET['table'] == 'youtube_income') {
 
-    $offset = 0;
-    $limit = 10;
-    $where = '';
-    $sort = 'id';
-    $order = 'DESC';
-     if ((isset($_GET['status'])  && $_GET['status'] != '')) {
-        $status = $db->escapeString($fn->xss_clean($_GET['status']));
-        $where .= "AND y.status=$status ";
-    }
-    if (isset($_GET['offset']))
-        $offset = $db->escapeString($_GET['offset']);
-    if (isset($_GET['limit']))
-        $limit = $db->escapeString($_GET['limit']);
-    if (isset($_GET['sort']))
-        $sort = $db->escapeString($_GET['sort']);
-    if (isset($_GET['order']))
-        $order = $db->escapeString($_GET['order']);
+//     $offset = 0;
+//     $limit = 10;
+//     $where = '';
+//     $sort = 'id';
+//     $order = 'DESC';
+//      if ((isset($_GET['status'])  && $_GET['status'] != '')) {
+//         $status = $db->escapeString($fn->xss_clean($_GET['status']));
+//         $where .= "AND y.status=$status ";
+//     }
+//     if (isset($_GET['offset']))
+//         $offset = $db->escapeString($_GET['offset']);
+//     if (isset($_GET['limit']))
+//         $limit = $db->escapeString($_GET['limit']);
+//     if (isset($_GET['sort']))
+//         $sort = $db->escapeString($_GET['sort']);
+//     if (isset($_GET['order']))
+//         $order = $db->escapeString($_GET['order']);
 
-        if (isset($_GET['search']) && !empty($_GET['search'])) {
-            $search = $db->escapeString($fn->xss_clean($_GET['search']));
-            $where = " AND (u.mobile LIKE '%" . $search . "%' OR u.name LIKE '%" . $search . "%' OR refer_code LIKE '%" . $search . "%')";
-        }
+//         if (isset($_GET['search']) && !empty($_GET['search'])) {
+//             $search = $db->escapeString($fn->xss_clean($_GET['search']));
+//             $where = " AND (u.mobile LIKE '%" . $search . "%' OR u.name LIKE '%" . $search . "%' OR refer_code LIKE '%" . $search . "%')";
+//         }
         
-        $join = "LEFT JOIN `users` u ON y.user_id = u.id WHERE y.id IS NOT NULL " . $where;
+//         $join = "LEFT JOIN `users` u ON y.user_id = u.id WHERE y.id IS NOT NULL " . $where;
     
-        $sql = "SELECT COUNT(y.id) AS total FROM `youtuber_income` y " . $join;
-        $db->sql($sql);
-        $res = $db->getResult();
-        foreach ($res as $row) {
-            $total = $row['total'];
-        }
+//         $sql = "SELECT COUNT(y.id) AS total FROM `youtuber_income` y " . $join;
+//         $db->sql($sql);
+//         $res = $db->getResult();
+//         foreach ($res as $row) {
+//             $total = $row['total'];
+//         }
     
-        $sql = "SELECT y.id AS id, y.*, u.name,u.mobile, y.status FROM `youtuber_income` y " . $join . " ORDER BY $sort $order LIMIT $offset, $limit";
-        $db->sql($sql);
-        $res = $db->getResult();
+//         $sql = "SELECT y.id AS id, y.*, u.name,u.mobile, y.status FROM `youtuber_income` y " . $join . " ORDER BY $sort $order LIMIT $offset, $limit";
+//         $db->sql($sql);
+//         $res = $db->getResult();
         
 
-    $bulkData = array();
-    $bulkData['total'] = $total;
-    $rows = array();
-    $tempRow = array();
-    foreach ($res as $row) {
+//     $bulkData = array();
+//     $bulkData['total'] = $total;
+//     $rows = array();
+//     $tempRow = array();
+//     foreach ($res as $row) {
         
-        $operate = ' <a href="edit-youtube_income.php?id=' . $row['id'] . '"><i class="fa fa-edit"></i>Edit</a>';
-        $operate .= ' <a class="text text-danger" href="delete-youtube_income.php?id=' . $row['id'] . '"><i class="fa fa-trash"></i>Delete</a>';
-        $checkbox = '<input type="checkbox" name="chk[]" value="' . $row['id'] . '">';
-        $tempRow['column'] = $checkbox;
-        $tempRow['id'] = $row['id'];
-        $tempRow['user_name'] = $row['name'];
-        $tempRow['user_mobile'] = $row['mobile'];
-        $tempRow['link'] = $row['link'];
-        $tempRow['amount'] = $row['amount'];
-        $tempRow['datetime'] = $row['datetime'];
-        $tempRow['reason'] = $row['reason'];
-        if($row['status']==1)
-        $tempRow['status']="<p class='text text-success'>Paid</p>";        
-            elseif($row['status']==0)
-                    $tempRow['status']="<p class='text text-primary'>Wait for Approvals</p>"; 
-            else
-                $tempRow['status']="<p class='text text-danger'>Cancelled</p>";
-        $tempRow['operate'] = $operate;
-        $rows[] = $tempRow;
-    }
-    $bulkData['rows'] = $rows;
-    print_r(json_encode($bulkData));
-}
+//         $operate = ' <a href="edit-youtube_income.php?id=' . $row['id'] . '"><i class="fa fa-edit"></i>Edit</a>';
+//         $operate .= ' <a class="text text-danger" href="delete-youtube_income.php?id=' . $row['id'] . '"><i class="fa fa-trash"></i>Delete</a>';
+//         $checkbox = '<input type="checkbox" name="chk[]" value="' . $row['id'] . '">';
+//         $tempRow['column'] = $checkbox;
+//         $tempRow['id'] = $row['id'];
+//         $tempRow['user_name'] = $row['name'];
+//         $tempRow['user_mobile'] = $row['mobile'];
+//         $tempRow['link'] = $row['link'];
+//         $tempRow['amount'] = $row['amount'];
+//         $tempRow['datetime'] = $row['datetime'];
+//         $tempRow['reason'] = $row['reason'];
+//         if($row['status']==1)
+//         $tempRow['status']="<p class='text text-success'>Paid</p>";        
+//             elseif($row['status']==0)
+//                     $tempRow['status']="<p class='text text-primary'>Wait for Approvals</p>"; 
+//             else
+//                 $tempRow['status']="<p class='text text-danger'>Cancelled</p>";
+//         $tempRow['operate'] = $operate;
+//         $rows[] = $tempRow;
+//     }
+//     $bulkData['rows'] = $rows;
+//     print_r(json_encode($bulkData));
+// }
 // coupon code
 if (isset($_GET['table']) && $_GET['table'] == 'coupon_code') {
 
