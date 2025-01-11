@@ -396,7 +396,7 @@ curl_close($curl);
                                     <p>Cost: <strong><?php echo '₹' . htmlspecialchars($plan['price']); ?></strong></p>
                                     <p>Invite Bonus: <strong><?php echo '₹' . htmlspecialchars($plan['invite_bonus']); ?></strong></p>
                                     <p>Daily Earnings: <strong><?php echo '₹' . htmlspecialchars($plan['daily_earnings']); ?></strong></p>
-                                    <p> LifeTime Earnings: <strong class="days">Unlimited Days</strong></p>
+                                    <p>Validity: <strong class="days"> 1 Year</strong></p>
                                     <!-- <p>Daily Codes: <strong><?php echo '' . htmlspecialchars($plan['daily_codes']); ?></strong></p> -->
                                     <?php if ($plan['id'] != 1): ?>
                                         <!-- <p>Validity: <span class="highlight">Life Time</span></p> -->
