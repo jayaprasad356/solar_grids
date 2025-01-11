@@ -14,6 +14,7 @@ if (isset($_POST['btnAdd'])) {
         $invite_bonus = $db->escapeString(($_POST['invite_bonus']));
         $monthly_earnings = $db->escapeString(($_POST['monthly_earnings']));
         $quantity = $db->escapeString(($_POST['quantity']));
+        $category = $db->escapeString(($_POST['category']));
    
         $error = array();
        
@@ -49,10 +50,10 @@ if (isset($_POST['btnAdd'])) {
         }
 
         $upload_image = 'upload/images/' . $filename;
-        $sql = "INSERT INTO plan (name,description,image,price,daily_earnings,invite_bonus,monthly_earnings,quantity) VALUES ('$name','$description','$upload_image','$price','$daily_earnings','$invite_bonus','$monthly_earnings','$quantity')";
+        $sql = "INSERT INTO plan (name,description,image,price,daily_earnings,category,invite_bonus,monthly_earnings,quantity) VALUES ('$name','$description','$upload_image','$price','$daily_earnings','$category','$invite_bonus','$monthly_earnings','$quantity')";
         $db->sql($sql);
     } else {
-            $sql_query = "INSERT INTO plan (name,description,price,daily_earnings,invite_bonus,monthly_earnings,quantity) VALUES ('$name','$description','$price','$daily_earnings','$invite_bonus','$monthly_earnings','$quantity')";
+            $sql_query = "INSERT INTO plan (name,description,price,daily_earnings,category,invite_bonus,monthly_earnings,quantity,category) VALUES ('$name','$description','$price','$daily_earnings','$category','$invite_bonus','$monthly_earnings','$quantity')";
             $db->sql($sql);
         }
             $result = $db->getResult();
@@ -134,9 +135,17 @@ if (isset($_POST['btnAdd'])) {
                                     <label for="exampleInputtitle">Invite Bonus</label> <i class="text-danger asterik">*</i>
                                     <input type="number" class="form-control" name="invite_bonus" required>
                                 </div>
+                                 <div class='col-md-3'>
+                                <label for="exampleInputEmail1">Select Catogery</label> <i class="text-danger asterik">*</i><?php echo isset($error['category']) ? $error['category'] : ''; ?>
+                                    <select id='category' name="category" class='form-control'>
+                                    <option value='life_time'>Life Time</option>
+                                      <option value='yearly'>Yearly</option>
+                                    </select>
+                                </div>
                             </div> 
                         </div> 
                         <br>
+                        
                         <!-- <div class="row">
                             <div class="form-group">
                 

@@ -22,6 +22,8 @@ if (empty($_POST['user_id'])) {
 $user_id = $db->escapeString($_POST['user_id']);
 
 
+$category = $db->escapeString($_POST['category']);
+
 $sql = "SELECT * FROM users WHERE id = $user_id";
 $db->sql($sql);
 $user = $db->getResult();
@@ -33,10 +35,11 @@ if (empty($user)) {
     return false;
 }
 
-$sql = "SELECT * FROM plan";
+$sql = "SELECT * FROM plan WHERE category = '$category'";
 $db->sql($sql);
 $res = $db->getResult();
 $num = $db->numRows($res);
+
 
 if ($num >= 1) {
     foreach ($res as $row) {
@@ -50,6 +53,7 @@ if ($num >= 1) {
         $temp['invite_bonus'] = $row['invite_bonus'];
         $temp['price'] = $row['price'];
         $temp['quantity'] = $row['quantity'];
+        $temp['category'] = $row['category'];
         
         $plan_id = $row['id'];
         $sql_check_plan = "SELECT * FROM user_plan WHERE user_id = $user_id AND plan_id = $plan_id";
@@ -85,5 +89,7 @@ function strip_tags_except($string, $exceptions = array()) {
         $string = str_replace("#/{$tag}#", "</$tag>", $string);
     }
     return $string;
+    
 }
+
 ?>

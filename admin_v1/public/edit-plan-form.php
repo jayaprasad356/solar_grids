@@ -22,8 +22,10 @@ if (isset($_POST['btnEdit'])) {
 	$price = $db->escapeString(($_POST['price']));
 	$invite_bonus = $db->escapeString(($_POST['invite_bonus']));
 	$quantity = $db->escapeString(($_POST['quantity']));
+    $category = $db->escapeString(($_POST['category']));
+
     
-		$sql_query = "UPDATE plan SET name='$name',description='$description',price='$price',daily_earnings='$daily_earnings',invite_bonus = '$invite_bonus',monthly_earnings = '$monthly_earnings',quantity = '$quantity'  WHERE id =  $ID";
+		$sql_query = "UPDATE plan SET name='$name',description='$description',price='$price',daily_earnings='$daily_earnings',invite_bonus = '$invite_bonus',monthly_earnings = '$monthly_earnings',quantity = '$quantity',category='$category' WHERE id =  $ID";
 		$db->sql($sql_query);
 		$result = $db->getResult();             
 		if (!empty($result)) {
@@ -145,22 +147,15 @@ if (isset($_POST['btnCancel'])) { ?>
 									<label for="exampleInputEmail1">Invite Bonus</label><i class="text-danger asterik">*</i>
 									<input type="number" class="form-control" name="invite_bonus" value="<?php echo $res[0]['invite_bonus']; ?>">
 								</div>
-								
-								<!-- <div class="col-md-3">
-									<label for="exampleInputEmail1">Daily Codes</label><i class="text-danger asterik">*</i>
-									<input type="number" class="form-control" name="daily_codes" value="<?php echo $res[0]['daily_codes']; ?>">
-								</div> -->
-								<!-- <div class="col-md-3">
-									<label for="exampleInputEmail1">Per Code Cost</label><i class="text-danger asterik">*</i>
-									<input type="text" class="form-control" name="per_code_cost" value="<?php echo $res[0]['per_code_cost']; ?>">
-								</div> -->
-								<!-- <div class="col-md-3">
-                                <label for="exampleInputEmail1">Select Type</label> <i class="text-danger asterik">*</i>
-                                    <select id='type' name="type" class='form-control'>
-                                     <option value='jobs' <?php if ($res[0]['type'] == 'jobs') echo 'selected'; ?>>jobs</option>
-                                      <option value='senior_jobs' <?php if ($res[0]['type'] == 'senior_jobs') echo 'selected'; ?>>senior_jobs</option>
+								 <div class='col-md-3'>
+                                <label for="exampleInputEmail1">Select Catogery</label> <i class="text-danger asterik">*</i><?php echo isset($error['category']) ? $error['category'] : ''; ?>
+                                    <select id='category' name="category" class='form-control'>
+                                    <option value='life_time'>Life Time</option>
+                                      <option value='yearly'>Yearly</option>
                                     </select>
-								</div> -->
+                                </div>
+                            </div> 
+								
                             </div>	 
 						  </div>  
 						  <br><div class="row">

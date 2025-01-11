@@ -146,7 +146,11 @@ body {
         </a>
         <a href="plan.php" class="nav-link">
             <i class="bi bi-file-earmark-text"></i>
-            <span>Plans</span>
+            <span>Yearly Plan</span>
+        </a>
+        <a href="life_time.php" class="nav-link">
+            <i class="bi bi-file-earmark-text"></i>
+            <span>Life Time Plan</span>
         </a>
         <a href="level_1.php" class="nav-link">
             <i class="bi bi-grid"></i>

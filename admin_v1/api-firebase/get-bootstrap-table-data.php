@@ -220,6 +220,7 @@ $db->connect();
                 $tempRow['price'] = $row['price'];
                 $tempRow['invite_bonus'] = $row['invite_bonus'];
                 $tempRow['quantity'] = $row['quantity'];
+                $tempRow['category'] = $row['category'];
                 if(!empty($row['image'])){
                     $tempRow['image'] = "<a data-lightbox='category' href='" . $row['image'] . "' data-caption='" . $row['image'] . "'><img src='" . $row['image'] . "' title='" . $row['image'] . "' height='50' /></a>";
         
@@ -230,6 +231,7 @@ $db->connect();
                 $tempRow['operate'] = $operate;
                 $rows[] = $tempRow;
             }
+            
             $bulkData['rows'] = $rows;
             print_r(json_encode($bulkData));
         }

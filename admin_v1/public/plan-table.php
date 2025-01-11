@@ -11,6 +11,7 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
+                    
             
                 
                     <div  class="box-body table-responsive">
@@ -30,6 +31,7 @@
                                     <th  data-field="quantity" data-sortable="true">Quantity</th>
                                     <th data-field="image">Image</th>
                                     <th  data-field="description" data-sortable="true">Description</th>
+                                    <th data-field="category" data-sortable="true">Category</th>
                                 </tr>
                             </thead>
                         </table>

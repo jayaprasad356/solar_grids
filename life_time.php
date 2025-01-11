@@ -15,7 +15,7 @@ $recharge = 0; // Default value in case no recharge is found
 
 $data = array(
     "user_id" => $user_id,
-    "category" => 'yearly',
+    "category" => 'life_time',
 
 );
 
@@ -226,9 +226,9 @@ curl_close($curl);
         }
 
         .purchase-btn {
-           background-color:#4A148C; 
-            border-color: #4A148C; 
-            color: white; 
+           background-color:#44eba7; 
+            border-color: #44eba7; 
+            color: black; 
             font-weight: 600;
             border-radius: 99999px;
             font-family: 'Poppins', Helvetica, sans-serif;
@@ -236,8 +236,8 @@ curl_close($curl);
 
         .trail-btn {
      /* background-color:#44eba7;  */
-            border-color:rgb(14, 10, 212); 
-            color: white; 
+            border-color: #44eba7; 
+            color: black; 
             font-weight: 600;
             border-radius: 99999px; /* Border color set to #4A148C */
             font-family: 'Poppins', Helvetica, sans-serif;
@@ -245,8 +245,8 @@ curl_close($curl);
 
 
         .product-name-box {
-            background-color: #4A148C;
-            color: white;
+            background-color: rgb(68 235 167);
+            color: black;
             padding: 15px;
             border-radius: 5px;
             margin-bottom: 15px;
@@ -277,7 +277,7 @@ curl_close($curl);
 
         .activated-jobs-link {
     margin-bottom: 20px;
-    background-color:#4A148C; /* Background color for the link */
+    background-color: rgb(68 235 167); /* Background color for the link */
     border-radius: 10px;
     font-family: 'Poppins', Helvetica, sans-serif;
 }
@@ -313,7 +313,6 @@ curl_close($curl);
         top: 10px; /* Distance from the top */
         right: 20px; /* Distance from the right */
         width: 40%; /* Adjust width for smaller screens */
-        color: white;
     }
 }
 /* .days{
@@ -348,7 +347,7 @@ curl_close($curl);
         <div class="col py-3">
         <div class="d-flex align-items-center justify-content-start ms-3">
         <!-- Button -->
-        <a href="#" class="btn btn-info me-3" style="background-color:#4A148C;color: white;" data-bs-toggle="modal" data-bs-target="#rechargeGuideModal">
+        <a href="#" class="btn btn-info me-3" style="background-color:#44eba7" data-bs-toggle="modal" data-bs-target="#rechargeGuideModal">
             Click Here to Recharge <i class="bi bi-arrow-right"></i>
         </a>
         <!-- Alert -->
@@ -360,9 +359,9 @@ curl_close($curl);
             <!-- Activated Jobs Link -->
             <div class="activated-jobs-link">
                 <a href="my_plans.php" class="btn w-100 d-flex justify-content-between align-items-center">
-                    <i style="color: white; font-size: 1.5rem; padding: 10px; font-weight: bold;" class="bi bi-briefcase-fill"></i>  <!-- Left icon (briefcase) -->
-                    <span style="color:rgb(255, 255, 255); font-size: 0.90rem; padding: 10px; font-weight: bold; ">My Activated Income</span> <!-- Button Text -->
-                    <i style="color: white; font-size: 1.5rem; padding: 10px; font-weight: bold;" class="bi bi-arrow-right"></i> <!-- Right icon (arrow) -->
+                    <i style="color: #03242b; font-size: 1.5rem; padding: 10px; font-weight: bold;" class="bi bi-briefcase-fill"></i>  <!-- Left icon (briefcase) -->
+                    <span style="color:rgb(0, 0, 0); font-size: 0.90rem; padding: 10px; font-weight: bold; ">My Activated Income</span> <!-- Button Text -->
+                    <i style="color: #03242b; font-size: 1.5rem; padding: 10px; font-weight: bold;" class="bi bi-arrow-right"></i> <!-- Right icon (arrow) -->
                 </a>
             </div>
             <!-- <div class="mb-4">
