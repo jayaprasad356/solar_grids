@@ -408,10 +408,10 @@ curl_close($curl);
                                         <button type="submit" name="btnactivate" class="btn purchase-btn">Purchase</button>
                                         <!-- <button type="button" onclick="startWork(<?php echo htmlspecialchars($plan['id']); ?>)" class="btn trail-btn">Take Trial</button> -->
                                     </form>
-                                       <div class="discount-container" style="margin-top: 10px;">
+                                       <!-- <div class="discount-container" style="margin-top: 10px;">
                                             <span class="small-font">Discount ends in:</span>
                                             <span class="discount-timer small-font" style="color: red; font-weight: bold;">02:00:00</span>
-                                        </div>
+                                        </div> -->
                                 </div>
                             </div>
                         </div>
