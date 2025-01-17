@@ -1,47 +1,4 @@
-<?php
-include_once('includes/connection.php');
-session_start();
 
-$user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null; // Ensure user_id is set
-
-if (!$user_id) {
-    header("Location: login.php");
-    exit();
-}
-
-$data = array(
-    "user_id" => $user_id,
-);
-
-$apiUrl = API_URL . "withdrawals_list.php";
-
-$curl = curl_init($apiUrl);
-
-curl_setopt($curl, CURLOPT_POST, true);
-curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-
-$response = curl_exec($curl);
-
-if ($response === false) {
-    // Error in cURL request
-    echo "Error: " . curl_error($curl);
-    $userdetails = [];
-} else {
-    // Successful API response
-    $responseData = json_decode($response, true);
-    if ($responseData !== null && $responseData["success"]) {
-        // Store transaction details
-        $userdetails = $responseData["data"];
-    } else {
-     
-        $userdetails = [];
-    }
-}
-
-curl_close($curl);
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -62,10 +19,6 @@ curl_close($curl);
         <link rel="stylesheet" href="44faebf68310e939.css"/>
         <link rel="preload" href="597cdb0b96e32ff4.css" as="style"/>
         <link rel="stylesheet" href="597cdb0b96e32ff4.css"/>
-        <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
        
         
         <style data-href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
@@ -547,107 +500,6 @@ curl_close($curl);
                     border: 1px solid black;
                     border-radius: 6px;
                 }
-                .info-box {
-            background-color: #0b2742;
-            border-radius: 5px;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .info-box h4 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-        .info-box p {
-            font-size: 1.25rem;
-            margin: 0;
-        }
-        .withdrawal-container {
-            position: relative; 
-            padding: 20px; 
-        }
-        .withdrawal-container h2 {
-            margin-bottom: 20px;
-            font-size: 2rem;
-        }
-        .withdrawal-button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 1rem;
-            border-color: #44eba7; 
-            font-weight: 600;
-            border-radius: 99999px;
-            background-color: #44eba7; 
-        }
-       tr{
-            border: 2px solid black ;
-            
-        }
-
-        tr .td{
-          background-color: #0b2742;
-          text-align: center;
-          color: white;
-        }
-        
-       
-         .btn{
-             background-color:#44eba7; 
-            border-color: #44eba7; 
-            color: black; 
-            font-weight: 600;
-            border-radius: 99999px;
-           
-        }
-        .btn:hover{
-            color:rgb(0, 0, 0);
-            background-color: #44eba7;
-        }
-        @media (max-width: 576px) {
-            .withdrawal-container h2 {
-                font-size: 1.5rem;
-            }
-            .withdrawal-button {
-                font-size: 0.650rem;
-                top: 21px;
-                right: 10px;
-            }
-        }
-        .table {
-    text-indent: 0;
-    border-color: inherit;
-    border-collapse: collapse;
-    width: 100%;
-    text-align: center;
-    
-}
-.ol, ul {
-    padding-left: 0rem;
-}
-.m-1{
-    color: #0b2742;
-}
-tbody{
-    background-color: #0b2742;
-    color: black;
-    
-}
-tr:nth-child(odd) {
-            background-color: #f2f2f2; /* Light gray for odd rows */
-        }
-
-        tr:nth-child(even) {
-            background-color: #ffffff; /* White for even rows */
-        }
-
-        /* Optional: Add hover effect */
-        tr:hover {
-            color: #ffffff;
-            background-color: #0b2742; /* Light gray for hover effect */
-        }
-
-
         </style>
     </head>
     <body class="bg-utility-white-50">
@@ -697,7 +549,6 @@ tr:nth-child(odd) {
                         <img alt="An app dashboard displaying project details, savings, and live solar production." fetchpriority="high" decoding="async" data-nimg="fill" class="object-cover object-center xs:rounded-3xl md:hidden" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent;background-size:cover;background-position:50% 50%;background-repeat:no-repeat;background-image:url(&quot;data: %3E%3Cfilter id=&#x27;b&#x27; color-interpolation-filters=&#x27;sRGB&#x27;%3E%3CfeGaussianBlur stdDeviation=&#x27;20&#x27;/%3E%3CfeColorMatrix values=&#x27;1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 100 -1&#x27; result=&#x27;s&#x27;/%3E%3CfeFlood x=&#x27;0&#x27; y=&#x27;0&#x27; width=&#x27;100%25&#x27; height=&#x27;100%25&#x27;/%3E%3CfeComposite operator=&#x27;out&#x27; in=&#x27;s&#x27;/%3E%3CfeComposite in2=&#x27;SourceGraphic&#x27;/%3E%3CfeGaussianBlur stdDeviation=&#x27;20&#x27;/%3E%3C/filter%3E%3Cimage width=&#x27;100%25&#x27; height=&#x27;100%25&#x27; x=&#x27;0&#x27; y=&#x27;0&#x27; preserveAspectRatio=&#x27;none&#x27; style=&#x27;filter: url(%23b);&#x27; href=&#x27;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNsunK0HgAGlwKc3gewqwAAAABJRU5ErkJggg==&#x27;/%3E%3C/svg%3E&quot;)" src="gh-home-hero-extended.png"/>
                     </div>
                 </div>
-                
                 <div>
                     <section class="max-xs:bg-[white] ">
                         <div class=" grid py-4 max-lg:gap-3 max-md:px-6 max-sm:px-4 sm:py-6 min-[748px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-[auto_412px_auto] lg:gap-x-3">
@@ -733,9 +584,6 @@ tr:nth-child(odd) {
                                         </defs>
                                     </svg>
                                 </div>
-   
-
-                                
                                 <div class="w-full max-w-[230px] ">
                                     <div class=" ">
                                         <h3 class=" text-base font-semibold text-french-blue-700 sm:mb-1 sm:text-xl ">Needs no installation</h3>
@@ -925,59 +773,6 @@ tr:nth-child(odd) {
                             <span class="text-sm font-semibold min-[340px]:text-sm sm:text-xl hidden">Maximize savings</span>
                         </button>
                     </div>
-    <div class="container-fluid">
-    <div class="row flex-nowrap">
-        <div class="col py-3">
-            <div class="withdrawal-container" id="withdrawals">  
-                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <!-- <a href="menu.php" style="color:black;" class="btn"><i style="color:rgb(2, 2, 2); font-size: 1rem;" class="bi bi-arrow-left"></i>Back</a> -->
-                </div>
-                <h2 class="m-1">Withdrawal Proof</h2>
-                <!-- <a href="withdrawal_request.php"  style=" color:black;" class="btn withdrawal-button">Request Withdrawal</a> -->
-                
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th class="td" scope="col">S.No</th>
-                            <th class="td" scope="col">Status</th>
-                            <th class="td" scope="col">Amount</th>
-                            <th class="td" scope="col">DateTime</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                        <!-- Loop through all withdrawals and display each one -->
-                        <?php foreach ($userdetails as $index => $withdrawal): ?>
-                            <tr>
-                                <th scope="row"><?php echo $index + 1; ?></th>
-                                <td class="status">
-                                    <?php 
-                                    if ($withdrawal['status'] === '1') {
-                                        echo '<span class="text-success">Paid</span>';
-                                    } elseif ($withdrawal['status'] === '0') {
-                                        echo '<span class="text-primary">Not Paid</span>';
-                                    } elseif ($withdrawal['status'] === '2') {
-                                         echo '<span class="text-danger">Cancelled</span>';
-                                    } 
-                                    ?>
-                                </td>
-                                <td><?php echo htmlspecialchars($withdrawal['amount']); ?></td>
-                                <td><?php echo htmlspecialchars($withdrawal['datetime']); ?></td>
-                            </tr>
-                        <?php endforeach; ?>
-                        <?php if (empty($userdetails)): ?>
-                            <tr>
-                                <td colspan="4">No transactions found.</td>
-                            </tr>
-                        <?php endif; ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
-
                     <section class=" py-8">
                         <div class="mx-auto max-w-full py-8 min-[768px]:pb-[90px] md:w-[1170px]">
                             <h1 class="mb-3 px-6 text-center text-2xl font-semibold text-aluminium-grey-700 sm:text-3xl">Connect with solar installed elsewhere</h1>
@@ -988,7 +783,7 @@ tr:nth-child(odd) {
                                         <strong class="text-base xs:text-base sm:text-xl font-semibold text-jade-green-200 inline-block mb-1 sm:mb-3 ">Digital Solar</strong>
                                         <p class="text-sm xs:text-sm text-white  ">Works best for tenants and apartments.</p>
                                     </li>
-                                    <li class="relative bg-french-blue-800/30 p-4 sm:p-6 md:before:flex md:before:items-center md:before:rounded-l-[26px] md:before:bg-powder-blue-50 md:before:px-9 md:before:py-6 md:before:text-lg md:before:font-semibold md:before:text-french-blue-650 md:before:content-[&quot;Requirements&quot;] md:before:absolute md:before:inset-y-0 md:before:left-[-207.5px] md:before:w-[150px] ">
+                                    <li class="relative bg-french-blue-800/30 p-4 sm:p-6 md:before:flex md:before:items-center md:before:rounded-l-[26px] md:before:bg-powder-blue-50 md:before:px-9 md:before:py-6 md:before:text-lg md:before:font-semibold md:before:text-french-blue-650 md:before:content-[&quot;Requirements&quot;] md:before:absolute md:before:inset-y-0 md:before:left-[-207.5px] md:before:w-[206px] ">
                                         <strong class="text-sm xs:text-base sm:text-lg font-semibold sm:leading-[26px] text-jade-green-200 inline-block mb-1 ">Zero Installation</strong>
                                         <p class="text-xs xs:text-sm text-white max-sm:w-[28ch] max-w-full  ">No extra hardware or permits needed</p>
                                     </li>
@@ -996,7 +791,7 @@ tr:nth-child(odd) {
                                         <strong class="text-sm xs:text-base sm:text-lg font-semibold sm:leading-[26px] text-jade-green-200 inline-block mb-1 ">Secured Generation</strong>
                                         <p class="text-xs xs:text-sm text-white max-[738px]:w-[28ch] max-w-full  ">75% of forecasted generation is covered*</p>
                                     </li>
-                                    <li class="relative bg-french-blue-800/30 p-4 sm:p-6 md:before:flex md:before:items-center md:before:rounded-l-[26px] md:before:bg-powder-blue-50 md:before:px-9 md:before:py-6 md:before:text-lg md:before:font-semibold md:before:text-french-blue-650 md:before:content-[&quot;Savings_on_bill&quot;] md:before:absolute md:before:inset-y-0 md:before:left-[-207.5px] md:before:w-[150px] ">
+                                    <li class="relative bg-french-blue-800/30 p-4 sm:p-6 md:before:flex md:before:items-center md:before:rounded-l-[26px] md:before:bg-powder-blue-50 md:before:px-9 md:before:py-6 md:before:text-lg md:before:font-semibold md:before:text-french-blue-650 md:before:content-[&quot;Savings_on_bill&quot;] md:before:absolute md:before:inset-y-0 md:before:left-[-207.5px] md:before:w-[206px] ">
                                         <strong class="text-sm xs:text-base sm:text-lg font-semibold sm:leading-[26px] text-jade-green-200 inline-block mb-1 ">Offset with Credits</strong>
                                         <p class="text-xs xs:text-sm text-white  ">Slash usage &amp;fixed charges</p>
                                     </li>
@@ -1017,7 +812,7 @@ tr:nth-child(odd) {
                                         </div>
                                     </li>
                                 </ul>
-                                <ul class=" border-2px border-aluminium-grey-300 bg-white text-aluminium-grey-600 max-xs:flex-1 max-xs:rounded-none  min-[768px]:w-[350px] md:translate-x-[84px] lg:translate-x-[78px] xl:w-[370px] list-none appearance-none rounded-2xl">
+                                <ul class=" border-2px border-aluminium-grey-300 bg-white text-aluminium-grey-600 max-xs:flex-1 max-xs:rounded-none xs:border-[1.5px] min-[768px]:w-[350px] md:translate-x-[84px] lg:translate-x-[78px] xl:w-[370px] list-none appearance-none rounded-2xl">
                                     <li class="p-4 sm:p-6 works ">
                                         <strong class="text-base xs:text-base sm:text-xl font-semibold inline-block sm:mb-3 mb-1 ">Rooftop Solar</strong>
                                         <p class="text-sm xs:text-sm max-[376px]:w-[12ch] max-[706px]:w-[27ch] max-w-full  ">Works mostly for standalone houses</p>
