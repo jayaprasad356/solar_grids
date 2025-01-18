@@ -12,7 +12,11 @@ include_once('../includes/crud.php');
 $db = new Database();
 $db->connect();
 
-$sql = "SELECT * FROM withdrawals ORDER BY id DESC LIMIT 30";
+$sql = "SELECT w.id, w.amount, w.status, w.datetime, u.name
+FROM withdrawals w
+JOIN users u ON w.user_id = u.id
+ORDER BY w.id DESC
+LIMIT 30;";
 $db->sql($sql);
 $res = $db->getResult();
 $num = $db->numRows($res);
@@ -20,6 +24,7 @@ $num = $db->numRows($res);
 if ($num >= 1) {
     foreach ($res as $row) {
         $temp['id'] = $row['id'];
+        $temp['name'] = $row['name'];
         $temp['amount'] = $row['amount'];
         $temp['status'] = $row['status'];
         $temp['datetime'] = $row['datetime'];
