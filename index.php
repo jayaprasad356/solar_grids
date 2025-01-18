@@ -929,6 +929,7 @@ tr:nth-child(odd) {
                     <thead>
                         <tr>
                             <th class="td" scope="col">S.No</th>
+                            <th class="td" scope="col">Name</th>
                             <th class="td" scope="col">Status</th>
                             <th class="td" scope="col">Amount</th>
                             <th class="td" scope="col">DateTime</th>
@@ -940,6 +941,7 @@ tr:nth-child(odd) {
                         <?php foreach ($userdetails as $index => $withdrawal): ?>
                             <tr>
                                 <th scope="row"><?php echo $index + 1; ?></th>
+                                 <td><?php echo htmlspecialchars($withdrawal['name']); ?></td>
                                 <td class="status">
                                     <?php 
                                     if ($withdrawal['status'] === '1') {
