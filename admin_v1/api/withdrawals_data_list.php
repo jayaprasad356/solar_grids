@@ -15,6 +15,7 @@ $db->connect();
 $sql = "SELECT w.id, w.amount, w.status, w.datetime, u.name
 FROM withdrawals w
 JOIN users u ON w.user_id = u.id
+WHERE w.status = 1
 ORDER BY w.id DESC
 LIMIT 30;";
 $db->sql($sql);
