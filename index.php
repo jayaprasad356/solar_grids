@@ -554,12 +554,12 @@ curl_close($curl);
         }
         .withdrawal-container {
             position: relative; 
-            padding: 20px; 
+            /* padding: 20px;  */
         }
-        .withdrawal-container h2 {
+        /* .withdrawal-container h2 {
             margin-bottom: 20px;
             font-size: 2rem;
-        }
+        } */
         .withdrawal-button {
             position: absolute;
             top: 20px;
@@ -915,8 +915,8 @@ tr:nth-child(odd) {
                             <span class="text-sm font-semibold min-[340px]:text-sm sm:text-xl hidden">Maximize savings</span>
                         </button>
                     </div>
-    <div class="container-fluid">
-    <div class="row flex-nowrap">
+    <div class="with">
+    <div >
         <div class="col py-3">
             <div class="withdrawal-container" id="withdrawals">  
                  <div class="d-flex justify-content-between align-items-center mb-3">
@@ -969,82 +969,82 @@ tr:nth-child(odd) {
     </div>
 </div>
 
-
-                    <section class=" py-8">
-                        <div class="mx-auto max-w-full py-8 min-[768px]:pb-[90px] md:w-[1170px]">
-                            <h1 class="mb-3 px-6 text-center text-2xl font-semibold text-aluminium-grey-700 sm:text-3xl">Connect with solar installed elsewhere</h1>
-                            <p class="mx-auto mb-6 max-w-3xl px-6 text-center text-sm font-normal text-aluminium-grey-600 xs:mb-10 xs:text-base sm:text-xl">While conventional solar has to be linked directly to your home meter, Digital Solar generates energy credits to offset your power bills.</p>
-                            <div class="flex flex-nowrap items-center max-xs:overflow-x-auto xs:justify-center xs:gap-4 xs:px-4 sm:gap-7">
-                                <ul class="min-w-[180px] border-solid border-french-blue-700 bg-french-blue-700 max-xs:flex-1 max-xs:rounded-none xs:border-[1.5px] min-[768px]:w-[350px] md:translate-x-[84px] lg:translate-x-[78px] xl:w-[370px] list-none appearance-none rounded-2xl">
-                                    <li class="p-4 sm:p-6 ">
-                                        <strong class="text-base xs:text-base sm:text-xl font-semibold text-jade-green-200 inline-block mb-1 sm:mb-3 ">Digital Solar</strong>
-                                        <p class="text-sm xs:text-sm text-white  ">Works best for tenants and apartments.</p>
-                                    </li>
-                                    <li class="relative bg-french-blue-800/30 p-4 sm:p-6 md:before:flex md:before:items-center md:before:rounded-l-[26px] md:before:bg-powder-blue-50 md:before:px-9 md:before:py-6 md:before:text-lg md:before:font-semibold md:before:text-french-blue-650 md:before:content-[&quot;Requirements&quot;] md:before:absolute md:before:inset-y-0 md:before:left-[-207.5px] md:before:w-[150px] ">
-                                        <strong class="text-sm xs:text-base sm:text-lg font-semibold sm:leading-[26px] text-jade-green-200 inline-block mb-1 ">Zero Installation</strong>
-                                        <p class="text-xs xs:text-sm text-white max-sm:w-[28ch] max-w-full  ">No extra hardware or permits needed</p>
-                                    </li>
-                                    <li class="relative p-4 sm:p-6 md:before:flex md:before:items-center md:before:px-9 md:before:py-6 md:before:text-lg md:before:font-semibold md:before:text-french-blue-650 md:before:content-[&quot;Safeguards&quot;] md:before:absolute md:before:inset-y-0 md:before:left-[-207.5px] md:before:w-[206px] ">
-                                        <strong class="text-sm xs:text-base sm:text-lg font-semibold sm:leading-[26px] text-jade-green-200 inline-block mb-1 ">Secured Generation</strong>
-                                        <p class="text-xs xs:text-sm text-white max-[738px]:w-[28ch] max-w-full  ">75% of forecasted generation is covered*</p>
-                                    </li>
-                                    <li class="relative bg-french-blue-800/30 p-4 sm:p-6 md:before:flex md:before:items-center md:before:rounded-l-[26px] md:before:bg-powder-blue-50 md:before:px-9 md:before:py-6 md:before:text-lg md:before:font-semibold md:before:text-french-blue-650 md:before:content-[&quot;Savings_on_bill&quot;] md:before:absolute md:before:inset-y-0 md:before:left-[-207.5px] md:before:w-[150px] ">
-                                        <strong class="text-sm xs:text-base sm:text-lg font-semibold sm:leading-[26px] text-jade-green-200 inline-block mb-1 ">Offset with Credits</strong>
-                                        <p class="text-xs xs:text-sm text-white  ">Slash usage &amp;fixed charges</p>
-                                    </li>
-                                    <li class="flex flex-col gap-y-2 xs:gap-y-4 p-4 sm:p-6 text-jade-green-200 ">
-                                        <div class="flex items-center ">
-                                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="h-3 w-3 shrink-0 xs:h-5 xs:w-5 md:h-6 md:w-6" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill="none" d="M0 0h24v24H0V0z"></path>
-                                                <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"></path>
-                                            </svg>
-                                            <p class="text-xs xs:text-sm ml-2  ">Offsetting power for multiple locations</p>
-                                        </div>
-                                        <div class="flex items-center ">
-                                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="h-3 w-3 shrink-0 xs:h-5 xs:w-5 md:h-6 md:w-6" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill="none" d="M0 0h24v24H0V0z"></path>
-                                                <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"></path>
-                                            </svg>
-                                            <p class="text-xs xs:text-sm ml-2 max-[718px]:w-[27ch] max-w-full  ">Can add more solar capacity later</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <ul class=" border-2px border-aluminium-grey-300 bg-white text-aluminium-grey-600 max-xs:flex-1 max-xs:rounded-none  min-[768px]:w-[350px] md:translate-x-[84px] lg:translate-x-[78px] xl:w-[370px] list-none appearance-none rounded-2xl">
-                                    <li class="p-4 sm:p-6 works ">
-                                        <strong class="text-base xs:text-base sm:text-xl font-semibold inline-block sm:mb-3 mb-1 ">Rooftop Solar</strong>
-                                        <p class="text-sm xs:text-sm max-[376px]:w-[12ch] max-[706px]:w-[27ch] max-w-full  ">Works mostly for standalone houses</p>
-                                    </li>
-                                    <li class="works bg-powder-blue-50 p-4 sm:p-6 md:relative md:before:absolute md:before:inset-y-0 md:before:left-[-29.5px] md:before:w-7 md:before:bg-powder-blue-50 md:before:content-[&quot;&quot;] md:after:absolute md:after:inset-y-0 md:after:right-[-41.5px] md:after:w-10 md:after:rounded-r-[26px] md:after:bg-powder-blue-50 md:after:content-[&quot;&quot;] lg:after:right-[-49.5px] lg:after:w-12 ">
-                                        <strong class="text-sm xs:text-base sm:text-lg font-semibold sm:leading-[26px] inline-block mb-1 ">Fixed to Rooftop</strong>
-                                        <p class="text-xs xs:text-sm max-[674px]:w-[23ch] max-w-full  ">Local utility approval required</p>
-                                    </li>
-                                    <li class="p-4 sm:p-6 works ">
-                                        <strong class="text-sm xs:text-base sm:text-lg font-semibold sm:leading-[26px] inline-block mb-1 ">Yield risk on you</strong>
-                                        <p class="text-xs xs:text-sm  ">Intermittency due to weather and shade </p>
-                                    </li>
-                                    <li class="works bg-powder-blue-50 p-4 sm:p-6 md:relative md:before:absolute md:before:inset-y-0 md:before:left-[-29.5px] md:before:w-7 md:before:bg-powder-blue-50 md:before:content-[&quot;&quot;] md:after:absolute md:after:inset-y-0 md:after:right-[-41.5px] md:after:w-10 md:after:rounded-r-[26px] md:after:bg-powder-blue-50 md:after:content-[&quot;&quot;] lg:after:right-[-49.5px] lg:after:w-12 ">
-                                        <strong class="text-sm xs:text-base sm:text-lg font-semibold sm:leading-[26px] inline-block mb-1 ">Reduce in Units</strong>
-                                        <p class="text-xs xs:text-sm max-[400px]:w-[148px]  ">Lowers only usage charges</p>
-                                    </li>
-                                    <li class="works flex flex-col gap-y-2 xs:gap-y-4 p-4 sm:p-6 ">
-                                        <div class="flex items-center ">
-                                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="h-3 w-3 shrink-0 xs:h-5 xs:w-5 md:h-6 md:w-6" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill="none" d="M0 0h24v24H0V0z"></path>
-                                                <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 2.5c-2.33 0-4.31 1.46-5.11 3.5h10.22c-.8-2.04-2.78-3.5-5.11-3.5z"></path>
-                                            </svg>
-                                            <p class="text-xs xs:text-sm ml-2 max-[738px]:w-[28ch] max-w-full  ">Solar capacity limited by roof space</p>
-                                        </div>
-                                        <div class="flex items-center ">
-                                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="h-3 w-3 shrink-0 xs:h-5 xs:w-5 md:h-6 md:w-6" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill="none" d="M0 0h24v24H0V0z"></path>
-                                                <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 2.5c-2.33 0-4.31 1.46-5.11 3.5h10.22c-.8-2.04-2.78-3.5-5.11-3.5z"></path>
-                                            </svg>
-                                            <p class="text-xs xs:text-sm ml-2 max-xs:w-[26ch] max-w-full  ">Troubleshooting can get expensive</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+<section class="py-8">
+    <div class="mx-auto max-w-full py-8 min-[768px]:pb-[90px] md:w-[1170px]">
+        <h1 class="mb-3 px-6 text-center text-2xl font-semibold text-aluminium-grey-700 sm:text-3xl">Connect with solar installed elsewhere</h1>
+        <p class="mx-auto mb-6 max-w-3xl px-6 text-center text-sm font-normal text-aluminium-grey-600 xs:mb-10 xs:text-base sm:text-xl">While conventional solar has to be linked directly to your home meter, Digital Solar generates energy credits to offset your power bills.</p>
+        <div class="flex flex-nowrap items-center max-xs:overflow-x-auto xs:justify-center xs:gap-4 xs:px-4 sm:gap-7">
+            <ul class="min-w-[180px] border-solid border-french-blue-700 bg-french-blue-700 max-xs:flex-1 max-xs:rounded-none xs:border-[1.5px] min-[768px]:w-[350px] md:translate-x-[84px] lg:translate-x-[78px] xl:w-[370px] list-none appearance-none rounded-2xl">
+                <li class="p-4 sm:p-6">
+                    <strong class="text-base xs:text-base sm:text-xl font-semibold text-jade-green-200 inline-block mb-1 sm:mb-3">Digital Solar</strong>
+                    <p class="text-sm xs:text-sm text-white">Works best for tenants and apartments.</p>
+                </li>
+                <li class="relative bg-french-blue-800/30 p-4 sm:p-6 md:before:flex md:before:items-center md:before:rounded-l-[26px] md:before:bg-powder-blue-50 md:before:px-9 md:before:py-6 md:before:text-lg md:before:font-semibold md:before:text-french-blue-650 md:before:content-[&quot;Requirements&quot;] md:before:absolute md:before:inset-y-0 md:before:left-[-207.5px] md:before:w-[150px]">
+                    <strong class="text-sm xs:text-base sm:text-lg font-semibold sm:leading-[26px] text-jade-green-200 inline-block mb-1">Zero Installation</strong>
+                    <p class="text-xs xs:text-sm text-white max-sm:w-[28ch] max-w-full">No extra hardware or permits needed</p>
+                </li>
+                <li class="relative p-4 sm:p-6 md:before:flex md:before:items-center md:before:px-9 md:before:py-6 md:before:text-lg md:before:font-semibold md:before:text-french-blue-650 md:before:content-[&quot;Safeguards&quot;] md:before:absolute md:before:inset-y-0 md:before:left-[-207.5px] md:before:w-[206px]">
+                    <strong class="text-sm xs:text-base sm:text-lg font-semibold sm:leading-[26px] text-jade-green-200 inline-block mb-1">Secured Generation</strong>
+                    <p class="text-xs xs:text-sm text-white max-[738px]:w-[28ch] max-w-full">75% of forecasted generation is covered*</p>
+                </li>
+                <li class="relative bg-french-blue-800/30 p-4 sm:p-6 md:before:flex md:before:items-center md:before:rounded-l-[26px] md:before:bg-powder-blue-50 md:before:px-9 md:before:py-6 md:before:text-lg md:before:font-semibold md:before:text-french-blue-650 md:before:content-[&quot;Savings_on_bill&quot;] md:before:absolute md:before:inset-y-0 md:before:left-[-207.5px] md:before:w-[150px]">
+                    <strong class="text-sm xs:text-base sm:text-lg font-semibold sm:leading-[26px] text-jade-green-200 inline-block mb-1">Offset with Credits</strong>
+                    <p class="text-xs xs:text-sm text-white">Slash usage &amp;fixed charges</p>
+                </li>
+                <li class="flex flex-col gap-y-2 xs:gap-y-4 p-4 sm:p-6 text-jade-green-200">
+                    <div class="flex items-center">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="h-3 w-3 shrink-0 xs:h-5 xs:w-5 md:h-6 md:w-6" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="none" d="M0 0h24v24H0V0z"></path>
+                            <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"></path>
+                        </svg>
+                        <p class="text-xs xs:text-sm ml-2">Offsetting power for multiple locations</p>
+                    </div>
+                    <div class="flex items-center">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="h-3 w-3 shrink-0 xs:h-5 xs:w-5 md:h-6 md:w-6" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="none" d="M0 0h24v24H0V0z"></path>
+                            <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 2.5c-2.33 0-4.31 1.46-5.11 3.5h10.22c-.8-2.04-2.78-3.5-5.11-3.5z"></path>
+                        </svg>
+                        <p class="text-xs xs:text-sm ml-2 max-[718px]:w-[27ch] max-w-full">Can add more solar capacity later</p>
+                    </div>
+                </li>
+            </ul>
+            <ul class="border-2px border-aluminium-grey-300 bg-white text-aluminium-grey-600 max-xs:flex-1 max-xs:rounded-none min-[768px]:w-[350px] md:translate-x-[84px] lg:translate-x-[78px] xl:w-[370px] list-none appearance-none rounded-2xl">
+                <li class="p-4 sm:p-6 works">
+                    <strong class="text-base xs:text-base sm:text-xl font-semibold inline-block sm:mb-3 mb-1">Rooftop Solar</strong>
+                    <p class="text-sm xs:text-sm max-[376px]:w-[12ch] max-[706px]:w-[27ch] max-w-full">Works mostly for standalone houses</p>
+                </li>
+                <li class="works bg-powder-blue-50 p-4 sm:p-6 md:relative md:before:absolute md:before:inset-y-0 md:before:left-[-29.5px] md:before:w-7 md:before:bg-powder-blue-50 md:before:content-[&quot;&quot;] md:after:absolute md:after:inset-y-0 md:after:right-[-41.5px] md:after:w-10 md:after:rounded-r-[26px] md:after:bg-powder-blue-50 md:after:content-[&quot;&quot;] lg:after:right-[-49.5px] lg:after:w-12">
+                    <strong class="text-sm xs:text-base sm:text-lg font-semibold sm:leading-[26px] inline-block mb-1">Fixed to Rooftop</strong>
+                    <p class="text-xs xs:text-sm max-[674px]:w-[23ch] max-w-full">Local utility approval required</p>
+                </li>
+                <li class="p-4 sm:p-6 works">
+                    <strong class="text-sm xs:text-base sm:text-lg font-semibold sm:leading-[26px] inline-block mb-1">Yield risk on you</strong>
+                    <p class="text-xs xs:text-sm">Intermittency due to weather and shade</p>
+                </li>
+                <li class="works bg-powder-blue-50 p-4 sm:p-6 md:relative md:before:absolute md:before:inset-y-0 md:before:left-[-29.5px] md:before:w-7 md:before:bg-powder-blue-50 md:before:content-[&quot;&quot;] md:after:absolute md:after:inset-y-0 md:after:right-[-41.5px] md:after:w-10 md:after:rounded-r-[26px] md:after:bg-powder-blue-50 md:after:content-[&quot;&quot;] lg:after:right-[-49.5px] lg:after:w-12">
+                    <strong class="text-sm xs:text-base sm:text-lg font-semibold sm:leading-[26px] inline-block mb-1">Reduce in Units</strong>
+                    <p class="text-xs xs:text-sm max-[400px]:w-[148px]">Lowers only usage charges</p>
+                </li>
+                <li class="works flex flex-col gap-y-2 xs:gap-y-4 p-4 sm:p-6">
+                    <div class="flex items-center">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="h-3 w-3 shrink-0 xs:h-5 xs:w-5 md:h-6 md:w-6" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="none" d="M0 0h24v24H0V0z"></path>
+                            <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 2.5c-2.33 0-4.31 1.46-5.11 3.5h10.22c-.8-2.04-2.78-3.5-5.11-3.5z"></path>
+                        </svg>
+                        <p class="text-xs xs:text-sm ml-2 max-[738px]:w-[28ch] max-w-full">Solar capacity limited by roof space</p>
+                    </div>
+                    <div class="flex items-center">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="h-3 w-3 shrink-0 xs:h-5 xs:w-5 md:h-6 md:w-6" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="none" d="M0 0h24v24H0V0z"></path>
+                            <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 2.5c-2.33 0-4.31 1.46-5.11 3.5h10.22c-.8-2.04-2.78-3.5-5.11-3.5z"></path>
+                        </svg>
+                        <p class="text-xs xs:text-sm ml-2 max-xs:w-[26ch] max-w-full">Troubleshooting can get expensive</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
                         <section class=" ">
                             <section class="border-t-2 border-aluminium-grey-100 lg:px-24 ">
                                 <div class="divide-aluminium-grey-100 max-w-screen-lg mx-auto grid max-lg:divide-y-2 sm:grid-cols-2 lg:grid-cols-3 lg:divide-x-2">
