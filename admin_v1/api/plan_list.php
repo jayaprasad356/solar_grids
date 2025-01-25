@@ -20,9 +20,7 @@ if (empty($_POST['user_id'])) {
 }
 
 $user_id = $db->escapeString($_POST['user_id']);
-
-
-$category = $db->escapeString($_POST['category']);
+$category = isset($_POST['category']) ? $db->escapeString($_POST['category']) : '';
 
 $sql = "SELECT * FROM users WHERE id = $user_id";
 $db->sql($sql);
@@ -35,11 +33,21 @@ if (empty($user)) {
     return false;
 }
 
-$sql = "SELECT * FROM plan WHERE category = '$category'";
+if (!empty($category)) {
+    $sql = "SELECT * FROM plan WHERE category = '$category'";
+} else {
+    $sql = "SELECT * FROM plan";
+}
 $db->sql($sql);
 $res = $db->getResult();
 $num = $db->numRows($res);
+if ($num >= 1) {
+    $plan_id = $res;
+    $category = $plan_id[0]['category'];
 
+    $sql = "SELECT * FROM plan WHERE category = '$category'";
+    $db->sql($sql);
+}
 
 if ($num >= 1) {
     foreach ($res as $row) {
@@ -59,7 +67,7 @@ if ($num >= 1) {
         $sql_check_plan = "SELECT * FROM user_plan WHERE user_id = $user_id AND plan_id = $plan_id";
         $db->sql($sql_check_plan);
         $plan_exists = $db->numRows() > 0;
-        $temp['status'] = $plan_exists ? 1: 0;
+        $temp['status'] = $plan_exists ? 1 : 0;
         
         $rows[] = $temp;
     }
@@ -89,7 +97,7 @@ function strip_tags_except($string, $exceptions = array()) {
         $string = str_replace("#/{$tag}#", "</$tag>", $string);
     }
     return $string;
-    
 }
 
 ?>
+
