@@ -48,7 +48,7 @@ if (empty($plan)) {
     print_r(json_encode($response));
     return false;
 }
-$sql = "SELECT id,referred_by,c_referred_by,d_referred_by,valid_team,valid FROM users WHERE id = $user_id";
+$sql = "SELECT id,referred_by,c_referred_by,d_referred_by,valid_team,valid,blocked FROM users WHERE id = $user_id";
 $db->sql($sql);
 $user = $db->getResult();
 if (empty($user)) {
@@ -69,6 +69,15 @@ $c_referred_by = $user[0]['c_referred_by'];
 $d_referred_by = $user[0]['d_referred_by'];
 $valid_team = $user[0]['valid_team'];
 $valid = $user[0]['valid'];
+$blocked = $user[0]['blocked'];
+
+if ($blocked == 1) {
+    $response['success'] = false;
+    $response['message'] = "Your account is blocked";
+    echo json_encode($response);
+    return;
+}
+
 $sql = "SELECT * FROM user_plan WHERE user_id = $user_id AND plan_id = $plan_id ORDER BY claim DESC LIMIT 1";
 $db->sql($sql);
 $user_plan = $db->getResult();

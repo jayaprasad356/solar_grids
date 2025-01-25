@@ -52,6 +52,14 @@ if (empty($user)) {
 $recharge = $user[0]['recharge'];
 $refer_code = $user[0]['refer_code'];
 $referred_by = $user[0]['referred_by'];
+$blocked = $user[0]['blocked'];
+
+if ($blocked == 1) {
+    $response['success'] = false;
+    $response['message'] = "Your account is blocked";
+    echo json_encode($response);
+    return;
+}
 
 // Get plan details
 $sql = "SELECT * FROM plan WHERE id = $plan_id";
