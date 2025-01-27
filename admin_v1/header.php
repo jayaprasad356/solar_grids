@@ -323,6 +323,12 @@ if ($_SESSION['role'] == 'admin') {
                         <span>Coupon Code</span>
                     </a>
                 </li>
+                <li class="treeview">
+                    <a href="bulk_amount.php">
+                    <i class="fas fa-file"></i>
+                        <span>Bulk Amount</span>
+                    </a>
+                </li>
                
                 <?php } ?>
             </section>
