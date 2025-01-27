@@ -106,16 +106,16 @@ if ($coupon_code) {
 }
 
 // Check if user already has this plan
-$sql_check = "SELECT * FROM user_plan WHERE user_id = $user_id AND plan_id = $plan_id";
-$db->sql($sql_check);
-$res_check_user = $db->getResult();
+// $sql_check = "SELECT * FROM user_plan WHERE user_id = $user_id AND plan_id = $plan_id";
+// $db->sql($sql_check);
+// $res_check_user = $db->getResult();
 
-if (!empty($res_check_user)) {
-    $response['success'] = false;
-    $response['message'] = "You have already started this plan. Go to my activated plans and claim your earnings daily.";
-    print_r(json_encode($response));
-    return false;
-}
+// if (!empty($res_check_user)) {
+//     $response['success'] = false;
+//     $response['message'] = "You have already started this plan. Go to my activated plans and claim your earnings daily.";
+//     print_r(json_encode($response));
+//     return false;
+// }
 
 // Check if the user has enough recharge balance
 if ($recharge >= $price) {
