@@ -32,9 +32,10 @@ if ($response === false) {
 }
 curl_close($curl);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plan_id'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plan_id'], $_POST['user_plan_id'])) {
     $plan_id = $_POST['plan_id'];
-    $claimData = array("user_id" => $user_id, "plan_id" => $plan_id);
+    $user_plan_id = $_POST['user_plan_id']; // Get the user_plan_id from the POST data
+    $claimData = array("user_id" => $user_id, "plan_id" => $plan_id, "user_plan_id" => $user_plan_id); // Add user_plan_id
     $apiUrl = API_URL . "claim.php";
     $curl = curl_init($apiUrl);
     curl_setopt($curl, CURLOPT_POST, true);
@@ -51,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plan_id'])) {
     }
     exit();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -180,12 +182,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plan_id'])) {
                                     <p>Daily Earnings: <strong><?php echo '₹' . htmlspecialchars($plan['daily_earnings']); ?></strong></p>
                                     <p><strong class="life"> LifeTime Earnings:</strong> <strong class="days">Unlimited Days</strong></p>
                                     <?php if ($plan['plan_id'] == 1): ?>
-                                        <button class="btn watch-claim-btn" data-plan-id="<?php echo htmlspecialchars($plan['plan_id']); ?>" data-bs-toggle="modal" data-bs-target="#videoModal">
+                                        <button class="btn watch-claim-btn" data-plan-id="<?php echo htmlspecialchars($plan['plan_id']); ?>" data-user-plan-id="<?php echo htmlspecialchars($plan['id']); ?>"  data-bs-toggle="modal" data-bs-target="#videoModal">
                                             Watch & Claim
                                         </button>
-                                        <button class="btn claim-btn" data-plan-id="<?php echo htmlspecialchars($plan['plan_id']); ?>" disabled>Claim</button>
+                                        <button class="btn claim-btn" data-plan-id="<?php echo htmlspecialchars($plan['plan_id']); ?>" data-user-plan-id="<?php echo htmlspecialchars($plan['id']); ?>" disabled>Claim</button>
                                     <?php else: ?>
-                                        <button class="btn claim-btn" data-plan-id="<?php echo htmlspecialchars($plan['plan_id']); ?>">Claim</button>
+                                        <button class="btn claim-btn" data-plan-id="<?php echo htmlspecialchars($plan['plan_id']); ?>"   data-user-plan-id="<?php echo htmlspecialchars($plan['id']); ?>" >Claim</button>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -235,6 +237,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.watch-claim-btn').forEach(button => {
         button.addEventListener('click', function () {
             const planId = this.getAttribute('data-plan-id');
+            const userPlanId = this.getAttribute('data-user-plan-id'); // Now correctly get user_plan_id
             const claimButton = document.querySelector(`.claim-btn[data-plan-id="${planId}"]`);
 
             if (planId === "1") {
@@ -250,6 +253,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     claimButton.classList.add('enabled');
                 };
             }
+
+            // Add the user_plan_id and plan_id to the request when user clicks 'Watch & Claim'
+            button.setAttribute('data-user-plan-id', userPlanId); // Make sure user_plan_id is set as a data attribute on the button
         });
     });
 
@@ -257,10 +263,12 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.claim-btn').forEach(button => {
         button.addEventListener('click', function () {
             const planId = this.getAttribute('data-plan-id');
+            const userPlanId = this.getAttribute('data-user-plan-id'); // Get user_plan_id
+
             fetch('', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: `plan_id=${planId}`
+                body: `plan_id=${planId}&user_plan_id=${userPlanId}` // Send both plan_id and user_plan_id
             })
             .then(response => response.json())
             .then(data => {

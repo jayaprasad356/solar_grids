@@ -26,8 +26,15 @@ if (empty($_POST['plan_id'])) {
     echo json_encode($response);
     return;
 }
+if (empty($_POST['user_plan_id'])) {
+    $response['success'] = false;
+    $response['message'] = "User Plan Id is Empty";
+    echo json_encode($response);
+    return;
+}
 $user_id = $db->escapeString($_POST['user_id']);
 $plan_id = $db->escapeString($_POST['plan_id']);
+$user_plan_id = $db->escapeString($_POST['user_plan_id']);
 $sql = "SELECT * FROM settings WHERE id=1";
 $db->sql($sql);
 $result = $db->getResult();
@@ -78,7 +85,7 @@ if ($blocked == 1) {
     return;
 }
 
-$sql = "SELECT * FROM user_plan WHERE user_id = $user_id AND plan_id = $plan_id ORDER BY claim DESC LIMIT 1";
+$sql = "SELECT * FROM user_plan WHERE user_id = $user_id AND plan_id = $plan_id AND id = $user_plan_id";
 $db->sql($sql);
 $user_plan = $db->getResult();
 if (empty($user_plan)) {
@@ -88,7 +95,6 @@ if (empty($user_plan)) {
     return;
 }
 $claim = $user_plan[0]['claim'];
-$user_plan_id = $user_plan[0]['id'];
 if ($claim == 0) {
     $response['success'] = false;
     $response['message'] = "You already claimed earnings for the day. Please claim again tomorrow.";
