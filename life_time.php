@@ -2,10 +2,17 @@
 include_once('includes/connection.php');
 session_start();
 
-// Check if the user is logged in
-$user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+// Check if the user is logged in and has a token
+if (!isset($_SESSION['id']) || !isset($_SESSION['token'])) {
+    header("Location: login.php");
+    exit();
+}
 
-if (!$user_id) {
+$user_id = $_SESSION['id'];
+$token = $_SESSION['token'];  // Get token from session
+
+if (!$token) {
+    // If no token, redirect to login page
     header("Location: login.php");
     exit();
 }
@@ -15,17 +22,25 @@ $recharge = 0; // Default value in case no recharge is found
 
 $data = array(
     "user_id" => $user_id,
-    "category" => 'life_time',
-
+    "category" => 'yearly',
 );
 
+// API URL for fetching plan list
 $apiUrl = API_URL . "plan_list.php";
 
+// Initialize cURL session
 $curl = curl_init($apiUrl);
+
+// Set the cURL options for the POST request with token authorization
 curl_setopt($curl, CURLOPT_POST, true);
-curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data)); // URL encode the data
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+// Add token in Authorization header
+curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+    "Authorization: Bearer " . $token,  // Pass token in Authorization header
+));
 
 $response = curl_exec($curl);
 
@@ -49,7 +64,6 @@ if ($response === false) {
 
 curl_close($curl);
 
-
 if (isset($_POST['btnactivate'])) {
     $plan_id = isset($_POST['plan_id']) ? $_POST['plan_id'] : null;
 
@@ -57,17 +71,29 @@ if (isset($_POST['btnactivate'])) {
         die("Plan ID not provided.");
     }
 
+    if (!$token) {
+        // If no token, redirect to login page
+        header("Location: login.php");
+        exit();
+    }
     $data = array(
         "plan_id" => $plan_id,
         "user_id" => $user_id,
     );
+
+    // API URL for activating the plan
     $apiUrl = API_URL . "activate_plan.php";
 
     $curl = curl_init($apiUrl);
     curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data)); // URL encode the data
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+    // Add token in Authorization header
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+        "Authorization: Bearer " . $token,  // Pass token in Authorization header
+    ));
 
     $response = curl_exec($curl);
 
@@ -99,13 +125,25 @@ $data = array(
     "user_id" => $user_id,
 );
 
+if (!$token) {
+    // If no token, redirect to login page
+    header("Location: login.php");
+    exit();
+}
+
+// API URL for fetching user details
 $apiUrl = API_URL . "user_details.php";
 
 $curl = curl_init($apiUrl);
 curl_setopt($curl, CURLOPT_POST, true);
-curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data)); // URL encode the data
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+// Add token in Authorization header
+curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+    "Authorization: Bearer " . $token,  // Pass token in Authorization header
+));
 
 $response = curl_exec($curl);
 

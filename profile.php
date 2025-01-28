@@ -1,9 +1,9 @@
-
 <?php
 include_once('includes/connection.php');
 
 session_start(); // Start session if not already started
 
+// Ensure the user is logged in
 if (!isset($_SESSION['id'])) {
     header("location:login.php");
     exit(); // It's a good practice to exit after redirecting
@@ -14,15 +14,32 @@ $data = array(
     "user_id" => $user_id,
 );
 
+// Retrieve the token from the session (assumed that token is stored in session)
+$token = isset($_SESSION['token']) ? $_SESSION['token'] : null;
+
+if (!$token) {
+    // If no token, redirect to login page
+    header("Location: login.php");
+    exit();
+}
+
 $apiUrl = API_URL . "user_details.php";
 
+// Initialize cURL session
 $curl = curl_init($apiUrl);
 
+// Set cURL options
 curl_setopt($curl, CURLOPT_POST, true);
-curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+curl_setopt($curl, CURLOPT_POSTFIELDS, $data); // Post data
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 
+// Set Authorization header with Bearer token
+curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+    "Authorization: Bearer " . $token, // Include token in the header
+));
+
+// Execute the cURL request
 $response = curl_exec($curl);
 
 if ($response === false) {
@@ -34,18 +51,19 @@ if ($response === false) {
 
     if ($responseData !== null && $responseData["success"]) {
         // Display user details
-        $bankdetails = $responseData["data"];
+        $userDetails = $responseData["data"];
    
-        if (!empty($bankdetails)) {
-            $name = $bankdetails[0]["name"];
-            $mobile = $bankdetails[0]["mobile"];
-            $email = $bankdetails[0]["email"];
-            $password = $bankdetails[0]["password"];
-            $city = $bankdetails[0]["city"];
-            $state = $bankdetails[0]["state"];
-            $age = $bankdetails[0]["age"];
+        if (!empty($userDetails)) {
+            $name = htmlspecialchars($userDetails[0]["name"]);
+            $mobile = htmlspecialchars($userDetails[0]["mobile"]);
+            $email = htmlspecialchars($userDetails[0]["email"]);
+            $password = htmlspecialchars($userDetails[0]["password"]);
+            $city = htmlspecialchars($userDetails[0]["city"]);
+            $state = htmlspecialchars($userDetails[0]["state"]);
+            $age = htmlspecialchars($userDetails[0]["age"]);
+            
         } else {
-            echo "No users found.";
+            echo "No user details found.";
         }
     } else {
         if ($responseData !== null) {
@@ -56,6 +74,7 @@ if ($response === false) {
 
 curl_close($curl);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -9,6 +9,7 @@ header("Pragma: no-cache");
 date_default_timezone_set('Asia/Kolkata');
 
 include_once('../includes/crud.php');
+include_once('../library/jwt.php');
 
 $db = new Database();
 $db->connect();
@@ -16,6 +17,12 @@ include_once('../includes/custom-functions.php');
 include_once('../includes/functions.php');
 include_once('verify-token.php');
 $fn = new functions;
+
+// Verify token and get the authenticated user_id
+$authenticated_user_id = verify_token();
+if (!$authenticated_user_id) {
+    return false;
+}
 
 $date = date('Y-m-d');
 
@@ -37,6 +44,13 @@ $user_id = $db->escapeString($_POST['user_id']);
 $plan_id = $db->escapeString($_POST['plan_id']);
 $coupon_code = isset($_POST['coupon_code']) ? $db->escapeString($_POST['coupon_code']) : null; // Coupon code is optional
 
+// Ensure requested user matches authenticated user
+if ($user_id != $authenticated_user_id) {
+    $response['success'] = false;
+    $response['message'] = "Unauthorized: Invalid User ID";
+    echo json_encode($response);
+    return;
+}
 // Check if user exists
 $sql = "SELECT * FROM users WHERE id = $user_id";
 $db->sql($sql);

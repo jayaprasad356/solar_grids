@@ -8,6 +8,8 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 
 include_once('../includes/crud.php');
+include_once('../library/jwt.php');
+include_once('verify-token.php'); // Include the token functions
 
 $db = new Database();
 $db->connect();
@@ -17,16 +19,17 @@ $response = array();
 if (empty($_POST['mobile'])) {
     $response['success'] = false;
     $response['message'] = "Mobile is Empty";
-    print_r(json_encode($response));
-    return false;
+    echo json_encode($response);
+    return;
 }
 
 if (empty($_POST['password'])) {
     $response['success'] = false;
-    $response['message'] = "Password is empty";
-    print_r(json_encode($response));
-    return false;
+    $response['message'] = "Password is Empty";
+    echo json_encode($response);
+    return;
 }
+
 $mobile = $db->escapeString($_POST['mobile']);
 $password = $db->escapeString($_POST['password']);
 
@@ -37,34 +40,39 @@ $user = $db->getResult();
 if (empty($user)) {
     $response['success'] = false;
     $response['message'] = "Your Mobile Number is not Registered";
-    print_r(json_encode($response));
-    return false;
+    echo json_encode($response);
+    return;
 }
+
 $sql = "SELECT * FROM users WHERE mobile = '$mobile' AND password = '$password'";
 $db->sql($sql);
 $user = $db->getResult();
+
 if (empty($user)) {
     $response['success'] = false;
-    $response['message'] = "Your Password is incorrect";
-    print_r(json_encode($response));
-    return false;
+    $response['message'] = "Your Password is Incorrect";
+    echo json_encode($response);
+    return;
 }
+
 $blocked = $user[0]['blocked'];
 
 if ($blocked == 1) {
     $response['success'] = false;
     $response['message'] = "Your Account is Blocked";
-    print_r(json_encode($response));
-    return false;
+    echo json_encode($response);
+    return;
 }
 
-$sql = "SELECT * FROM users WHERE mobile = '$mobile'";
-$db->sql($sql);
-$res = $db->getResult();
+// Call the generate_token function from verify-token.php
+$token = generate_token($user[0]['id'], $user[0]['mobile']); // Pass the user data to generate the token
+
+// Return response with token
 $response['success'] = true;
 $response['registered'] = true;
 $response['message'] = "Logged In Successfully";
-$response['data'] = $res;
-echo json_encode($response);
+$response['token'] = $token; // Include JWT token
+$response['data'] = $user;
 
+echo json_encode($response);
 ?>

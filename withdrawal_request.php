@@ -10,19 +10,33 @@ if (!isset($_SESSION['id'])) {
 
 $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null; // Ensure user_id is set
 
+// Fetch the authentication token from the session
+$token = isset($_SESSION['token']) ? $_SESSION['token'] : null;
+
+if (!$token) {
+    // If no token is found, redirect the user to login
+    header("Location: login.php");
+    exit();
+}
+
+// Prepare data for the API request
 $data = array(
     "user_id" => $user_id,
 );
-
 
 // Fetch the user's current balance
 $apiUrl = API_URL . "user_details.php"; // Ensure this endpoint provides the user's balance
 
 $curl = curl_init($apiUrl);
 curl_setopt($curl, CURLOPT_POST, true);
-curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data)); // Use http_build_query for POST data
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+// Set the Authorization header
+curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+    "Authorization: Bearer " . $token, // Pass the token as Bearer in the header
+));
 
 $response = curl_exec($curl);
 
@@ -62,17 +76,20 @@ if (isset($_POST['btnWithdrawal'])) {
 
     $curl = curl_init($apiUrl);
     curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data)); // Use http_build_query for POST data
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+    // Set the Authorization header
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+        "Authorization: Bearer " . $token, // Pass the token as Bearer in the header
+    ));
 
     $response = curl_exec($curl);
 
     if ($response === false) {
-        // Error in cURL request
         echo "Error: " . curl_error($curl);
     } else {
-        // Successful API response
         $responseData = json_decode($response, true);
         if ($responseData !== null && isset($responseData["success"])) {
             $message = $responseData["message"];
@@ -80,110 +97,109 @@ if (isset($_POST['btnWithdrawal'])) {
                 $_SESSION['balance'] = $responseData['balance'];
                 $balance = $_SESSION['balance'];
             }
-            // Alert and redirect
             echo "<script>
                     alert('$message');
                     window.location.href = 'withdrawals.php';
                   </script>";
         } else {
-            // Failed to fetch transaction details
             if ($responseData !== null) {
                 echo "<script>alert('".$responseData["message"]."')</script>";
             }
         }
     }
-    
     curl_close($curl);
 }
+
 $_SESSION['earning_wallet'] = $earning_wallet;
 
-    if (isset($_POST['btnearningwallet'])) {
-        $wallet_type = isset($_POST['wallet_type']) ? $_POST['wallet_type'] : 'earning_wallet';
-        $data = array(
-            "user_id" => $user_id,
-            "wallet_type" => $wallet_type,
-        );
-        $apiUrl = API_URL . "add_main_balance.php";
-    
-        $curl = curl_init($apiUrl);
-        curl_setopt($curl, CURLOPT_POST, true);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-    
-        $response = curl_exec($curl);
-    
-        if ($response === false) {
-            // Error in cURL request
-            echo "Error: " . curl_error($curl);
-        } else {
-            // Successful API response
-            $responseData = json_decode($response, true);
-            if ($responseData !== null && isset($responseData["success"])) {
-                $message = $responseData["message"];
-                if (isset($responseData["earning_wallet"])) {
-                    $_SESSION['earning_wallet'] = $responseData['earning_wallet'];
-                    $earning_wallet = $_SESSION['earning_wallet'];
-                }
-                // Alert and redirect
-                echo "<script>
+if (isset($_POST['btnearningwallet'])) {
+    $wallet_type = isset($_POST['wallet_type']) ? $_POST['wallet_type'] : 'earning_wallet';
+    $data = array(
+        "user_id" => $user_id,
+        "wallet_type" => $wallet_type,
+    );
+    $apiUrl = API_URL . "add_main_balance.php";
+
+    $curl = curl_init($apiUrl);
+    curl_setopt($curl, CURLOPT_POST, true);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data)); // Use http_build_query for POST data
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+    // Set the Authorization header
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+        "Authorization: Bearer " . $token, // Pass the token as Bearer in the header
+    ));
+
+    $response = curl_exec($curl);
+
+    if ($response === false) {
+        echo "Error: " . curl_error($curl);
+    } else {
+        $responseData = json_decode($response, true);
+        if ($responseData !== null && isset($responseData["success"])) {
+            $message = $responseData["message"];
+            if (isset($responseData["earning_wallet"])) {
+                $_SESSION['earning_wallet'] = $responseData['earning_wallet'];
+                $earning_wallet = $_SESSION['earning_wallet'];
+            }
+            echo "<script>
                         alert('$message');
                         window.location.href = 'withdrawal_request.php';
                       </script>";
-            } else {
-                // Failed to fetch transaction details
-                if ($responseData !== null) {
-                    echo "<script>alert('".$responseData["message"]."')</script>";
-                }
+        } else {
+            if ($responseData !== null) {
+                echo "<script>alert('".$responseData["message"]."')</script>";
             }
         }
-        
-        curl_close($curl);
+    }
+    curl_close($curl);
 }
+
 $_SESSION['bonus_wallet'] = $bonus_wallet;
 
-    if (isset($_POST['btnbonuswallet'])) {
-        $wallet_type = isset($_POST['wallet_type']) ? $_POST['wallet_type'] : 'bonus_wallet';
-        $data = array(
-            "user_id" => $user_id,
-            "wallet_type" => $wallet_type,
-        );
-        $apiUrl = API_URL . "add_main_balance.php";
-    
-        $curl = curl_init($apiUrl);
-        curl_setopt($curl, CURLOPT_POST, true);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-    
-        $response = curl_exec($curl);
-    
-        if ($response === false) {
-            // Error in cURL request
-            echo "Error: " . curl_error($curl);
-        } else {
-            // Successful API response
-            $responseData = json_decode($response, true);
-            if ($responseData !== null && isset($responseData["success"])) {
-                $message = $responseData["message"];
-                if (isset($responseData["bonus_wallet"])) {
-                    $_SESSION['bonus_wallet'] = $responseData['bonus_wallet'];
-                    $bonus_wallet = $_SESSION['bonus_wallet'];
-                }
-                // Alert and redirect
-                echo "<script>
+if (isset($_POST['btnbonuswallet'])) {
+    $wallet_type = isset($_POST['wallet_type']) ? $_POST['wallet_type'] : 'bonus_wallet';
+    $data = array(
+        "user_id" => $user_id,
+        "wallet_type" => $wallet_type,
+    );
+    $apiUrl = API_URL . "add_main_balance.php";
+
+    $curl = curl_init($apiUrl);
+    curl_setopt($curl, CURLOPT_POST, true);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data)); // Use http_build_query for POST data
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+    // Set the Authorization header
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+        "Authorization: Bearer " . $token, // Pass the token as Bearer in the header
+    ));
+
+    $response = curl_exec($curl);
+
+    if ($response === false) {
+        echo "Error: " . curl_error($curl);
+    } else {
+        $responseData = json_decode($response, true);
+        if ($responseData !== null && isset($responseData["success"])) {
+            $message = $responseData["message"];
+            if (isset($responseData["bonus_wallet"])) {
+                $_SESSION['bonus_wallet'] = $responseData['bonus_wallet'];
+                $bonus_wallet = $_SESSION['bonus_wallet'];
+            }
+            echo "<script>
                         alert('$message');
                         window.location.href = 'withdrawal_request.php';
                       </script>";
-            } else {
-                // Failed to fetch transaction details
-                if ($responseData !== null) {
-                    echo "<script>alert('".$responseData["message"]."')</script>";
-                }
+        } else {
+            if ($responseData !== null) {
+                echo "<script>alert('".$responseData["message"]."')</script>";
             }
         }
-        
-        curl_close($curl);
+    }
+    curl_close($curl);
 }
 ?>
 

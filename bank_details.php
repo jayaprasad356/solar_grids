@@ -2,8 +2,10 @@
 include_once('includes/connection.php');
 session_start();
 
+// Ensure the user is logged in
 if (!isset($_SESSION['id'])) {
   header("location:login.php");
+  exit();
 }
 
 $user_id = $_SESSION['id']; // Replace with the actual user_id
@@ -11,6 +13,14 @@ $data = array(
     "user_id" => $user_id,
 );
 
+// Retrieve the token from session
+$token = isset($_SESSION['token']) ? $_SESSION['token'] : null;
+
+if (!$token) {
+    // If no token is found, redirect to login page
+    header("Location: login.php");
+    exit();
+}
 
 if (isset($_POST['btnUpdate'])) {
     // Gather user input data and sanitize it
@@ -30,16 +40,22 @@ if (isset($_POST['btnUpdate'])) {
         "ifsc" => $ifsc,
     );
 
-   
-    $apiUrl = API_URL."update_bank_details.php"; 
+    // API endpoint to update bank details
+    $apiUrl = API_URL . "update_bank_details.php"; 
+
     // Initialize cURL session
     $curl = curl_init($apiUrl);
 
     // Set cURL options
     curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $data); // POST data
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+    // Set the Authorization header
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+        "Authorization: Bearer " . $token, // Add token to the header
+    ));
 
     // Execute the cURL request
     $response = curl_exec($curl);
@@ -52,14 +68,11 @@ if (isset($_POST['btnUpdate'])) {
         $responseData = json_decode($response, true);
         if ($responseData !== null && isset($responseData["success"])) {
             $message = $responseData["message"];
-            if(isset($responseData["balance"])){
-              $_SESSION['balance'] = $responseData['balance'];
-            $balance = $_SESSION['balance'] ;
-    
+            if (isset($responseData["balance"])) {
+                $_SESSION['balance'] = $responseData['balance'];
+                $balance = $_SESSION['balance'];
             }
-            
             echo "<script>alert('$message');</script>";
-    
         } else {
             echo "<script>alert('".$responseData["message"]."')</script>";
         }
@@ -68,32 +81,26 @@ if (isset($_POST['btnUpdate'])) {
     // Close cURL session
     curl_close($curl);
 }
-?>
 
-<?php
+// Fetch bank details
+$apiUrl = API_URL . "bank_details.php";
 
-
-if (!isset($_SESSION['id'])) {
-  header("location:index.php");
-}
-
-$user_id = $_SESSION['id']; // Replace with the actual user_id
-$data = array(
-    "user_id" => $user_id,
-);
-
-$apiUrl = API_URL."bank_details.php";
-
-
+// Initialize cURL session
 $curl = curl_init($apiUrl);
 
+// Set cURL options
 curl_setopt($curl, CURLOPT_POST, true);
-curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+curl_setopt($curl, CURLOPT_POSTFIELDS, $data); // POST data
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 
-$response = curl_exec($curl);
+// Set the Authorization header
+curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+    "Authorization: Bearer " . $token, // Add token to the header
+));
 
+// Execute the cURL request
+$response = curl_exec($curl);
 
 if ($response === false) {
     // Error in cURL request
@@ -103,7 +110,7 @@ if ($response === false) {
     $responseData = json_decode($response, true);
 
     if ($responseData !== null && $responseData["success"]) {
-        // Display transaction details
+        // Display bank details
         $bankdetails = $responseData["data"];
    
         if (!empty($bankdetails)) {
@@ -113,7 +120,7 @@ if ($response === false) {
             $branch = $bankdetails[0]["branch"];
             $ifsc = $bankdetails[0]["ifsc"];
         } else {
-            echo "No transactions found.";
+            echo "No bank details found.";
         }
     } else {
         if ($responseData !== null) {
@@ -124,6 +131,7 @@ if ($response === false) {
 
 curl_close($curl);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

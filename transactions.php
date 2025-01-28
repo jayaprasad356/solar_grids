@@ -9,6 +9,15 @@ if (!$user_id) {
     exit();
 }
 
+// Retrieve the token from the session
+$token = isset($_SESSION['token']) ? $_SESSION['token'] : null;
+
+if (!$token) {
+    // If no token is found, redirect the user to login
+    header("Location: login.php");
+    exit();
+}
+
 $data = array(
     "user_id" => $user_id,
 );
@@ -18,9 +27,14 @@ $apiUrl = API_URL . "transactions_list.php";
 $curl = curl_init($apiUrl);
 
 curl_setopt($curl, CURLOPT_POST, true);
-curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data)); // Use http_build_query for POST data
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+// Set the Authorization header
+curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+    "Authorization: Bearer " . $token, // Pass the token as Bearer in the header
+));
 
 $response = curl_exec($curl);
 
@@ -35,13 +49,13 @@ if ($response === false) {
         // Store transaction details
         $userdetails = $responseData["data"];
     } else {
-     
         $userdetails = [];
     }
 }
 
 curl_close($curl);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

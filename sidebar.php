@@ -3,9 +3,12 @@ include_once('includes/connection.php');
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-$user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
 
-if (!$user_id) {
+// Check if user is logged in and has a token
+$user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+$token = isset($_SESSION['token']) ? $_SESSION['token'] : null;  // Get token from session
+
+if (!$user_id || !$token) {
     header("Location: login.php");
     exit();
 }
@@ -14,14 +17,22 @@ $data = array(
     "user_id" => $user_id,
 );
 
-$apiUrl = API_URL."user_details.php";
+$apiUrl = API_URL . "user_details.php";
+
+// Set authorization header with token
+$headers = array(
+    "Authorization: Bearer " . $token,  // Pass token in Authorization header
+    "Content-Type: application/x-www-form-urlencoded"
+);
 
 $curl = curl_init($apiUrl);
-
 curl_setopt($curl, CURLOPT_POST, true);
-curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data)); // Ensure data is URL-encoded
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($curl, CURLOPT_TIMEOUT, 10);  // Set timeout to 10 seconds
+curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10); // Connection timeout
 
 $response = curl_exec($curl);
 
@@ -45,6 +56,7 @@ if ($response === false) {
 
 curl_close($curl);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

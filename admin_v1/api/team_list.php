@@ -8,9 +8,19 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 
 include_once('../includes/crud.php');
+include_once('../library/jwt.php');
+include_once('verify-token.php'); // Include the token functions
 
 $db = new Database();
 $db->connect();
+
+$response = array();
+
+// Verify token and get the authenticated user_id
+$authenticated_user_id = verify_token();
+if (!$authenticated_user_id) {
+    return false;
+}
 
 if (empty($_POST['user_id'])) {
     $response['success'] = false;
@@ -28,6 +38,13 @@ if (empty($_POST['level'])) {
 $user_id = $db->escapeString($_POST['user_id']);
 $level = $db->escapeString($_POST['level']);
 
+// Ensure requested user matches authenticated user
+if ($user_id != $authenticated_user_id) {
+    $response['success'] = false;
+    $response['message'] = "Unauthorized: Invalid User ID";
+    echo json_encode($response);
+    return;
+}
 
 $sql_user = "SELECT refer_code FROM users WHERE id = $user_id";
 $db->sql($sql_user);

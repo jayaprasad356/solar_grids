@@ -30,13 +30,16 @@ if (isset($_POST['btnLogin'])) {
             // Successful API response
             $responseData = json_decode($response, true);
             if ($responseData !== null && $responseData["success"]) {
-                // Display transaction details
                 $userdetails = $responseData["data"];
-                if (!empty($userdetails)) {
+                $token = $responseData["token"] ?? null; // Get token from API response
+
+                if (!empty($userdetails) && $token) {
                     $_SESSION['id'] = $userdetails[0]["id"];
+                    $_SESSION['token'] = $token; // Store JWT token in session
                     header("Location: dashboard.php");
+                    exit();
                 } else {
-                    echo "No transactions found.";
+                    echo "No Users found.";
                 }
             } else {
                 if ($responseData !== null) {

@@ -10,6 +10,15 @@ if (!isset($_SESSION['id'])) {
 
 $user_id = $_SESSION['id'];
 
+// Retrieve the token from session
+$token = isset($_SESSION['token']) ? $_SESSION['token'] : null;
+
+if (!$token) {
+    // If no token is found, redirect to login page
+    header("Location: login.php");
+    exit();
+}
+
 if (isset($_POST['btnUpdate'])) {
     // Gather and sanitize user input data
     $password = isset($_POST["password"]) ? htmlspecialchars($_POST["password"]) : "";
@@ -34,9 +43,14 @@ if (isset($_POST['btnUpdate'])) {
 
     // Set cURL options
     curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data)); // Ensure POST data is formatted correctly
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+    // Set the Authorization header
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+        "Authorization: Bearer " . $token, // Include token in the Authorization header
+    ));
 
     // Execute the cURL request
     $response = curl_exec($curl);

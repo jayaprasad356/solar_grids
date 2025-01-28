@@ -2,9 +2,16 @@
 include_once('includes/connection.php');
 session_start();
 
-// Check if the user is logged in
-$user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
-if (!$user_id) {
+// Check if the user is logged in and has a token
+if (!isset($_SESSION['id']) || !isset($_SESSION['token'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$user_id = $_SESSION['id'];
+$token = $_SESSION['token'];  // Get token from session
+if (!$token) {
+    // If no token, redirect to login page
     header("Location: login.php");
     exit();
 }
@@ -14,9 +21,15 @@ $data = array("user_id" => $user_id);
 $apiUrl = API_URL . "user_plan_list.php";
 $curl = curl_init($apiUrl);
 curl_setopt($curl, CURLOPT_POST, true);
-curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data)); // URL encode the data
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+// Add token in Authorization header
+curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+    "Authorization: Bearer " . $token,  // Pass token in Authorization header
+));
+
 $response = curl_exec($curl);
 if ($response === false) {
     echo "Error: " . curl_error($curl);
@@ -35,13 +48,23 @@ curl_close($curl);
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plan_id'], $_POST['user_plan_id'])) {
     $plan_id = $_POST['plan_id'];
     $user_plan_id = $_POST['user_plan_id']; // Get the user_plan_id from the POST data
-    $claimData = array("user_id" => $user_id, "plan_id" => $plan_id, "user_plan_id" => $user_plan_id); // Add user_plan_id
+    $claimData = array(
+        "user_id" => $user_id,
+        "plan_id" => $plan_id,
+        "user_plan_id" => $user_plan_id // Add user_plan_id
+    );
     $apiUrl = API_URL . "claim.php";
     $curl = curl_init($apiUrl);
     curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $claimData);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($claimData)); // URL encode the data
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+    // Add token in Authorization header
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+        "Authorization: Bearer " . $token,  // Pass token in Authorization header
+    ));
+
     $response = curl_exec($curl);
     curl_close($curl);
     $responseData = json_decode($response, true);
@@ -54,6 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['plan_id'], $_POST['us
 }
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

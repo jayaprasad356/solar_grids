@@ -1,76 +1,96 @@
 <?php
 include_once('includes/connection.php');
 session_start();
-if (!isset($_SESSION['id'])) {
-    header("Location: login.php");
-    exit();
-}
-$user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null; // Ensure user_id is set
 
-if (!$user_id) {
+// Check if user is logged in and has a token
+if (!isset($_SESSION['id']) || !isset($_SESSION['token'])) {
     header("Location: login.php");
     exit();
 }
 
+$user_id = $_SESSION['id'];
+$token = $_SESSION['token'];  // Get token from session
+
+if (!$token) {
+    // If no token, redirect to login page
+    header("Location: login.php");
+    exit();
+}
+
+// Function to make an authenticated API request (for user details)
+function fetchUserData($apiUrl, $user_id, $token) {
+    $data = array(
+        "user_id" => $user_id  // Ensure that user_id is passed to the API
+    );
+
+    // Set authorization header with token
+    $headers = array(
+        "Authorization: Bearer " . $token,  // Pass token in Authorization header
+        "Content-Type: application/x-www-form-urlencoded"
+    );
+
+    $curl = curl_init($apiUrl);
+    curl_setopt($curl, CURLOPT_POST, true);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data)); // Ensure data is URL-encoded
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($curl, CURLOPT_TIMEOUT, 10);  // Set timeout to 10 seconds
+    curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10); // Connection timeout
+
+    // Execute the request and decode the response
+    $response = curl_exec($curl);
+    curl_close($curl); // Close curl after request is done
+
+    // Return the decoded response or an empty array if the response is false
+    return $response ? json_decode($response, true) : [];
+}
+
+// Fetch user details (Requires Token)
+$userApiUrl = API_URL . "user_details.php";
+$userResponseData = fetchUserData($userApiUrl, $user_id, $token);
+
+// Check if the response is successful
+if (!empty($userResponseData) && isset($userResponseData["success"]) && $userResponseData["success"]) {
+    $userdetails = $userResponseData["data"];
+    if (!empty($userdetails)) {
+        // Extract necessary user details
+        $total_income = $userdetails[0]["total_income"];
+        $total_recharge = $userdetails[0]["total_recharge"];
+        $balance = $userdetails[0]["balance"];
+        $total_withdrawal = $userdetails[0]["total_withdrawal"];
+        $today_income = $userdetails[0]["today_income"];
+        $team_income = $userdetails[0]["team_income"];
+    }
+} else {
+    // Handle error if the response doesn't indicate success
+    echo "<script>alert('".$userResponseData["message"]."'); window.location='login.php';</script>";
+    exit();
+}
+?>
+
+<?php
+// Ensure to define $data for the second API request
 $data = array(
-    "user_id" => $user_id,
+    "user_id" => $user_id // Pass the user_id here if needed
 );
 
-$apiUrl = API_URL."user_details.php";
-
-
-$curl = curl_init($apiUrl);
-
-curl_setopt($curl, CURLOPT_POST, true);
-curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-
-$response = curl_exec($curl);
-
-
-if ($response === false) {
-    // Error in cURL request
-    echo "Error: " . curl_error($curl);
-} else {
-    // Successful API response
-    $responseData = json_decode($response, true);
-    if ($responseData !== null && $responseData["success"]) {
-        // Display transaction details
-        $userdetails = $responseData["data"];
-        if (!empty($userdetails)) {
-            $total_income = $userdetails[0]["total_income"];
-            $total_recharge = $userdetails[0]["total_recharge"];
-            $balance = $userdetails[0]["balance"];
-            $total_withdrawal = $userdetails[0]["total_withdrawal"];
-            $today_income = $userdetails[0]["today_income"];
-            $team_income = $userdetails[0]["team_income"];
-        } else {
-            echo "<script>alert('".$responseData["message"]."')</script>";
-        }
-    } else {
-
-        if ($responseData !== null) {
-            echo "<script>alert('".$responseData["message"]."')</script>";
-    
-        }
-    }
-}
-
-curl_close($curl);
-?>
-<?php
+// API URL for settings
 $apiUrl = API_URL . "settings.php";
 
+// Initialize cURL session
 $curl = curl_init($apiUrl);
 
+// Set the cURL options for the POST request
 curl_setopt($curl, CURLOPT_POST, true);
-curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data)); // Ensure data is URL-encoded
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 
+// Execute the cURL request
 $response = curl_exec($curl);
 
+// Check for cURL errors
 if ($response === false) {
     // Error in cURL request
     echo "Error: " . curl_error($curl);
@@ -90,6 +110,9 @@ if ($response === false) {
         }
     }
 }
+
+// Close cURL session
+curl_close($curl);
 ?>
 
 

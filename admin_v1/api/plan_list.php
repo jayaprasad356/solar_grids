@@ -6,11 +6,23 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 header("Cache-Control: no-store, no-cache, must-revalidate");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
+date_default_timezone_set('Asia/Kolkata');
 
 include_once('../includes/crud.php');
+include_once('../library/jwt.php');
 
 $db = new Database();
 $db->connect();
+include_once('../includes/custom-functions.php');
+include_once('../includes/functions.php');
+include_once('verify-token.php');
+$fn = new functions;
+
+// Verify token and get the authenticated user_id
+$authenticated_user_id = verify_token();
+if (!$authenticated_user_id) {
+    return false;
+}
 
 if (empty($_POST['user_id'])) {
     $response['success'] = false;
@@ -21,6 +33,13 @@ if (empty($_POST['user_id'])) {
 
 $user_id = $db->escapeString($_POST['user_id']);
 $category = isset($_POST['category']) ? $db->escapeString($_POST['category']) : '';
+
+if ($user_id != $authenticated_user_id) {
+    $response['success'] = false;
+    $response['message'] = "Unauthorized: Invalid User ID";
+    echo json_encode($response);
+    return;
+}
 
 $sql = "SELECT * FROM users WHERE id = $user_id";
 $db->sql($sql);

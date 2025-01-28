@@ -2,46 +2,74 @@
 include_once('includes/connection.php');
 session_start();
 
-$user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null; // Ensure user_id is set
+// Check if the user is logged in
+$user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
 
 if (!$user_id) {
     header("Location: login.php");
     exit();
 }
 
+// Fetch the authentication token from the session
+$token = isset($_SESSION['token']) ? $_SESSION['token'] : null;
+
+if (!$token) {
+    // If no token is found, redirect the user to login
+    header("Location: login.php");
+    exit();
+}
+
+// Prepare data for the API request
 $data = array(
     "user_id" => $user_id,
 );
 
+// API URL
 $apiUrl = API_URL . "withdrawals_list.php";
 
+// Initialize cURL session
 $curl = curl_init($apiUrl);
 
+// Set cURL options
 curl_setopt($curl, CURLOPT_POST, true);
-curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data)); // Use http_build_query for POST data
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+// Set authorization token in headers
+curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+    "Authorization: Bearer " . $token, // Pass the token as Bearer in the header
+));
 
 $response = curl_exec($curl);
 
 if ($response === false) {
-    // Error in cURL request
     echo "Error: " . curl_error($curl);
-    $userdetails = [];
+    $userdetails = []; // Initialize as an empty array in case of error
 } else {
-    // Successful API response
+    // Parse the API response
     $responseData = json_decode($response, true);
-    if ($responseData !== null && $responseData["success"]) {
-        // Store transaction details
-        $userdetails = $responseData["data"];
+    
+    // Check if token is expired or invalid
+    if ($responseData === null || (isset($responseData["success"]) && !$responseData["success"])) {
+        if (isset($responseData["message"]) && stripos($responseData["message"], "token") !== false) {
+            // Token is expired or invalid -> Clear session and redirect to login
+            session_unset();
+            session_destroy();
+            header("Location: login.php");
+            exit();
+        }
+        $userdetails = []; // If there's an error or no data
     } else {
-     
-        $userdetails = [];
+        // Extract the withdrawal details from the response
+        $userdetails = $responseData["data"];
     }
 }
 
 curl_close($curl);
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

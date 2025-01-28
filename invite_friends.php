@@ -1,55 +1,73 @@
-
 <?php
 include_once('includes/connection.php');
 session_start();
+
+// Check if the user is logged in
 if (!isset($_SESSION['id'])) {
     header("Location: login.php");
     exit();
 }
-$user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null; // Ensure user_id is set
+$user_id = $_SESSION['id']; // Retrieve the user ID from session
 
-if (!$user_id) {
+// Fetch the authentication token from the session or elsewhere
+$token = isset($_SESSION['token']) ? $_SESSION['token'] : null; // Adjust based on your implementation
+
+if (!$token) {
+    // If no token is found, redirect the user to login
     header("Location: login.php");
     exit();
 }
 
+// Prepare data for the API request
 $data = array(
     "user_id" => $user_id,
 );
 
-$apiUrl = API_URL."user_details.php";
+// API URL
+$apiUrl = API_URL . "user_details.php";
 
-
+// Initialize cURL session
 $curl = curl_init($apiUrl);
 
+// Set cURL options
 curl_setopt($curl, CURLOPT_POST, true);
-curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data)); // Use http_build_query for POST data
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 
+// Set authorization token in headers
+curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+    "Authorization: Bearer " . $token, // Pass the token as Bearer in the header
+));
+
+// Execute cURL request and capture response
 $response = curl_exec($curl);
 
-
+// Check for cURL errors
 if ($response === false) {
-    // Error in cURL request
     echo "Error: " . curl_error($curl);
 } else {
-    // Successful API response
+    // Parse the API response
     $responseData = json_decode($response, true);
+    
     if ($responseData !== null && $responseData["success"]) {
-        // Display transaction details
+        // Extract the user details from the response
         $userdetails = $responseData["data"];
+        
         if (!empty($userdetails)) {
-            $refer_code = $userdetails[0]["refer_code"];
+            $refer_code = $userdetails[0]["refer_code"]; // Store the refer_code
+           
         } else {
-            echo "No transactions found.";
+            echo "No user details found.";
         }
     } else {
+        // Handle error message from API
         if ($responseData !== null) {
             echo "<script>alert('".$responseData["message"]."')</script>";
         }
     }
 }
+
 
 curl_close($curl);
 // Fetch the user's current balance

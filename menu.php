@@ -2,27 +2,42 @@
 include_once('includes/connection.php');
 session_start();
 
-// Ensure the user is logged in
-if (!isset($_SESSION['id'])) {
+// Ensure the user is logged in and has a token
+if (!isset($_SESSION['id']) || !isset($_SESSION['token'])) {
     header("Location: login.php");
     exit();
 }
 
 $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null; // Ensure user_id is set
+$token = isset($_SESSION['token']) ? $_SESSION['token'] : null;  // Ensure token is set
+
+if (!$token) {
+    // If no token, redirect to login page
+    header("Location: login.php");
+    exit();
+}
 
 $data = array(
     "user_id" => $user_id,
 );
 
-
 // Fetch the user's current balance
 $apiUrl = API_URL . "user_details.php"; // Ensure this endpoint provides the user's balance
 
+// Set authorization header with token
+$headers = array(
+    "Authorization: Bearer " . $token,  // Pass token in Authorization header
+    "Content-Type: application/x-www-form-urlencoded"
+);
+
 $curl = curl_init($apiUrl);
 curl_setopt($curl, CURLOPT_POST, true);
-curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data)); // Ensure data is URL-encoded
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($curl, CURLOPT_TIMEOUT, 10);  // Set timeout to 10 seconds
+curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10); // Connection timeout
 
 $response = curl_exec($curl);
 
@@ -49,6 +64,7 @@ if ($response === false) {
 }
 curl_close($curl);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

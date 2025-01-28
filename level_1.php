@@ -3,14 +3,21 @@ include_once('includes/connection.php');
 session_start();
 
 // Check if session is set
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['id']) || !isset($_SESSION['token'])) {
     header("Location: login.php");
     exit();
 }
 
 $user_id = $_SESSION['id']; // Retrieve user ID from session
+$token = $_SESSION['token']; // Retrieve token from session
 
-function fetchUserDetails($level, $user_id) {
+if (!$token) {
+    // If no token, redirect to login page
+    header("Location: login.php");
+    exit();
+}
+
+function fetchUserDetails($level, $user_id, $token) {
     $data = array(
         "user_id" => $user_id,
         "level" => $level,
@@ -22,6 +29,11 @@ function fetchUserDetails($level, $user_id) {
     curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+    // Add the token to the Authorization header
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+        "Authorization: Bearer " . $token,  // Pass token in Authorization header
+    ));
 
     $response = curl_exec($curl);
 
@@ -38,11 +50,12 @@ function fetchUserDetails($level, $user_id) {
     }
 }
 
-// Fetch details for each level
-$userdetails_level1 = fetchUserDetails("b", $user_id);
-$userdetails_level2 = fetchUserDetails("c", $user_id);
-$userdetails_level3 = fetchUserDetails("d", $user_id);
+// Fetch details for each level, passing token along with the user_id
+$userdetails_level1 = fetchUserDetails("b", $user_id, $token);
+$userdetails_level2 = fetchUserDetails("c", $user_id, $token);
+$userdetails_level3 = fetchUserDetails("d", $user_id, $token);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
