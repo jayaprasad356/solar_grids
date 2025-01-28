@@ -15,8 +15,6 @@ date_default_timezone_set('Asia/Kolkata');
 include_once('../includes/functions.php');
 $fn = new functions;
 
-
-
 if (empty($_POST['user_id'])) {
     $response['success'] = false;
     $response['message'] = "User Id is Empty";
@@ -53,12 +51,6 @@ if (empty($_POST['ifsc'])) {
     print_r(json_encode($response));
     return false;
 }
-// if (!preg_match("/^[A-Z]{4}0[A-Z0-9]{6}$/", $_POST['ifsc'])) {
-//     $response['success'] = false;
-//     $response['message'] = "Invalid IFSC Code";
-//     print_r(json_encode($response));
-//     return false;
-// }
 
 $account_num = $db->escapeString($_POST['account_num']);
 $holder_name = $db->escapeString($_POST['holder_name']);
@@ -74,13 +66,19 @@ if (!preg_match("/^[A-Z]{4}0[A-Z0-9]{6}$/", $ifsc)) {
     return false;
 }
 
-
 $sql = "SELECT * FROM users WHERE id = $user_id";
 $db->sql($sql);
 $res = $db->getResult();
 $num = $db->numRows($res);
 
 if ($num == 1) {
+    $user = $res[0];
+    if (!empty($user['account_num']) || !empty($user['holder_name']) || !empty($user['bank']) || !empty($user['branch']) || !empty($user['ifsc'])) {
+        $response['success'] = false;
+        $response['message'] = "Bank details have already been updated and cannot be changed again.";
+        print_r(json_encode($response));
+        return false;
+    }
     $sql = "UPDATE `users` SET `account_num` = '$account_num',`holder_name` = '$holder_name',`bank` = '$bank',`branch` = '$branch',`ifsc` = '$ifsc' WHERE `id` = $user_id";
     $db->sql($sql);
     $sql = "SELECT * FROM users WHERE id = $user_id";
@@ -95,6 +93,4 @@ if ($num == 1) {
     $response['message'] = "User Not found";
     print_r(json_encode($response));
 }
-
-
 ?>
