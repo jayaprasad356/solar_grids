@@ -30,11 +30,11 @@ if (isset($_POST['btnLogin'])) {
 
     // if email and password is not empty, check in database
     if (!empty($email) && !empty($password)) {
-        if (($email == 'admin' && $password == 'admin123') || ($email == 'subadmin' && $password == 'subadmin123')) {
-            if ($email == 'admin') {
+        if (($email == 'Solarpe' && $password == 'Solarpe@01') || ($email == 'subadmin' && $password == 'subadmin123')) {
+            if ($email == 'Solarpe') {
                 $_SESSION['id'] = '1';
                 $_SESSION['role'] ='admin';
-                $_SESSION['username'] = 'admin';
+                $_SESSION['username'] = 'Solarpe';
                 $_SESSION['email'] = 'admin@gmail.com';
                 $_SESSION['timeout'] = $currentTime + $expired;
                 header("location: home.php");
