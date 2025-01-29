@@ -1,6 +1,6 @@
 <?php
 
-// define('DOMAIN_URL', 'https://demo.solarpe.org/admin_v1/');
+// define('DOMAIN_URL', 'https://demo.solarpe.org/main_controlv3');
  define('DOMAIN_URL', 'https://solarpe.org/main_controlv3/'); /* chnage to your domain here - don't forget to add forward slash at the end of the URL like this "/" */
 define('ALLOW_MODIFICATION', 1);
 define('JWT_SECRET_KEY', '12345678'); /* chnage to your secret key here set it to anything you like*/
