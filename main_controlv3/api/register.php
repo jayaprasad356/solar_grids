@@ -8,8 +8,6 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 date_default_timezone_set('Asia/Kolkata');
 include_once('../includes/crud.php');
-include_once('../library/jwt.php');
-include_once('verify-token.php'); // Include the token functions
 
 $db = new Database();
 $db->connect();
@@ -89,8 +87,7 @@ $age = $db->escapeString($_POST['age']);
 $city = $db->escapeString($_POST['city']);
 $email = $db->escapeString($_POST['email']);
 $state = $db->escapeString($_POST['state']);
-// $password = $db->escapeString($_POST['password']);
-$password = password_hash($db->escapeString($_POST['password']), PASSWORD_BCRYPT);
+$password = $db->escapeString($_POST['password']);
 $referred_by = $db->escapeString($_POST['referred_by']);
 $c_referred_by = '';
 $d_referred_by = '';
@@ -170,11 +167,8 @@ if ($num >= 1) {
     $db->sql($sql);
     $res = $db->getResult();
 
-    $token = generate_token($res[0]['id'], $res[0]['mobile']); // Pass the user data to generate the token
-
     $response['success'] = true;
     $response['message'] = "Successfully Registered";
-    $response['token'] = $token; // Include JWT token
     $response['data'] = $res;
     print_r(json_encode($response));
 }
