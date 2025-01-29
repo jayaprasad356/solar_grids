@@ -1,7 +1,7 @@
 <?php
 
 // define('DOMAIN_URL', 'https://demo.solarpe.org/admin_v1/');
- define('DOMAIN_URL', 'https://solarpe.org/admin_v1/'); /* chnage to your domain here - don't forget to add forward slash at the end of the URL like this "/" */
+ define('DOMAIN_URL', 'https://solarpe.org/main_controlv3/'); /* chnage to your domain here - don't forget to add forward slash at the end of the URL like this "/" */
 define('ALLOW_MODIFICATION', 1);
 define('JWT_SECRET_KEY', '12345678'); /* chnage to your secret key here set it to anything you like*/
 define('MAIN_REFER', 'ATN');
@@ -18,9 +18,9 @@ class Database
 
          //  live server
          private $db_host = "localhost";
-         private $db_user = "u117947056_solarpe";
-         private $db_pass = "Solarpe@2024"; 
-         private $db_name = "u117947056_solarpe"; 
+         private $db_user = "root";
+         private $db_pass = ""; 
+         private $db_name = "solar_grids"; 
  
     // demo server
     // private $db_host = "localhost";

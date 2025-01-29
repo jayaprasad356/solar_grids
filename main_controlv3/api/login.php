@@ -44,11 +44,11 @@ if (empty($user)) {
     return;
 }
 
-$sql = "SELECT * FROM users WHERE mobile = '$mobile' AND password = '$password'";
-$db->sql($sql);
-$user = $db->getResult();
+// Get the hashed password from the database
+$stored_hashed_password = $user[0]['password'];
 
-if (empty($user)) {
+// Use password_verify() to check if the entered password matches the stored hash
+if (!password_verify($password, $stored_hashed_password)) {
     $response['success'] = false;
     $response['message'] = "Your Password is Incorrect";
     echo json_encode($response);
@@ -63,7 +63,6 @@ if ($blocked == 1) {
     echo json_encode($response);
     return;
 }
-
 // Call the generate_token function from verify-token.php
 $token = generate_token($user[0]['id'], $user[0]['mobile']); // Pass the user data to generate the token
 
