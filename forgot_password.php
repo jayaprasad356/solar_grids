@@ -61,7 +61,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forgot Password</title>
-    <link rel="icon" type="image/x-icon" href="main_controlv3dist/img/jiyo">
+    <link rel="icon" type="image/x-icon" href="main_controlv3/dist/img/jiyo">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome CSS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -75,7 +75,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === 'true') {
         body {
             font-family: 'Poppins', Arial, sans-serif;
             background: #efefef;
-        background: url(./main_controlv3images/bg-green-grid.png);
+        background: url(./main_controlv3/images/bg-green-grid.png);
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
