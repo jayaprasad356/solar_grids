@@ -34,6 +34,7 @@ if (isset($_POST['btnUpdate'])) {
     $data = array(
         "user_id" => $user_id,
         "password" => $password,
+        "confirm_password" => $confirm_password,
     );
 
     $apiUrl = API_URL . "change_password.php"; 
