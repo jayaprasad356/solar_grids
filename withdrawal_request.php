@@ -331,7 +331,7 @@ if (isset($_POST['btnbonuswallet'])) {
             </div>
         </div>
 
-                <h6>Withdrawal Request Timing Between 4pm to 6pm </h6>
+                <h6>Withdrawal Request Timing Between 10am to 6pm </h6>
                 <br>
                 <!-- Existing Withdrawal Request Title and Form -->
                 <h2>Withdrawal Request</h2>

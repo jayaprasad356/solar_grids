@@ -22,7 +22,7 @@ $recharge = 0; // Default value in case no recharge is found
 
 $data = array(
     "user_id" => $user_id,
-    "category" => 'yearly',
+    "category" => 'life_time',
 );
 
 // API URL for fetching plan list
