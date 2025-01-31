@@ -50,6 +50,7 @@ $db->sql($sql);
 $res = $db->getResult();
 $num = $db->numRows($res);
 if ($num >= 1) {
+    $password = md5($password);
     $sql_query = "UPDATE users SET password='$password' WHERE mobile = '$mobile'";
     $db->sql($sql_query);
     $response['success'] = true;

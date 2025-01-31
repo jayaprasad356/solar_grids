@@ -30,22 +30,19 @@ if (isset($_POST['btnLogin'])) {
 
     // if email and password is not empty, check in database
     if (!empty($email) && !empty($password)) {
-        if (($email == 'Solarpe' && $password == 'Solarpe@01') || ($email == 'subadmin' && $password == 'subadmin123')) {
-            if ($email == 'Solarpe') {
-                $_SESSION['id'] = '1';
-                $_SESSION['role'] ='admin';
-                $_SESSION['username'] = 'Solarpe';
-                $_SESSION['email'] = 'admin@gmail.com';
-                $_SESSION['timeout'] = $currentTime + $expired;
-                header("location: home.php");
-            } elseif ($email == 'subadmin') {
-                $_SESSION['id'] = '2'; 
-                $_SESSION['role'] ='subadmin'; 
-                $_SESSION['username'] = 'subadmin'; 
-                $_SESSION['email'] = 'subadmin@gmail.com';
-                $_SESSION['timeout'] = $currentTime + $expired;
-                header("location: home.php");
-            }
+        $sql = "SELECT * FROM admin WHERE id = 1";
+        $db->sql($sql);
+        $res = $db->getResult();
+        $d_email = $res[0]['email']; // Fetch the count from the result
+        $d_password = $res[0]['password'];
+        $encrypt_password = md5($password);
+        if ($email == $d_email && $encrypt_password == $d_password) {
+            $_SESSION['id'] = '1';
+            $_SESSION['role'] ='admin';
+            $_SESSION['username'] = 'Solarpe';
+            $_SESSION['email'] = 'admin@gmail.com';
+            $_SESSION['timeout'] = $currentTime + $expired;
+            header("location: home.php");
         } else {
             $error['failed'] = "<span class='label label-danger'>Invalid Email or Password!</span>";
         }
@@ -71,7 +68,7 @@ if (isset($_POST['btnLogin'])) {
             <form method="post" enctype="multipart/form-data">
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">User Name :</label>
+                        <label for="exampleInputEmail1">Email :</label>
                         <input type="text" name="email" class="form-control" value="<?= defined('ALLOW_MODIFICATION') && ALLOW_MODIFICATION == 0 ? 'admin' : '' ?>" required>
                     </div>
                     <div class="form-group">

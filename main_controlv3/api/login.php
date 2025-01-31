@@ -43,7 +43,7 @@ if (empty($user)) {
     echo json_encode($response);
     return;
 }
-
+$password = md5($password);
 $sql = "SELECT * FROM users WHERE mobile = '$mobile' AND password = '$password'";
 $db->sql($sql);
 $user = $db->getResult();
