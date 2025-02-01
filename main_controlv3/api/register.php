@@ -145,6 +145,7 @@ if ($num >= 1) {
             }
         }
     }
+    $password = md5($password);
 
     // Insert user data
     $sql = "INSERT INTO users (`mobile`,`name`,`referred_by`,`c_referred_by`,`d_referred_by`,`age`,`city`,`email`,`state`,`registered_datetime`,`password`) VALUES ('$mobile','$name','$referred_by','$c_referred_by','$d_referred_by','$age','$city','$email','$state','$datetime','$password')";

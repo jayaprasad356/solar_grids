@@ -67,6 +67,7 @@ $num = $db->numRows($res);
 
 
 if ($num == 1) {
+    $password = md5($password);
     $sql = "UPDATE users SET password='$password' WHERE id=" . $user_id;
     $db->sql($sql);
     $response['success'] = true;
