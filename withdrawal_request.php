@@ -347,7 +347,7 @@ if (isset($_POST['btnbonuswallet'])) {
                         </div>
                         <div class="mb-3">
                             <label for="amount" class="form-label">Enter Amount</label>
-                            <input type="number" class="form-control enter" placeholder="Minimum Withdrawal ₹50" id="amount" name="amount" required>
+                            <input type="number" class="form-control enter" placeholder="Minimum Withdrawal ₹10" id="amount" name="amount" required>
                         </div>
                         <button type="submit" name="btnWithdrawal" style=" color:black;" class="btn">Submit Request</button>
                     </form>
