@@ -19,7 +19,7 @@ class Database
          //  live server
          private $db_host = "localhost";
          private $db_user = "u117947056_solarpe";
-         private $db_pass = "Solarpe@2024"; 
+         private $db_pass = "Z@3mX!p9&Vt7Q#Ld"; 
          private $db_name = "u117947056_solarpe"; 
  
     // demo server
