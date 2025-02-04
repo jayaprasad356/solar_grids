@@ -2,7 +2,7 @@
 <section class="content-header">
     <h1>Users /<small><a href="home.php"><i class="fa fa-home"></i> Home</a></small></h1>
             <ol class="breadcrumb">
-                <a class="btn btn-block btn-default" href="add-users.php"><i class="fa fa-plus-square"></i> Add New User</a>
+                <a class="btn btn-block btn-default disabled" href="add-users.php"><i class="fa fa-plus-square"></i> Add New User</a>
 </ol>
 </section>
 
