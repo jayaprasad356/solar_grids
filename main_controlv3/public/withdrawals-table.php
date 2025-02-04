@@ -1,43 +1,53 @@
-
 <?php
 
 $datetime = date('Y-m-d H:i:s');
-if (isset($_POST['btnCancel'])  && isset($_POST['enable'])) {
-    $sql="SELECT * FROM withdrawals WHERE id IN (".implode(',',$_POST['enable']).")";
+if (isset($_POST['btnCancel']) && isset($_POST['enable'])) {
+    $ids = implode(',', $_POST['enable']);
+    $sql = "SELECT * FROM withdrawals WHERE id IN ($ids)";
     $db->sql($sql);
     $result = $db->getResult();
+    
+    $error = false;
     foreach ($result as $row) {
-        $amount=$row['amount'];
-        $user_id=$row['user_id'];
-        $sql = "UPDATE users SET balance= balance + $amount,total_withdrawal = total_withdrawal - $amount WHERE id = $row[user_id]";
-        $db->sql($sql);
-        $result = $db->getResult();
-
-        $sql = "INSERT INTO transactions (`user_id`, `amount`, `datetime`, `type`) VALUES ('$user_id', '$amount', '$datetime', 'cancelled')";
-        $db->sql($sql);
+        if ($row['status'] == 1) {
+            $error = true;
+            break;
+        }
     }
- 
-    for ($i = 0; $i < count($_POST['enable']); $i++) {
-        $enable = $db->escapeString($fn->xss_clean($_POST['enable'][$i]));
-        $sql = "UPDATE withdrawals SET status=2 WHERE id = $enable";
-        $db->sql($sql);
 
+    if ($error) {
+        echo "<script>alert('Error: Some selected withdrawals are already paid.');</script>";
+    } else {
+        foreach ($result as $row) {
+            $amount = $row['amount'];
+            $user_id = $row['user_id'];
+            $sql = "UPDATE users SET balance = balance + $amount, total_withdrawal = total_withdrawal - $amount WHERE id = $row[user_id]";
+            $db->sql($sql);
+            $result = $db->getResult();
+
+            $sql = "INSERT INTO transactions (`user_id`, `amount`, `datetime`, `type`) VALUES ('$user_id', '$amount', '$datetime', 'cancelled')";
+            $db->sql($sql);
+        }
+
+        for ($i = 0; $i < count($_POST['enable']); $i++) {
+            $enable = $db->escapeString($fn->xss_clean($_POST['enable'][$i]));
+            $sql = "UPDATE withdrawals SET status = 2 WHERE id = $enable";
+            $db->sql($sql);
+        }
     }
 }
 
-if (isset($_POST['btnPaid'])  && isset($_POST['enable'])) {
+if (isset($_POST['btnPaid']) && isset($_POST['enable'])) {
     for ($i = 0; $i < count($_POST['enable']); $i++) {
-        
-    
         $enable = $db->escapeString($fn->xss_clean($_POST['enable'][$i]));
-        $sql = "UPDATE withdrawals SET status=1 WHERE id = $enable";
+        $sql = "UPDATE withdrawals SET status = 1 WHERE id = $enable";
         $db->sql($sql);
         $result = $db->getResult();
-
     }
 }
 
 ?>
+
 <section class="content-header">
     <h1>Withdrawals /<small><a href="home.php"><i class="fa fa-home"></i> Home</a></small></h1>
   

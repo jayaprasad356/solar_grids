@@ -117,7 +117,7 @@ $db->connect();
             foreach ($res as $row) {
            
                 $operate = ' <a href="edit-users.php?id=' . $row['id'] . '"><i class="fa fa-edit"></i>Edit</a>';
-                $operate .= ' <a class="text text-danger" href="delete-users.php?id=' . $row['id'] . '"><i class="fa fa-trash"></i>Delete</a>';
+                $operate .= ' <span class="text text-danger"><i class="fa fa-trash"></i>Delete</span>';
                 $tempRow['id'] = $row['id'];
                 $tempRow['name'] = $row['name'];
                 $tempRow['mobile'] = $row['mobile'];
