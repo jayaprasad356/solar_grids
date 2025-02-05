@@ -78,11 +78,11 @@ if (isset($_POST['btnEdit'])) {
                 $update_result = 1;
             }
     
-            if ($update_result == 1) {
-                $datetime = date('Y-m-d H:i:s'); 
-                $tracking_sql = "INSERT INTO tracking (type, datetime) VALUES ('edit', '$datetime')";
-                $db->sql($tracking_sql);
-            }
+            // if ($update_result == 1) {
+            //     $datetime = date('Y-m-d H:i:s'); 
+            //     $tracking_sql = "INSERT INTO tracking (type, datetime) VALUES ('edit', '$datetime')";
+            //     $db->sql($tracking_sql);
+            // }
             
             // Check update result
             if ($update_result == 1) {
