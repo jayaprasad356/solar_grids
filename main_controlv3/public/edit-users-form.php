@@ -78,7 +78,13 @@ if (isset($_POST['btnEdit'])) {
                 $update_result = 1;
             }
     
-            // check update result
+            if ($update_result == 1) {
+                $datetime = date('Y-m-d H:i:s'); 
+                $tracking_sql = "INSERT INTO tracking (user_id, type, datetime) VALUES ('$ID', 'edit', '$datetime')";
+                $db->sql($tracking_sql);
+            }
+            
+            // Check update result
             if ($update_result == 1) {
                 $error['update_users'] = " <section class='content-header'><span class='label label-success'>User Details updated Successfully</span></section>";
             } else {

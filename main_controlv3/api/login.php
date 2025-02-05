@@ -6,6 +6,7 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 header("Cache-Control: no-store, no-cache, must-revalidate");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
+date_default_timezone_set('Asia/Kolkata');
 
 include_once('../includes/crud.php');
 include_once('../library/jwt.php');
@@ -43,6 +44,7 @@ if (empty($user)) {
     echo json_encode($response);
     return;
 }
+
 $password = md5($password);
 $sql = "SELECT * FROM users WHERE mobile = '$mobile' AND password = '$password'";
 $db->sql($sql);
@@ -64,8 +66,15 @@ if ($blocked == 1) {
     return;
 }
 
-// Call the generate_token function from verify-token.php
+// Generate JWT token
 $token = generate_token($user[0]['id'], $user[0]['mobile']); // Pass the user data to generate the token
+
+$user_id = $user[0]['id'];
+$type = 'login';
+$datetime = date('Y-m-d H:i:s');
+
+$sql = "INSERT INTO tracking (user_id, type, datetime) VALUES ('$user_id', '$type', '$datetime')";
+$db->sql($sql);
 
 // Return response with token
 $response['success'] = true;
