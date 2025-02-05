@@ -69,13 +69,6 @@ if ($blocked == 1) {
 // Generate JWT token
 $token = generate_token($user[0]['id'], $user[0]['mobile']); // Pass the user data to generate the token
 
-$user_id = $user[0]['id'];
-$type = 'login';
-$datetime = date('Y-m-d H:i:s');
-
-$sql = "INSERT INTO tracking (user_id, type, datetime) VALUES ('$user_id', '$type', '$datetime')";
-$db->sql($sql);
-
 // Return response with token
 $response['success'] = true;
 $response['registered'] = true;

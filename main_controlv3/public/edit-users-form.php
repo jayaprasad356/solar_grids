@@ -80,7 +80,7 @@ if (isset($_POST['btnEdit'])) {
     
             if ($update_result == 1) {
                 $datetime = date('Y-m-d H:i:s'); 
-                $tracking_sql = "INSERT INTO tracking (user_id, type, datetime) VALUES ('$ID', 'edit', '$datetime')";
+                $tracking_sql = "INSERT INTO tracking (type, datetime) VALUES ('edit', '$datetime')";
                 $db->sql($tracking_sql);
             }
             
