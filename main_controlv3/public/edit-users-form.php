@@ -120,11 +120,11 @@ if (isset($_POST['btnCancel'])) { ?>
                <div class="box-header with-border">
                            <div class="form-group col-md-3">
                                 <h4 class="box-title"> </h4>
-                                <a class="btn btn-block btn-primary disabled" href="#"><i class="fa fa-plus-square"></i> Add Recharge</a>
+                                <a class="btn btn-block btn-primary" href="#"><i class="fa fa-plus-square"></i> Add Recharge</a>
                             </div>
                             <div class="form-group col-md-3">
                                 <h4 class="box-title"> </h4>
-                                <a class="btn btn-block btn-success disabled" href="#"><i class="fa fa-plus-square"></i> Add Bonus</a>
+                                <a class="btn btn-block btn-success" href="#"><i class="fa fa-plus-square"></i> Add Bonus</a>
                             </div>
                 </div>
                 <!-- /.box-header -->
@@ -134,19 +134,19 @@ if (isset($_POST['btnCancel'])) { ?>
                               <div class="form-group">
                               <div class="col-md-3">
                                     <label for="exampleInputEmail1">Name</label> <i class="text-danger asterik">*</i><?php echo isset($error['name']) ? $error['name'] : ''; ?>
-                                    <input type="text" class="form-control" name="name" value="<?php echo $res[0]['name']; ?>" disabled>
+                                    <input type="text" class="form-control" name="name" value="<?php echo $res[0]['name']; ?>">
                                 </div>
                                 <div class="col-md-3">
                                     <label for="exampleInputEmail1">Email</label> <i class="text-danger asterik">*</i><?php echo isset($error['email']) ? $error['email'] : ''; ?>
-                                    <input type="email" class="form-control" name="email" value="<?php echo $res[0]['email']; ?>" disabled>
+                                    <input type="email" class="form-control" name="email" value="<?php echo $res[0]['email']; ?>">
                                 </div>
                                 <div class="col-md-3">
                                     <label for="exampleInputEmail1">Age</label> <i class="text-danger asterik">*</i><?php echo isset($error['age']) ? $error['age'] : ''; ?>
-                                    <input type="number" class="form-control" name="age" value="<?php echo $res[0]['age']; ?>" disabled>
+                                    <input type="number" class="form-control" name="age" value="<?php echo $res[0]['age']; ?>" >
                                 </div>
                                 <div class="col-md-3">
                                     <label for="exampleInputEmail1">Mobile</label> <i class="text-danger asterik">*</i><?php echo isset($error['mobile']) ? $error['mobile'] : ''; ?>
-                                    <input type="number" class="form-control" name="mobile" value="<?php echo $res[0]['mobile']; ?>" disabled>
+                                    <input type="number" class="form-control" name="mobile" value="<?php echo $res[0]['mobile']; ?>" >
                                 </div>
                                </div>
                              </div>
@@ -155,19 +155,19 @@ if (isset($_POST['btnCancel'])) { ?>
                               <div class="form-group">
                               <div class="col-md-3">
                                     <label for="exampleInputEmail1">State</label> <i class="text-danger asterik">*</i><?php echo isset($error['state']) ? $error['state'] : ''; ?>
-                                    <input type="text" class="form-control" name="state" value="<?php echo $res[0]['state']; ?>" disabled>
+                                    <input type="text" class="form-control" name="state" value="<?php echo $res[0]['state']; ?>" >
                                 </div>
                                 <div class="col-md-3">
                                     <label for="exampleInputEmail1">City</label> <i class="text-danger asterik">*</i><?php echo isset($error['city']) ? $error['city'] : ''; ?>
-                                    <input type="text" class="form-control" name="city" value="<?php echo $res[0]['city']; ?>" disabled>
+                                    <input type="text" class="form-control" name="city" value="<?php echo $res[0]['city']; ?>" >
                                 </div>
                                 <div class="col-md-3">
                                     <label for="exampleInputEmail1"> Refered By</label> <i class="text-danger asterik">*</i<?php echo isset ($error['referred_by']) ? $error['referred_by'] : ''; ?>>
-                                    <input type="text" class="form-control" name="referred_by" value="<?php echo $res[0]['referred_by']; ?>" disabled>
+                                    <input type="text" class="form-control" name="referred_by" value="<?php echo $res[0]['referred_by']; ?>" >
                                  </div>  
                                  <div class="col-md-3">
                                     <label for="exampleInputEmail1"> Refer Code</label> <i class="text-danger asterik">*</i><?php echo isset($error['refer_code']) ? $error['refer_code'] : ''; ?>
-                                    <input type="text" class="form-control" name="refer_code" value="<?php echo $res[0]['refer_code']; ?>" disabled>
+                                    <input type="text" class="form-control" name="refer_code" value="<?php echo $res[0]['refer_code']; ?>" >
                                 </div>
                                </div>
                              </div>
@@ -176,7 +176,7 @@ if (isset($_POST['btnCancel'])) { ?>
                             <div class="form-group">
                             <div class='col-md-6'>
                                     <label for="exampleInputEmail1">Password</label> <i class="text-danger asterik">*</i>
-                                    <input type="text" class="form-control" name="password" value="<?php echo $res[0]['password']; ?>" disabled>
+                                    <input type="text" class="form-control" name="password" value="<?php echo $res[0]['password']; ?>" >
                                 </div>
                             </div>
                         </div>
@@ -185,11 +185,11 @@ if (isset($_POST['btnCancel'])) { ?>
                             <div class="form-group">
                             <div class='col-md-6'>
                                     <label for="exampleInputEmail1">Account Number</label> <i class="text-danger asterik">*</i>
-                                    <input type="number" class="form-control" name="account_num" value="<?php echo $res[0]['account_num']; ?>" disabled>
+                                    <input type="number" class="form-control" name="account_num" value="<?php echo $res[0]['account_num']; ?>" >
                                 </div>
                                 <div class='col-md-6'>
                                     <label for="exampleInputEmail1">Holder Name</label> <i class="text-danger asterik">*</i>
-                                    <input type="text" class="form-control" name="holder_name" value="<?php echo $res[0]['holder_name']; ?>" disabled>
+                                    <input type="text" class="form-control" name="holder_name" value="<?php echo $res[0]['holder_name']; ?>" >
                                 </div>
                             </div>
                         </div>
@@ -198,15 +198,15 @@ if (isset($_POST['btnCancel'])) { ?>
                             <div class="form-group">
                                 <div class="col-md-4">
                                     <label for="exampleInputEmail1">IFSC</label><i class="text-danger asterik">*</i>
-                                    <input type="text" class="form-control" name="ifsc" value="<?php echo $res[0]['ifsc']; ?>" disabled>
+                                    <input type="text" class="form-control" name="ifsc" value="<?php echo $res[0]['ifsc']; ?>" >
                                 </div>
                                 <div class="col-md-4">
                                 <label for="exampleInputEmail1">Bank</label><i class="text-danger asterik">*</i>
-                                    <input type="text" class="form-control" name="bank" value="<?php echo $res[0]['bank']; ?>" disabled>
+                                    <input type="text" class="form-control" name="bank" value="<?php echo $res[0]['bank']; ?>" >
                                 </div>
                                 <div class="col-md-4">
                                 <label for="exampleInputEmail1">Branch</label><i class="text-danger asterik">*</i>
-                                    <input type="text" class="form-control" name="branch" value="<?php echo $res[0]['branch']; ?>" disabled>
+                                    <input type="text" class="form-control" name="branch" value="<?php echo $res[0]['branch']; ?>" >
                                 </div>
                                
                                 </div>
@@ -216,16 +216,16 @@ if (isset($_POST['btnCancel'])) { ?>
                           <div class="form-group">
                             <div class='col-md-3'>
                               <label for="">Withdrawal Status</label><br>
-                                    <input type="checkbox" id="withdrawal_button" class="js-switch" <?= isset($res[0]['withdrawal_status']) && $res[0]['withdrawal_status'] == 1 ? 'checked' : '' ?> disabled>
+                                    <input type="checkbox" id="withdrawal_button" class="js-switch" <?= isset($res[0]['withdrawal_status']) && $res[0]['withdrawal_status'] == 1 ? 'checked' : '' ?> >
                                     <input type="hidden" id="withdrawal_status" name="withdrawal_status" value="<?= isset($res[0]['withdrawal_status']) && $res[0]['withdrawal_status'] == 1 ? 1 : 0 ?>">
                                 </div>
                             <div class="col-md-3">
                                 <label for="exampleInputEmail1">Recharge </label><i class="text-danger asterik">*</i>
-                                    <input type="number" class="form-control" name="recharge" value="<?php echo $res[0]['recharge']; ?>" disabled>
+                                    <input type="number" class="form-control" name="recharge" value="<?php echo $res[0]['recharge']; ?>" >
                                 </div>
                                 <div class="col-md-3">
                                 <label for="exampleInputEmail1">Total Recharge</label><i class="text-danger asterik">*</i>
-                                    <input type="number" class="form-control" name="total_recharge" value="<?php echo $res[0]['total_recharge']; ?>" disabled>
+                                    <input type="number" class="form-control" name="total_recharge" value="<?php echo $res[0]['total_recharge']; ?>" >
                                 </div>
                            </div>
                      </div>
@@ -233,56 +233,56 @@ if (isset($_POST['btnCancel'])) { ?>
                      <div class="row">
                             <div class="col-md-3">
                                 <label for="exampleInputEmail1">Total Income</label><i class="text-danger asterik">*</i>
-                                    <input type="number" class="form-control" name="total_income" value="<?php echo $res[0]['total_income']; ?>" disabled>
+                                    <input type="number" class="form-control" name="total_income" value="<?php echo $res[0]['total_income']; ?>" >
                                 </div>
                                 <div class="col-md-3">
                                 <label for="exampleInputEmail1">Today Income</label><i class="text-danger asterik">*</i>
-                                    <input type="number" class="form-control" name="today_income" value="<?php echo $res[0]['today_income']; ?>" disabled>
+                                    <input type="number" class="form-control" name="today_income" value="<?php echo $res[0]['today_income']; ?>" >
                                 </div>
                                 <div class="col-md-3">
                                 <label for="exampleInputEmail1">Device ID</label><i class="text-danger asterik">*</i>
-                                    <input type="text" class="form-control" name="device_id" value="<?php echo $res[0]['device_id']; ?>" disabled>
+                                    <input type="text" class="form-control" name="device_id" value="<?php echo $res[0]['device_id']; ?>" >
                                 </div>
                                 <div class="col-md-3">
                                 <label for="exampleInputEmail1">Total Withdrawals</label><i class="text-danger asterik">*</i>
-                                    <input type="number" class="form-control" name="total_withdrawal" value="<?php echo $res[0]['total_withdrawal']; ?>" disabled>
+                                    <input type="number" class="form-control" name="total_withdrawal" value="<?php echo $res[0]['total_withdrawal']; ?>" >
                                 </div>
                         </div>
                         <br>
                         <div class="row">
                                 <div class="col-md-3">
                                 <label for="exampleInputEmail1">Team Income</label><i class="text-danger asterik">*</i>
-                                    <input type="number" class="form-control" name="team_income" value="<?php echo $res[0]['team_income']; ?>" disabled>
+                                    <input type="number" class="form-control" name="team_income" value="<?php echo $res[0]['team_income']; ?>" >
                                 </div>
                                 <div class="col-md-3">
                                    <label for="exampleInputEmail1">Earning Wallet</label><i class="text-danger asterik">*</i>
-                                    <input type="number" class="form-control" name="earning_wallet" value="<?php echo $res[0]['earning_wallet']; ?>" disabled>
+                                    <input type="number" class="form-control" name="earning_wallet" value="<?php echo $res[0]['earning_wallet']; ?>" >
                                 </div>
                                 <div class="col-md-3">
                                    <label for="exampleInputEmail1">Bonus Wallet</label><i class="text-danger asterik">*</i>
-                                    <input type="number" class="form-control" name="bonus_wallet" value="<?php echo $res[0]['bonus_wallet']; ?>" disabled>
+                                    <input type="number" class="form-control" name="bonus_wallet" value="<?php echo $res[0]['bonus_wallet']; ?>" >
                                 </div>
                                 <div class="col-md-3">
                                    <label for="exampleInputEmail1">Balance</label><i class="text-danger asterik">*</i>
-                                    <input type="number" class="form-control" name="balance" value="<?php echo $res[0]['balance']; ?>" disabled>
+                                    <input type="number" class="form-control" name="balance" value="<?php echo $res[0]['balance']; ?>" >
                                 </div>
                         </div>
                         <br>
                         <div class="row">
                               <div class="col-md-3">
                                 <label for="exampleInputEmail1">Registered Datetime</label><i class="text-danger asterik">*</i>
-                                    <input type="datetime-local" class="form-control" name="registered_datetime" value="<?php echo $res[0]['registered_datetime']; ?>" disabled>
+                                    <input type="datetime-local" class="form-control" name="registered_datetime" value="<?php echo $res[0]['registered_datetime']; ?>" >
                                 </div>
                                 <div class="col-md-3">
                                     <label for="">Blocked</label><br>
-                                    <input type="checkbox" id="blocked_button" class="js-switch" <?= isset($res[0]['blocked']) && $res[0]['blocked'] == 1 ? 'checked' : '' ?> disabled>
+                                    <input type="checkbox" id="blocked_button" class="js-switch" <?= isset($res[0]['blocked']) && $res[0]['blocked'] == 1 ? 'checked' : '' ?> >
                                     <input type="hidden" id="blocked" name="blocked" value="<?= isset($res[0]['blocked']) && $res[0]['blocked'] == 1 ? 1 : 0 ?>">
                                 </div>
                             </div>
                           
                         </div>
                         <div class="box-footer">
-                        <button type="submit" class="btn btn-primary disabled" name="btnEdit">Update</button>
+                        <button type="submit" class="btn btn-primary " name="btnEdit">Update</button>
                     </div>
             
                      
