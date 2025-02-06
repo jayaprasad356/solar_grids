@@ -28,14 +28,14 @@ if (!$authenticated_user_id) {
 if (empty($_POST['user_id'])) {
     $response['success'] = false;
     $response['message'] = "User ID is Empty";
-    print_r(json_encode($response));
-    return false;
+    echo json_encode($response);
+    return;
 }
 if (empty($_POST['amount'])) {
     $response['success'] = false;
     $response['message'] = "Amount is Empty";
-    print_r(json_encode($response));
-    return false;
+    echo json_encode($response);
+    return;
 }
 $date = date('Y-m-d');
 function isBetween10AMand6PM() {
@@ -58,100 +58,141 @@ if ($user_id != $authenticated_user_id) {
     return;
 }
 
-$sql = "SELECT * FROM settings";
-$db->sql($sql);
-$settings = $db->getResult();
 
-
+// Fetch withdrawal settings
 $sql = "SELECT * FROM settings WHERE id=1";
 $db->sql($sql);
 $result = $db->getResult();
+if (!is_array($result) || empty($result)) {
+    $response['success'] = false;
+    $response['message'] = "Withdrawal settings not found";
+    echo json_encode($response);
+    return;
+}
 $min_withdrawal = $result[0]['min_withdrawal'];
 $withdrawal_status = $result[0]['withdrawal_status'];
 
 if ($withdrawal_status == 0) {
     $response['success'] = false;
     $response['message'] = "Withdrawal Disabled";
-    print_r(json_encode($response));
-    return false;
+    echo json_encode($response);
+    return;
 }
 
+// Fetch user data
 $sql = "SELECT * FROM users WHERE id='$user_id'";
 $db->sql($sql);
 $res = $db->getResult();
+if (!is_array($res) || empty($res)) {
+    $response['success'] = false;
+    $response['message'] = "User not found";
+    echo json_encode($response);
+    return;
+}
 $balance = $res[0]['balance'];
 $account_num = $res[0]['account_num'];
 $withdrawal_status = $res[0]['withdrawal_status'];
+$mobile = $res[0]['mobile'];
+$ifsc = $res[0]['ifsc'];
+$branch = $res[0]['branch'];
+$bank = $res[0]['bank'];
+$holder_name = $res[0]['holder_name'];
+
+// Prepare data to send to Laravel API
+$data = array(
+    'user_id' => $user_id,
+    'amount' => $amount,
+    'mobile' => $mobile,
+    'account_num' => $account_num,
+    'ifsc_code' => $ifsc,
+    'branch' => $branch,
+    'bank' => $bank,
+    'holder_name' => $holder_name,
+    'datetime' => $datetime
+);
+
+// Send the data to the Laravel API
+$apiUrl = 'https://solarpenew.solarpe.org/api/withdrawals'; // Replace with your correct Laravel API URL
+
+// Use cURL to send the request to the Laravel API
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $apiUrl);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+
+$apiResponse = curl_exec($ch);
+curl_close($ch);
 
 if ($withdrawal_status == 0) {
     $response['success'] = false;
-    $response['message'] = "Disabled";
-    print_r(json_encode($response));
-    return false;
+    $response['message'] = "Withdrawal Disabled";
+    echo json_encode($response);
+    return;
 }
 
-
+// Check for pending withdrawals
 $sql = "SELECT * FROM withdrawals WHERE user_id='$user_id' AND status = 0";
 $db->sql($sql);
 $pendingWithdrawals = $db->getResult();
-if (!empty($pendingWithdrawals)) {
+if (is_array($pendingWithdrawals) && !empty($pendingWithdrawals)) {
     $response['success'] = false;
     $response['message'] = "Please withdraw again after your pending withdrawal is paid";
-    print_r(json_encode($response));
-    return false;
+    echo json_encode($response);
+    return;
 }
 
+// Check if the current time is within withdrawal hours
 if (!isBetween10AMand6PM()) {
     $response['success'] = false;
-    $response['message'] = "Withdrawal time morning 10:00AM to 6PM";
-    print_r(json_encode($response));
-    return false;
+    $response['message'] = "Withdrawal time is between 10:00 AM to 6:00 PM";
+    echo json_encode($response);
+    return;
 }
 
-$dayOfWeek = date('w');
-
+// Check if the current day is a weekend (Sunday or Saturday)
 if ($dayOfWeek == 0 || $dayOfWeek == 7) {
     $response['success'] = false;
-    $response['message'] = "Withdrawal time Monday to Saturday";
-    print_r(json_encode($response));
-    return false;
-} 
+    $response['message'] = "Withdrawal allowed only Monday to Saturday";
+    echo json_encode($response);
+    return;
+}
 
 if ($amount >= $min_withdrawal) {
     if ($amount <= $balance) {
         if ($account_num == '') {
             $response['success'] = false;
-            $response['message'] = "Please Update Your Bank details";
-            print_r(json_encode($response));
-            return false;
+            $response['message'] = "Please update your bank details";
+            echo json_encode($response);
+            return;
         } else {
-
-            $sql = "INSERT INTO withdrawals (`user_id`,`amount`,`balance`,`status`,`datetime`) VALUES ('$user_id','$amount',$balance,0,'$datetime')";
-            $db->sql($sql);
-            $sql = "UPDATE users SET balance = balance - '$amount',total_withdrawal = total_withdrawal + '$amount' WHERE id='$user_id'";
+            // Insert withdrawal request
+            $sql = "INSERT INTO withdrawals (`user_id`, `amount`, `balance`, `status`, `datetime`) VALUES ('$user_id', '$amount', $balance, 0, '$datetime')";
             $db->sql($sql);
 
-            $sql = "SELECT * FROM withdrawals WHERE user_id = $user_id";
+            // Update user balance
+            $sql = "UPDATE users SET balance = balance - '$amount', total_withdrawal = total_withdrawal + '$amount' WHERE id='$user_id'";
             $db->sql($sql);
-            $withdrawals = $db->getResult();
-    
+
+            // Fetch updated user data
             $sql = "SELECT * FROM users WHERE id = $user_id";
             $db->sql($sql);
             $userDetails = $db->getResult();
-    
+
+            // Return success response
             $response['success'] = true;
             $response['message'] = "Withdrawal Requested Successfully.";
             $response['data'] = $userDetails;
-            print_r(json_encode($response));
+            echo json_encode($response);
         }
     } else {
         $response['success'] = false;
         $response['message'] = "Insufficient Balance";
-        print_r(json_encode($response));
+        echo json_encode($response);
     }
 } else {
     $response['success'] = false;
     $response['message'] = "Minimum Withdrawal Amount is $min_withdrawal";
-    print_r(json_encode($response));
+    echo json_encode($response);
 }
-    ?>
+?>

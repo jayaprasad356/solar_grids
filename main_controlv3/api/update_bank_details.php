@@ -96,6 +96,38 @@ if ($num == 1) {
     $response['success'] = true;
     $response['message'] = "Bank Details Updated Successfully";
     $response['data'] = $res;
+
+    // Prepare data to send to Laravel API
+    $account_num = $res[0]['account_num'];
+    $mobile = $res[0]['mobile'];
+    $ifsc = $res[0]['ifsc'];
+    $branch = $res[0]['branch'];
+    $bank = $res[0]['bank'];
+    $holder_name = $res[0]['holder_name'];
+
+    $data = array(
+        'user_id' => $user_id,
+        'mobile' => $mobile,
+        'account_num' => $account_num,
+        'ifsc' => $ifsc,
+        'branch' => $branch,
+        'bank' => $bank,
+        'holder_name' => $holder_name
+    );
+
+    // Send the data to the Laravel API
+    $apiUrl = 'https://solarpenew.solarpe.org/api/add_bank_details'; // Replace with your correct Laravel API URL
+
+    // Use cURL to send the request to the Laravel API
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $apiUrl);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+
+    $apiResponse = curl_exec($ch);
+    curl_close($ch);
+
     print_r(json_encode($response));
 } else {
     $response['success'] = false;
