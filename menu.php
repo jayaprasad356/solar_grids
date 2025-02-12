@@ -208,10 +208,10 @@ curl_close($curl);
                                 <i class="bi bi-credit-card"></i>
                                 <span>Transactions</span>
                             </a>
-                            <a href="bank_details.php" class="nav-links">
+                            <!-- <a href="bank_details.php" class="nav-links">
                                 <i class="bi bi-bank"></i>
                                 <span>Bank Account</span>
-                            </a>
+                            </a> -->
                             <a href="set_password.php" class="nav-links">
                                 <i class="bi bi-lock"></i>
                                 <span>Set Password</span>

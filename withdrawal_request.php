@@ -66,30 +66,100 @@ curl_close($curl);
 // Update session balance
 $_SESSION['balance'] = $balance;
 
+// Fetch Bank Details
+$apiUrl = API_URL . "bank_details.php";
+
+$curl = curl_init($apiUrl);
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query(["user_id" => $user_id])); // Send user_id
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($curl, CURLOPT_HTTPHEADER, array("Authorization: Bearer " . $token));
+
+$response = curl_exec($curl);
+curl_close($curl);
+
+if ($response === false) {
+    echo "Error: " . curl_error($curl);
+} else {
+    $responseData = json_decode($response, true);
+    if ($responseData !== null && $responseData["success"]) {
+        $bankdetails = $responseData["data"];
+
+        if (!empty($bankdetails)) {
+            $account_num = $bankdetails[0]["account_num"];
+            $holder_name = $bankdetails[0]["holder_name"];
+            $bank = $bankdetails[0]["bank"];
+            $branch = $bankdetails[0]["branch"];
+            $ifsc = $bankdetails[0]["ifsc"];
+        } else {
+            echo "<script>alert('No bank details found. Please update your bank details.');</script>";
+        }
+    } else {
+        echo "<script>alert('Error fetching bank details: " . $responseData["message"] . "');</script>";
+    }
+}
+
+// Handle Withdrawal Request
 if (isset($_POST['btnWithdrawal'])) {
     $amount = $_POST['amount'];
-    $data = array(
+
+    // Capture Bank Details from the Form
+    $account_num = isset($_POST["account_num"]) ? htmlspecialchars($_POST["account_num"]) : "";
+    $holder_name = isset($_POST["holder_name"]) ? htmlspecialchars($_POST["holder_name"]) : "";
+    $bank = isset($_POST["bank"]) ? htmlspecialchars($_POST["bank"]) : "";
+    $branch = isset($_POST["branch"]) ? htmlspecialchars($_POST["branch"]) : "";
+    $ifsc = isset($_POST["ifsc"]) ? htmlspecialchars($_POST["ifsc"]) : "";
+
+    // Update Bank Details First
+    $bankData = array(
+        "user_id" => $user_id,
+        "account_num" => $account_num,
+        "holder_name" => $holder_name,
+        "bank" => $bank,
+        "branch" => $branch,
+        "ifsc" => $ifsc,
+    );
+
+    $bankApiUrl = API_URL . "update_bank_details.php";
+    $curl = curl_init($bankApiUrl);
+    curl_setopt($curl, CURLOPT_POST, true);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($bankData));
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array("Authorization: Bearer " . $token));
+
+    $bankResponse = curl_exec($curl);
+    curl_close($curl);
+
+    $bankResponseData = json_decode($bankResponse, true);
+
+    if ($bankResponseData === null || !$bankResponseData["success"]) {
+        echo "<script>alert('Failed to update bank details: " . $bankResponseData["message"] . "');</script>";
+        exit();
+    }
+
+    // Proceed to Withdrawal Request if Bank Update is Successful
+    $withdrawData = array(
         "user_id" => $user_id,
         "amount" => $amount,
     );
-    $apiUrl = API_URL . "withdrawals.php";
 
-    $curl = curl_init($apiUrl);
+    $withdrawApiUrl = API_URL . "withdrawals.php";
+    $curl = curl_init($withdrawApiUrl);
     curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data)); // Use http_build_query for POST data
+    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($withdrawData));
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array("Authorization: Bearer " . $token));
 
-    // Set the Authorization header
-    curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-        "Authorization: Bearer " . $token, // Pass the token as Bearer in the header
-    ));
-
-    $response = curl_exec($curl);
+    $withdrawResponse = curl_exec($curl);
+    $response = $withdrawResponse;
 
     if ($response === false) {
         echo "Error: " . curl_error($curl);
-    } else {
+    }
+    else {
         $responseData = json_decode($response, true);
         if ($responseData !== null && isset($responseData["success"])) {
             $message = $responseData["message"];
@@ -98,18 +168,17 @@ if (isset($_POST['btnWithdrawal'])) {
                 $balance = $_SESSION['balance'];
             }
             echo "<script>
-                    alert('$message');
-                    window.location.href = 'withdrawals.php';
-                  </script>";
+                        alert('$message');
+                        window.location.href = 'withdrawal_request.php';
+                      </script>";
         } else {
             if ($responseData !== null) {
                 echo "<script>alert('".$responseData["message"]."')</script>";
             }
         }
     }
-    curl_close($curl);
-}
-
+curl_close($curl);
+    } 
 $_SESSION['earning_wallet'] = $earning_wallet;
 
 if (isset($_POST['btnearningwallet'])) {
@@ -348,6 +417,26 @@ if (isset($_POST['btnbonuswallet'])) {
                         <div class="mb-3">
                             <label for="amount" class="form-label">Enter Amount</label>
                             <input type="number" class="form-control enter" placeholder="Minimum Withdrawal ₹10" id="amount" name="amount" required>
+                        </div>
+                        <div class="mb-3">
+                        <label for="withdrawalAmount" class="form-label">Holder Name</label>
+                        <input type="text" id="holder_name" name="holder_name" placeholder="holder_name" class="form-control enter" required value="<?php echo isset($holder_name) ? htmlspecialchars($holder_name) : ''; ?>" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="withdrawalNote" class="form-label">Account Number</label>
+                            <input type="text" id="account_num" name="account_num" placeholder="account_num" class="form-control enter" required value="<?php echo isset($account_num) ? htmlspecialchars($account_num) : ''; ?>" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="withdrawalAmount" class="form-label">Bank</label>
+                            <input type="text" id="bank" name="bank" placeholder="bank" class="form-control enter" required value="<?php echo isset($bank) ? htmlspecialchars($bank) : ''; ?>" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="withdrawalNote" class="form-label">Branch</label>
+                            <input type="text" id="branch" name="branch" placeholder="branch" class="form-control enter" required value="<?php echo isset($branch) ? htmlspecialchars($branch) : ''; ?>" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="withdrawalAmount" class="form-label">IFSC Code</label>
+                            <input type="text" id="ifsc" name="ifsc" placeholder="ifsc" class="form-control enter" required value="<?php echo isset($ifsc) ? htmlspecialchars($ifsc) : ''; ?>" />
                         </div>
                         <button type="submit" name="btnWithdrawal" style=" color:black;" class="btn">Submit Request</button>
                     </form>
