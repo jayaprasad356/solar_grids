@@ -9,32 +9,45 @@ define('MIN_WITHDRAWAL', 12);
 define('REFER_COINS', 20);
 class Database
 {
-    /* 
-     * Create variables for credentials to MySQL database
-     * The variables have been declared as private. This
-     * means that they will only be available with the 
-     * Database class
-     */
 
-         //  live server
-         private $db_host = "localhost";
-         private $db_user = "u117947056_solarpe";
-         private $db_pass = "Z@3mX!p9&Vt7Q#Ld"; 
-         private $db_name = "u117947056_solarpe"; 
- 
-    // demo server
-    // private $db_host = "localhost";
-    // private $db_user = "u117947056_demo_solarpe";
-    // private $db_pass = "DemoSolarpe@2025";
-    // private $db_name = "u117947056_demo_solarpe"; 
+    private $db_host;
+    private $db_user;
+    private $db_pass;
+    private $db_name;
 
-    private $con = false; // Check to see if the connection is active
-    private $myconn = ""; // This will be our mysqli object
-    private $result = array(); // Any results from a query will be stored here
-    private $myQuery = ""; // used for debugging process with SQL return
-    private $numResults = ""; // used for returning the number of rows
+    private $con = false; // Check if the connection is active
+    private $myconn = null; // MySQLi object
+    private $result = array(); // Store query results
+    private $myQuery = ""; // Debugging SQL queries
+    private $numResults = 0; // Number of rows
 
-    // Function to make connection to database
+    // Constructor to initialize database connection
+    public function __construct() {
+        $this->loadEnv(); // Load environment variables
+
+        $this->db_host = getenv('DB_HOST');
+        $this->db_user = getenv('DB_USER');
+        $this->db_pass = getenv('DB_PASS');
+        $this->db_name = getenv('DB_NAME');
+
+        $this->connect(); // Automatically connect on object creation
+    }
+
+    private function loadEnv() {
+        if (!file_exists(__DIR__ . '/.env')) {
+            die("Error: .env file not found.");
+        }
+
+        $lines = file(__DIR__ . '/.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        foreach ($lines as $line) {
+            if (strpos($line, '=') !== false) {
+                list($key, $value) = explode('=', $line, 2);
+                $key = trim($key);
+                $value = trim($value);
+                putenv("$key=$value");
+            }
+        }
+    }
     public function connect()
     {
         if (!$this->con) {
